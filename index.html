@@ -267,6 +267,72 @@
   .mc-desc{color:var(--muted);font-size:.88rem;line-height:1.6;}
   .menu-note{text-align:center;color:var(--muted);font-size:.78rem;letter-spacing:.08em;margin-top:40px;font-style:italic;}
 
+  /* ===== CARRITO ===== */
+  .qty-controls{display:flex;align-items:center;gap:14px;margin-top:16px;}
+  .qty-btn{
+    width:32px;height:32px;border-radius:50%;border:1px solid rgba(212,175,55,.4);
+    background:transparent;color:var(--gold-light);font-size:1.1rem;line-height:1;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;transition:background .25s ease, color .25s ease, transform .2s ease;
+  }
+  .qty-btn:hover{background:var(--gold);color:var(--bg-darker);}
+  .qty-btn:active{transform:scale(.9);}
+  .qty-count{min-width:20px;text-align:center;font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--cream);}
+  .qty-unavailable{margin-top:16px;color:var(--muted);font-size:.78rem;font-style:italic;}
+
+  .cart-fab{
+    position:fixed;bottom:26px;right:26px;z-index:600;
+    width:60px;height:60px;border-radius:50%;background:var(--gold);color:var(--bg-darker);
+    border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+    box-shadow:0 12px 30px rgba(0,0,0,.4);transition:transform .3s cubic-bezier(.16,.8,.3,1);
+  }
+  .cart-fab:hover{transform:translateY(-4px) scale(1.05);}
+  .cart-fab .cart-badge{
+    position:absolute;top:-4px;right:-4px;background:var(--bg-darker);color:var(--gold-light);
+    border:1px solid var(--gold);border-radius:50%;min-width:22px;height:22px;padding:0 4px;
+    font-size:.72rem;font-family:'Montserrat',sans-serif;display:flex;align-items:center;justify-content:center;
+  }
+  .cart-fab.hidden{display:none;}
+
+  .cart-overlay{
+    position:fixed;inset:0;background:rgba(4,19,12,.7);backdrop-filter:blur(4px);z-index:700;
+    opacity:0;pointer-events:none;transition:opacity .3s ease;
+  }
+  .cart-overlay.open{opacity:1;pointer-events:auto;}
+  .cart-panel{
+    position:fixed;top:0;right:0;height:100vh;height:100dvh;width:min(420px,100%);
+    background:var(--bg-darker);border-left:1px solid rgba(212,175,55,.2);z-index:701;
+    display:flex;flex-direction:column;transform:translateX(100%);
+    transition:transform .4s cubic-bezier(.16,.8,.3,1);
+  }
+  .cart-panel.open{transform:translateX(0);}
+  .cart-header{display:flex;align-items:center;justify-content:space-between;padding:26px 26px 18px;border-bottom:1px solid rgba(212,175,55,.15);}
+  .cart-header h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--cream);}
+  .cart-close{background:none;border:none;color:var(--muted);font-size:1.6rem;cursor:pointer;line-height:1;}
+  .cart-close:hover{color:var(--gold-light);}
+  .cart-items{flex:1;overflow-y:auto;padding:16px 26px;}
+  .cart-empty{color:var(--muted);text-align:center;margin-top:60px;font-size:.92rem;}
+  .cart-item{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid rgba(212,175,55,.1);}
+  .cart-item-info{flex:1;min-width:0;}
+  .cart-item-name{font-family:'Playfair Display',serif;color:var(--cream);font-size:.98rem;}
+  .cart-item-price{color:var(--muted);font-size:.78rem;margin-top:2px;}
+  .cart-item .qty-controls{margin-top:0;gap:10px;}
+  .cart-item .qty-btn{width:26px;height:26px;font-size:.95rem;}
+  .cart-item-subtotal{color:var(--gold-light);font-family:'Playfair Display',serif;font-size:.92rem;white-space:nowrap;}
+  .cart-footer{padding:20px 26px 26px;border-top:1px solid rgba(212,175,55,.15);}
+  .cart-total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px;}
+  .cart-total-row span:first-child{color:var(--muted);font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;}
+  .cart-total-row span:last-child{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold-light);}
+  .cart-checkout{
+    display:block;width:100%;text-align:center;padding:16px;border-radius:40px;
+    background:var(--gold);color:var(--bg-darker);font-weight:600;font-size:.85rem;
+    letter-spacing:.08em;text-transform:uppercase;transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .cart-checkout:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(212,175,55,.3);}
+  .cart-checkout.disabled{opacity:.4;pointer-events:none;}
+  @media (max-width: 480px){
+    .cart-fab{width:54px;height:54px;bottom:18px;right:18px;}
+  }
+
   /* ===== GALLERY ===== */
   .gallery{padding:100px 0 120px;}
   .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
@@ -473,98 +539,98 @@
     <!-- ENSALADAS -->
     <div class="menu-group active" data-group="ensaladas">
       <div class="menu-grid">
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Ensalada verde</span><span class="mc-price">RD$135</span></div><p class="mc-desc">Sabrosa combinación de lechugas, tomates y pepino, aderezo a tu gusto.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Ensalada al pesto</span><span class="mc-price">RD$145</span></div><p class="mc-desc">Rica combinación de lechuga aderezada con un sabroso pesto de albahaca.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Ensalada Tropicana</span><span class="mc-price">RD$225</span></div><p class="mc-desc">Fresca combinación de lechuga y frutas, pruébala.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Lechuga 4 quesos</span><span class="mc-price">RD$250</span></div><p class="mc-desc">Lechuga combinada con trozos de queso mozzarella, cheddar y parmesano.</p></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Ensalada verde</span><span class="mc-price">RD$135</span></div><p class="mc-desc">Sabrosa combinación de lechugas, tomates y pepino, aderezo a tu gusto.</p><div class="qty-controls" data-id="item1" data-name="Ensalada verde" data-price="135"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Ensalada al pesto</span><span class="mc-price">RD$145</span></div><p class="mc-desc">Rica combinación de lechuga aderezada con un sabroso pesto de albahaca.</p><div class="qty-controls" data-id="item2" data-name="Ensalada al pesto" data-price="145"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Ensalada Tropicana</span><span class="mc-price">RD$225</span></div><p class="mc-desc">Fresca combinación de lechuga y frutas, pruébala.</p><div class="qty-controls" data-id="item3" data-name="Ensalada Tropicana" data-price="225"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Lechuga 4 quesos</span><span class="mc-price">RD$250</span></div><p class="mc-desc">Lechuga combinada con trozos de queso mozzarella, cheddar y parmesano.</p><div class="qty-controls" data-id="item4" data-name="Lechuga 4 quesos" data-price="250"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
       </div>
     </div>
 
     <!-- ARROCES -->
     <div class="menu-group" data-group="arroces">
       <div class="menu-grid">
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Chofan de camarones</span><span class="mc-price">RD$395</span></div><p class="mc-desc">Deliciosa combinación de arroz frito, camarones y verduras.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Chofan de pollo</span><span class="mc-price">RD$295</span></div><p class="mc-desc">Arroz frito, pechuga, verduras y salsa china.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Chofan mixto</span><span class="mc-price">RD$305</span></div><p class="mc-desc">Rica combinación de arroz frito, pechuga, filete de cerdo y verduras.</p></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Chofan de camarones</span><span class="mc-price">RD$395</span></div><p class="mc-desc">Deliciosa combinación de arroz frito, camarones y verduras.</p><div class="qty-controls" data-id="item5" data-name="Chofan de camarones" data-price="395"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Chofan de pollo</span><span class="mc-price">RD$295</span></div><p class="mc-desc">Arroz frito, pechuga, verduras y salsa china.</p><div class="qty-controls" data-id="item6" data-name="Chofan de pollo" data-price="295"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Chofan mixto</span><span class="mc-price">RD$305</span></div><p class="mc-desc">Rica combinación de arroz frito, pechuga, filete de cerdo y verduras.</p><div class="qty-controls" data-id="item7" data-name="Chofan mixto" data-price="305"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
       </div>
     </div>
 
     <!-- PASTAS -->
     <div class="menu-group" data-group="pastas">
       <div class="menu-grid">
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Pasta 4 quesos</span><span class="mc-price">RD$315</span></div><p class="mc-desc">Exquisita pasta preparada con queso mozzarella, danés, cheddar y parmesano.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Pasta Alfredo</span><span class="mc-price">RD$275</span></div><p class="mc-desc">Sabroso espagueti con jamón y una sabrosa salsa bechamel.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Pasta carbonara</span><span class="mc-price">RD$285</span></div><p class="mc-desc">Sabrosa pasta a base de salsa de bechamel, tocineta y queso.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Pasta con camarones</span><span class="mc-price">RD$395</span></div><p class="mc-desc">Deliciosa pasta en salsa blanca, mezclada con unos ricos camarones.</p></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Pasta 4 quesos</span><span class="mc-price">RD$315</span></div><p class="mc-desc">Exquisita pasta preparada con queso mozzarella, danés, cheddar y parmesano.</p><div class="qty-controls" data-id="item8" data-name="Pasta 4 quesos" data-price="315"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Pasta Alfredo</span><span class="mc-price">RD$275</span></div><p class="mc-desc">Sabroso espagueti con jamón y una sabrosa salsa bechamel.</p><div class="qty-controls" data-id="item9" data-name="Pasta Alfredo" data-price="275"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Pasta carbonara</span><span class="mc-price">RD$285</span></div><p class="mc-desc">Sabrosa pasta a base de salsa de bechamel, tocineta y queso.</p><div class="qty-controls" data-id="item10" data-name="Pasta carbonara" data-price="285"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Pasta con camarones</span><span class="mc-price">RD$395</span></div><p class="mc-desc">Deliciosa pasta en salsa blanca, mezclada con unos ricos camarones.</p><div class="qty-controls" data-id="item11" data-name="Pasta con camarones" data-price="395"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
       </div>
     </div>
 
     <!-- PESCADOS Y MARISCOS -->
     <div class="menu-group" data-group="pescados">
       <div class="menu-grid">
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Salmón a la termidor</span><span class="mc-price">RD$495</span></div><p class="mc-desc">Una sabrosa pieza de salmón importado, en salsa blanca, hongos y brandy.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Salmón a la plancha</span><span class="mc-price">RD$445</span></div><p class="mc-desc">Una apetecible pieza de salmón importado, con la guarnición de tu preferencia.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Camarones Tropicana</span><span class="mc-price">RD$525</span></div><p class="mc-desc">Ricos camarones en salsa a base de tocinetas, cebolla, ajo, ajíes, alcaparras y crema de leche.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Camarones a la plancha</span><span class="mc-price">RD$420</span></div><p class="mc-desc">Acompañados de tostones, papas fritas, puré o vegetales.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Camarones a la criolla</span><span class="mc-price">RD$465</span></div><p class="mc-desc">Preparados en una sabrosa salsa a base de tomates, cebolla, ajo, ajíes y verduras.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Mero a la plancha</span><span class="mc-price">RD$325</span></div><p class="mc-desc">Filete de mero, acompañado de tostones, papas fritas, puré o vegetales.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Mero al ajillo</span><span class="mc-price">RD$345</span></div><p class="mc-desc">Irresistible filete de mero bañado en una sabrosa salsa a base de ajo y perejil.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Mero Tropicana</span><span class="mc-price">RD$345</span></div><p class="mc-desc">Filete de mero en salsa a base de tocineta, cebolla, ajo, alcaparras y crema de leche.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Mero rebosado en camarones</span><span class="mc-price">RD$495</span></div><p class="mc-desc">Filete de mero en salsa de aurora y camarones frescos.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Mero jardinera</span><span class="mc-price">RD$380</span></div><p class="mc-desc">Delicioso mero bañado con una rica salsa bechamel y vegetales.</p></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Salmón a la termidor</span><span class="mc-price">RD$495</span></div><p class="mc-desc">Una sabrosa pieza de salmón importado, en salsa blanca, hongos y brandy.</p><div class="qty-controls" data-id="item12" data-name="Salmón a la termidor" data-price="495"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Salmón a la plancha</span><span class="mc-price">RD$445</span></div><p class="mc-desc">Una apetecible pieza de salmón importado, con la guarnición de tu preferencia.</p><div class="qty-controls" data-id="item13" data-name="Salmón a la plancha" data-price="445"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Camarones Tropicana</span><span class="mc-price">RD$525</span></div><p class="mc-desc">Ricos camarones en salsa a base de tocinetas, cebolla, ajo, ajíes, alcaparras y crema de leche.</p><div class="qty-controls" data-id="item14" data-name="Camarones Tropicana" data-price="525"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Camarones a la plancha</span><span class="mc-price">RD$420</span></div><p class="mc-desc">Acompañados de tostones, papas fritas, puré o vegetales.</p><div class="qty-controls" data-id="item15" data-name="Camarones a la plancha" data-price="420"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Camarones a la criolla</span><span class="mc-price">RD$465</span></div><p class="mc-desc">Preparados en una sabrosa salsa a base de tomates, cebolla, ajo, ajíes y verduras.</p><div class="qty-controls" data-id="item16" data-name="Camarones a la criolla" data-price="465"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Mero a la plancha</span><span class="mc-price">RD$325</span></div><p class="mc-desc">Filete de mero, acompañado de tostones, papas fritas, puré o vegetales.</p><div class="qty-controls" data-id="item17" data-name="Mero a la plancha" data-price="325"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Mero al ajillo</span><span class="mc-price">RD$345</span></div><p class="mc-desc">Irresistible filete de mero bañado en una sabrosa salsa a base de ajo y perejil.</p><div class="qty-controls" data-id="item18" data-name="Mero al ajillo" data-price="345"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Mero Tropicana</span><span class="mc-price">RD$345</span></div><p class="mc-desc">Filete de mero en salsa a base de tocineta, cebolla, ajo, alcaparras y crema de leche.</p><div class="qty-controls" data-id="item19" data-name="Mero Tropicana" data-price="345"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Mero rebosado en camarones</span><span class="mc-price">RD$495</span></div><p class="mc-desc">Filete de mero en salsa de aurora y camarones frescos.</p><div class="qty-controls" data-id="item20" data-name="Mero rebosado en camarones" data-price="495"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Mero jardinera</span><span class="mc-price">RD$380</span></div><p class="mc-desc">Delicioso mero bañado con una rica salsa bechamel y vegetales.</p><div class="qty-controls" data-id="item21" data-name="Mero jardinera" data-price="380"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
       </div>
     </div>
 
     <!-- MOFONGOS -->
     <div class="menu-group" data-group="mofongos">
       <div class="menu-grid">
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Mofongo de chicharrón</span><span class="mc-price">RD$295</span></div><p class="mc-desc">Plátano majado en pilón, con crocante chicharrón de cerdo.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">De camarones al ajillo</span><span class="mc-price">RD$445</span></div><p class="mc-desc">Camarones frescos y plátanos majados en pilón, salsa de ajo y perejil o criolla.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">De camarones a la crema</span><span class="mc-price">RD$445</span></div><p class="mc-desc">Camarones, plátanos fritos majados en pilón con salsa bechamel y queso mozzarella.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">De pollo al ajillo o a la criolla</span><span class="mc-price">RD$325</span></div><p class="mc-desc">Plátanos majados al pilón, con salsa de ajo y perejil o salsa criolla.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Mofongo de queso</span><span class="mc-price">RD$345</span></div><p class="mc-desc">Plátanos majados al pilón con mozzarella, cheddar y parmesano.</p></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Mofongo de chicharrón</span><span class="mc-price">RD$295</span></div><p class="mc-desc">Plátano majado en pilón, con crocante chicharrón de cerdo.</p><div class="qty-controls" data-id="item22" data-name="Mofongo de chicharrón" data-price="295"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">De camarones al ajillo</span><span class="mc-price">RD$445</span></div><p class="mc-desc">Camarones frescos y plátanos majados en pilón, salsa de ajo y perejil o criolla.</p><div class="qty-controls" data-id="item23" data-name="De camarones al ajillo" data-price="445"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">De camarones a la crema</span><span class="mc-price">RD$445</span></div><p class="mc-desc">Camarones, plátanos fritos majados en pilón con salsa bechamel y queso mozzarella.</p><div class="qty-controls" data-id="item24" data-name="De camarones a la crema" data-price="445"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">De pollo al ajillo o a la criolla</span><span class="mc-price">RD$325</span></div><p class="mc-desc">Plátanos majados al pilón, con salsa de ajo y perejil o salsa criolla.</p><div class="qty-controls" data-id="item25" data-name="De pollo al ajillo o a la criolla" data-price="325"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Mofongo de queso</span><span class="mc-price">RD$345</span></div><p class="mc-desc">Plátanos majados al pilón con mozzarella, cheddar y parmesano.</p><div class="qty-controls" data-id="item26" data-name="Mofongo de queso" data-price="345"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
       </div>
     </div>
 
     <!-- CARNES -->
     <div class="menu-group" data-group="carnes">
       <div class="menu-grid">
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Churrasco Angus</span><span class="mc-price">RD$785</span></div><p class="mc-desc">Churrasco importado al término que desees y la guarnición de tu preferencia.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">T-Bone (10 a 12 oz)</span><span class="mc-price">RD$745</span></div><p class="mc-desc">Exquisito corte de carne importada, fresca y jugosa.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Sirloin (10 a 12 oz)</span><span class="mc-price">RD$645</span></div><p class="mc-desc">Sabroso y jugoso corte de carne importada al término de tu preferencia.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Filete de res a la plancha</span><span class="mc-price">RD$445</span></div><p class="mc-desc">Suave, jugoso y sabroso filete de res con la guarnición de tu preferencia.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Pechuga Tropicana</span><span class="mc-price">RD$420</span></div><p class="mc-desc">Pechuga en salsa a base de tocineta, cebolla, alcaparras y crema de leche.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Pechuga a la plancha</span><span class="mc-price">RD$325</span></div><p class="mc-desc">Jugosa e irresistible pechuga, con la guarnición de tu preferencia.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Pechuga rebosada de plátano maduro y queso</span><span class="mc-price">RD$395</span></div><p class="mc-desc">Rebosada en queso fundido y plátanos maduro, bañada con salsa bechamel.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Pechuga rebosada en camarones</span><span class="mc-price">RD$425</span></div><p class="mc-desc">Rica pechuga bañada de salsa aurora y camarones frescos.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Filete de cerdo a la plancha</span><span class="mc-price">RD$360</span></div><p class="mc-desc">Jugoso filete acompañado de la guarnición de tu preferencia.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Filete de cerdo en salsa de hongos</span><span class="mc-price">RD$395</span></div><p class="mc-desc">Rico y jugoso filete rebosado en una sabrosa salsa de hongos.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Lomo de cerdo al pesto</span><span class="mc-price">RD$375</span></div><p class="mc-desc">Suave y sabroso lomo, destacado por un toque de pesto de albahaca.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Chuleta a la plancha</span><span class="mc-price">RD$325</span></div><p class="mc-desc">Chuleta fresca adobada a tu gusto, con tostones o papas fritas.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Chuleta rebosada de tocineta y queso</span><span class="mc-price">RD$395</span></div><p class="mc-desc">Chuleta rebosada de tocineta y queso mozzarella.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Costillas BBQ</span><span class="mc-price">RD$395</span></div><p class="mc-desc">Fresca y sabrosa costillitas al horno, servida en salsa bbq.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Costillas nuevas</span><span class="mc-price">RD$ —</span></div><p class="mc-desc">Pregunta por esta opción en el restaurante.</p></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Churrasco Angus</span><span class="mc-price">RD$785</span></div><p class="mc-desc">Churrasco importado al término que desees y la guarnición de tu preferencia.</p><div class="qty-controls" data-id="item27" data-name="Churrasco Angus" data-price="785"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">T-Bone (10 a 12 oz)</span><span class="mc-price">RD$745</span></div><p class="mc-desc">Exquisito corte de carne importada, fresca y jugosa.</p><div class="qty-controls" data-id="item28" data-name="T-Bone (10 a 12 oz)" data-price="745"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Sirloin (10 a 12 oz)</span><span class="mc-price">RD$645</span></div><p class="mc-desc">Sabroso y jugoso corte de carne importada al término de tu preferencia.</p><div class="qty-controls" data-id="item29" data-name="Sirloin (10 a 12 oz)" data-price="645"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Filete de res a la plancha</span><span class="mc-price">RD$445</span></div><p class="mc-desc">Suave, jugoso y sabroso filete de res con la guarnición de tu preferencia.</p><div class="qty-controls" data-id="item30" data-name="Filete de res a la plancha" data-price="445"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Pechuga Tropicana</span><span class="mc-price">RD$420</span></div><p class="mc-desc">Pechuga en salsa a base de tocineta, cebolla, alcaparras y crema de leche.</p><div class="qty-controls" data-id="item31" data-name="Pechuga Tropicana" data-price="420"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Pechuga a la plancha</span><span class="mc-price">RD$325</span></div><p class="mc-desc">Jugosa e irresistible pechuga, con la guarnición de tu preferencia.</p><div class="qty-controls" data-id="item32" data-name="Pechuga a la plancha" data-price="325"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Pechuga rebosada de plátano maduro y queso</span><span class="mc-price">RD$395</span></div><p class="mc-desc">Rebosada en queso fundido y plátanos maduro, bañada con salsa bechamel.</p><div class="qty-controls" data-id="item33" data-name="Pechuga rebosada de plátano maduro y queso" data-price="395"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Pechuga rebosada en camarones</span><span class="mc-price">RD$425</span></div><p class="mc-desc">Rica pechuga bañada de salsa aurora y camarones frescos.</p><div class="qty-controls" data-id="item34" data-name="Pechuga rebosada en camarones" data-price="425"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Filete de cerdo a la plancha</span><span class="mc-price">RD$360</span></div><p class="mc-desc">Jugoso filete acompañado de la guarnición de tu preferencia.</p><div class="qty-controls" data-id="item35" data-name="Filete de cerdo a la plancha" data-price="360"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Filete de cerdo en salsa de hongos</span><span class="mc-price">RD$395</span></div><p class="mc-desc">Rico y jugoso filete rebosado en una sabrosa salsa de hongos.</p><div class="qty-controls" data-id="item36" data-name="Filete de cerdo en salsa de hongos" data-price="395"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Lomo de cerdo al pesto</span><span class="mc-price">RD$375</span></div><p class="mc-desc">Suave y sabroso lomo, destacado por un toque de pesto de albahaca.</p><div class="qty-controls" data-id="item37" data-name="Lomo de cerdo al pesto" data-price="375"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Chuleta a la plancha</span><span class="mc-price">RD$325</span></div><p class="mc-desc">Chuleta fresca adobada a tu gusto, con tostones o papas fritas.</p><div class="qty-controls" data-id="item38" data-name="Chuleta a la plancha" data-price="325"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Chuleta rebosada de tocineta y queso</span><span class="mc-price">RD$395</span></div><p class="mc-desc">Chuleta rebosada de tocineta y queso mozzarella.</p><div class="qty-controls" data-id="item39" data-name="Chuleta rebosada de tocineta y queso" data-price="395"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Costillas BBQ</span><span class="mc-price">RD$395</span></div><p class="mc-desc">Fresca y sabrosa costillitas al horno, servida en salsa bbq.</p><div class="qty-controls" data-id="item40" data-name="Costillas BBQ" data-price="395"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Costillas nuevas</span><span class="mc-price">RD$ —</span></div><p class="mc-desc">Pregunta por esta opción en el restaurante.</p><p class="qty-unavailable">Consulta disponibilidad</p></div>
       </div>
     </div>
 
     <!-- PARA COMPARTIR -->
     <div class="menu-group" data-group="compartir">
       <div class="menu-grid">
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Parrillada Tropicana (6 personas)</span><span class="mc-price">RD$2,145</span></div><p class="mc-desc">Carne, filete de res, filete de cerdo, costillitas, chuleta, salchicha, pechuga, tostones, papas fritas y vegetales salteados.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Parrillada Tropicana (3 personas)</span><span class="mc-price">RD$1,225</span></div><p class="mc-desc">La misma combinación en versión para 3 personas.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Parrillada Mar y Tierra (6 personas)</span><span class="mc-price">RD$2,525</span></div><p class="mc-desc">Camarones, calamar, mero, filete de res, filete de cerdo, costillitas, chuletas, salchichas, pechuga, tostones, papas fritas y vegetales.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Parrillada Mar y Tierra (3 personas)</span><span class="mc-price">RD$1,425</span></div><p class="mc-desc">La misma combinación en versión para 3 personas.</p></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Parrillada Tropicana (6 personas)</span><span class="mc-price">RD$2,145</span></div><p class="mc-desc">Carne, filete de res, filete de cerdo, costillitas, chuleta, salchicha, pechuga, tostones, papas fritas y vegetales salteados.</p><div class="qty-controls" data-id="item42" data-name="Parrillada Tropicana (6 personas)" data-price="2145"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Parrillada Tropicana (3 personas)</span><span class="mc-price">RD$1,225</span></div><p class="mc-desc">La misma combinación en versión para 3 personas.</p><div class="qty-controls" data-id="item43" data-name="Parrillada Tropicana (3 personas)" data-price="1225"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Parrillada Mar y Tierra (6 personas)</span><span class="mc-price">RD$2,525</span></div><p class="mc-desc">Camarones, calamar, mero, filete de res, filete de cerdo, costillitas, chuletas, salchichas, pechuga, tostones, papas fritas y vegetales.</p><div class="qty-controls" data-id="item44" data-name="Parrillada Mar y Tierra (6 personas)" data-price="2525"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Parrillada Mar y Tierra (3 personas)</span><span class="mc-price">RD$1,425</span></div><p class="mc-desc">La misma combinación en versión para 3 personas.</p><div class="qty-controls" data-id="item45" data-name="Parrillada Mar y Tierra (3 personas)" data-price="1425"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
       </div>
     </div>
 
     <!-- PIZZAS -->
     <div class="menu-group" data-group="pizzas">
       <div class="menu-grid">
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Jamón y queso</span><span class="mc-price">RD$360 / RD$150</span></div><p class="mc-desc">Grande / Pequeña.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Peperoni</span><span class="mc-price">RD$85 / RD$175</span></div><p class="mc-desc">Grande / Pequeña.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Queso</span><span class="mc-price">RD$360 / RD$150</span></div><p class="mc-desc">Grande / Pequeña.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Vegetariana</span><span class="mc-price">RD$420 / RD$225</span></div><p class="mc-desc">Grande / Pequeña.</p></div>
-        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Pizza Tropicana</span><span class="mc-price">RD$775 / RD$295</span></div><p class="mc-desc">Grande / Pequeña.</p></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Jamón y queso</span><span class="mc-price">RD$360 / RD$150</span></div><p class="mc-desc">Grande / Pequeña.</p><div class="qty-controls" data-id="item46" data-name="Jamón y queso" data-price="360"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Peperoni</span><span class="mc-price">RD$85 / RD$175</span></div><p class="mc-desc">Grande / Pequeña.</p><div class="qty-controls" data-id="item47" data-name="Peperoni" data-price="85"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Queso</span><span class="mc-price">RD$360 / RD$150</span></div><p class="mc-desc">Grande / Pequeña.</p><div class="qty-controls" data-id="item48" data-name="Queso" data-price="360"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Vegetariana</span><span class="mc-price">RD$420 / RD$225</span></div><p class="mc-desc">Grande / Pequeña.</p><div class="qty-controls" data-id="item49" data-name="Vegetariana" data-price="420"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
+        <div class="menu-card reveal"><div class="mc-top"><span class="mc-name">Pizza Tropicana</span><span class="mc-price">RD$775 / RD$295</span></div><p class="mc-desc">Grande / Pequeña.</p><div class="qty-controls" data-id="item50" data-name="Pizza Tropicana" data-price="775"><button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span><button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button></div></div>
       </div>
     </div>
 
@@ -807,6 +873,150 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   if (!video) return;
   video.play().catch(() => {});
 })();
+
+/* carrito */
+(function() {
+  const cart = {};
+  const fab = document.getElementById('cartFab');
+  const fabBadge = document.getElementById('cartBadge');
+  const overlay = document.getElementById('cartOverlay');
+  const panel = document.getElementById('cartPanel');
+  const closeBtn = document.getElementById('cartClose');
+  const itemsEl = document.getElementById('cartItems');
+  const totalEl = document.getElementById('cartTotal');
+  const checkoutBtn = document.getElementById('cartCheckout');
+  const WHATSAPP_NUMBER = '18296026068';
+
+  function formatRD(n) {
+    return 'RD$' + n.toLocaleString('es-DO');
+  }
+
+  function openCart() {
+    overlay.classList.add('open');
+    panel.classList.add('open');
+  }
+  function closeCart() {
+    overlay.classList.remove('open');
+    panel.classList.remove('open');
+  }
+
+  function updateCardCount(id, qty) {
+    document.querySelectorAll('.qty-controls[data-id="' + id + '"] .qty-count').forEach(el => {
+      el.textContent = qty;
+    });
+  }
+
+  function renderCart() {
+    const ids = Object.keys(cart).filter(id => cart[id].qty > 0);
+    const totalItems = ids.reduce((sum, id) => sum + cart[id].qty, 0);
+
+    if (fabBadge) fabBadge.textContent = totalItems;
+    if (fab) fab.classList.toggle('hidden', totalItems === 0);
+
+    if (!ids.length) {
+      itemsEl.innerHTML = '<p class="cart-empty">Tu carrito está vacío.<br>Añade platos desde la carta.</p>';
+      if (checkoutBtn) checkoutBtn.classList.add('disabled');
+      if (totalEl) totalEl.textContent = formatRD(0);
+      return;
+    }
+
+    if (checkoutBtn) checkoutBtn.classList.remove('disabled');
+    let total = 0;
+    itemsEl.innerHTML = ids.map(id => {
+      const it = cart[id];
+      const subtotal = it.price * it.qty;
+      total += subtotal;
+      return (
+        '<div class="cart-item">' +
+          '<div class="cart-item-info">' +
+            '<div class="cart-item-name">' + it.name + '</div>' +
+            '<div class="cart-item-price">' + formatRD(it.price) + ' c/u</div>' +
+          '</div>' +
+          '<div class="qty-controls" data-id="' + id + '">' +
+            '<button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button>' +
+            '<span class="qty-count">' + it.qty + '</span>' +
+            '<button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button>' +
+          '</div>' +
+          '<div class="cart-item-subtotal">' + formatRD(subtotal) + '</div>' +
+        '</div>'
+      );
+    }).join('');
+    if (totalEl) totalEl.textContent = formatRD(total);
+  }
+
+  function addToCart(id, name, price, delta) {
+    if (!cart[id]) cart[id] = { name, price, qty: 0 };
+    cart[id].qty = Math.max(0, cart[id].qty + delta);
+    updateCardCount(id, cart[id].qty);
+    renderCart();
+  }
+
+  document.querySelectorAll('.menu-card .qty-controls').forEach(ctrl => {
+    const id = ctrl.dataset.id;
+    const name = ctrl.dataset.name;
+    const price = parseInt(ctrl.dataset.price, 10) || 0;
+    const minus = ctrl.querySelector('.qty-minus');
+    const plus = ctrl.querySelector('.qty-plus');
+    if (plus) plus.addEventListener('click', () => addToCart(id, name, price, 1));
+    if (minus) minus.addEventListener('click', () => addToCart(id, name, price, -1));
+  });
+
+  if (itemsEl) {
+    itemsEl.addEventListener('click', (e) => {
+      const ctrl = e.target.closest('.qty-controls');
+      if (!ctrl) return;
+      const id = ctrl.dataset.id;
+      if (!cart[id]) return;
+      if (e.target.classList.contains('qty-plus')) addToCart(id, cart[id].name, cart[id].price, 1);
+      if (e.target.classList.contains('qty-minus')) addToCart(id, cart[id].name, cart[id].price, -1);
+    });
+  }
+
+  if (fab) fab.addEventListener('click', openCart);
+  if (closeBtn) closeBtn.addEventListener('click', closeCart);
+  if (overlay) overlay.addEventListener('click', closeCart);
+
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const ids = Object.keys(cart).filter(id => cart[id].qty > 0);
+      if (!ids.length) return;
+      let total = 0;
+      let lines = ['Hola, quiero hacer este pedido:', ''];
+      ids.forEach(id => {
+        const it = cart[id];
+        const subtotal = it.price * it.qty;
+        total += subtotal;
+        lines.push('• ' + it.name + ' x' + it.qty + ' — ' + formatRD(subtotal));
+      });
+      lines.push('', 'Total: ' + formatRD(total));
+      const message = encodeURIComponent(lines.join('\n'));
+      window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + message, '_blank');
+    });
+  }
+
+  renderCart();
+})();
 </script>
+<button class="cart-fab hidden" id="cartFab" aria-label="Ver carrito">
+  🛒<span class="cart-badge" id="cartBadge">0</span>
+</button>
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-panel" id="cartPanel">
+  <div class="cart-header">
+    <h3>Tu pedido</h3>
+    <button class="cart-close" id="cartClose" aria-label="Cerrar carrito">×</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <p class="cart-empty">Tu carrito está vacío.<br>Añade platos desde la carta.</p>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total-row">
+      <span>Total</span>
+      <span id="cartTotal">RD$0</span>
+    </div>
+    <a href="#" class="cart-checkout disabled" id="cartCheckout">Comprar por WhatsApp</a>
+  </div>
+</aside>
 </body>
 </html>
