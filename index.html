@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#04130c">
 <title>Tropicana Restaurant</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,6 +30,7 @@
     font-weight:400;
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
+    -webkit-tap-highlight-color:transparent;
   }
   h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.1;}
   a{color:inherit;text-decoration:none;}
@@ -92,17 +94,19 @@
     transition:background .3s, color .3s;
   }
   .nav-cta:hover{background:var(--gold);color:var(--bg-darker);}
+  .nav-links-cta{display:none;}
   .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}
   .nav-toggle span{width:24px;height:2px;background:var(--cream);}
 
   /* ===== HERO (vídeo de fondo en bucle) ===== */
   .scroll-video-hero{
     height:100vh;
+    height:100dvh;
     position:relative;
     background:var(--bg-darker);
   }
   .scroll-video-sticky{
-    position:relative;height:100vh;width:100%;overflow:hidden;
+    position:relative;height:100vh;height:100dvh;width:100%;overflow:hidden;
   }
   .scroll-video-sticky video{
     position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;
@@ -257,7 +261,7 @@
   }
   .menu-card:hover:before{transform:scaleX(1);}
   .mc-top{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:8px;}
-  .mc-name{font-family:'Playfair Display',serif;font-size:1.18rem;color:var(--cream);}
+  .mc-name{font-family:'Playfair Display',serif;font-size:1.18rem;color:var(--cream);flex:1;min-width:0;}
   .mc-price{font-family:'Playfair Display',serif;color:var(--gold-light);font-size:1.12rem;white-space:nowrap;}
   .mc-desc{color:var(--muted);font-size:.88rem;line-height:1.6;}
   .menu-note{text-align:center;color:var(--muted);font-size:.78rem;letter-spacing:.08em;margin-top:40px;font-style:italic;}
@@ -303,17 +307,46 @@
   .footer-links a:hover{color:var(--gold-light);}
 
   @media (max-width: 860px){
-    .nav-links{position:fixed;top:0;right:0;height:100vh;width:72%;background:rgba(4,19,12,.98);
+    .nav-links{position:fixed;top:0;right:0;height:100vh;height:100dvh;width:72%;background:rgba(4,19,12,.98);
       flex-direction:column;justify-content:center;align-items:center;gap:28px;transform:translateX(100%);
       transition:transform .4s cubic-bezier(.16,.8,.3,1);}
     .nav-links.open{transform:translateX(0);}
     .nav-cta{display:none;}
     .nav-toggle{display:flex;}
+    .nav-links-cta{display:block;margin-top:8px;}
+    .nav-links-cta a{border:1px solid var(--gold);color:var(--gold-light);padding:10px 26px;border-radius:30px;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;}
     .about-grid,.contact-grid{grid-template-columns:1fr;}
     .stats{grid-template-columns:1fr 1fr;}
     .menu-grid{grid-template-columns:1fr;}
     .gallery-grid{grid-template-columns:repeat(2,1fr);}
     .contact-cards{grid-template-columns:1fr;}
+    .hero-content{padding:0 7%;}
+    .hero-content-inner{max-width:100%;}
+    .hero-content p{max-width:100%;}
+    .featured{padding:80px 0;}
+    .about{padding:90px 0 70px;}
+    .menu{padding:70px 0 90px;}
+    .gallery{padding:70px 0 90px;}
+    .section-title{font-size:clamp(1.7rem,6vw,2.6rem);}
+  }
+
+  @media (max-width: 480px){
+    .wrap{padding:0 20px;}
+    .nav-inner{padding:0 20px;}
+    .hero-content{padding:0 20px;}
+    .hero-content h1{font-size:clamp(2rem,9vw,2.8rem);}
+    .hero-content p{font-size:.95rem;}
+    .hero-badge{padding:6px 14px 6px 6px;}
+    .btn{padding:13px 24px;font-size:.75rem;}
+    .stats{grid-template-columns:1fr;}
+    .stat-box{padding:22px 20px;}
+    .cat-tabs{gap:8px;}
+    .cat-tab{padding:9px 16px;font-size:.72rem;}
+    .menu-card{padding:20px;}
+    .fi-cat{display:none;}
+    .featured-item{gap:10px;}
+    .gallery-grid{gap:10px;}
+    .c-card{padding:22px 18px;}
   }
 </style>
 </head>
@@ -330,6 +363,7 @@
       <li><a href="#menu">Carta</a></li>
       <li><a href="#galeria">Galería</a></li>
       <li><a href="#contacto">Contacto</a></li>
+      <li class="nav-links-cta"><a href="https://shopgopedido.app/tropicana" target="_blank">Pedir ahora</a></li>
     </ul>
     <a href="https://shopgopedido.app/tropicana" target="_blank" class="nav-cta">Pedir ahora</a>
     <button class="nav-toggle" id="navToggle" aria-label="Menú"><span></span><span></span><span></span></button>
