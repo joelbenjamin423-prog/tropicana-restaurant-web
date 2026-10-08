@@ -694,7 +694,7 @@ window.addEventListener('scroll', () => {
   }
 }, { passive:true });
 
-/* featured dishes list -> updates caption and photo */
+/* featured dishes carousel -> auto-advances every 1.5s, updates caption and photo */
 const featuredItems = document.querySelectorAll('.featured-item');
 const featuredIndex = document.getElementById('featuredIndex');
 const featuredName = document.getElementById('featuredName');
@@ -705,23 +705,45 @@ const featuredSources = {
   plato3: document.querySelector('.g6 img') ? document.querySelector('.g6 img').getAttribute('src') : ''
 };
 if (featuredImgEl) featuredImgEl.style.transition = 'opacity .25s ease';
-featuredItems.forEach(item => {
+
+let featuredAutoIndex = Math.max(0, [...featuredItems].findIndex(i => i.classList.contains('active')));
+let featuredTimer = null;
+
+function showFeaturedItem(idx) {
+  const item = featuredItems[idx];
+  if (!item) return;
+  featuredItems.forEach(i => i.classList.remove('active'));
+  item.classList.add('active');
+  if (featuredIndex) featuredIndex.textContent = item.dataset.index;
+  if (featuredName) featuredName.textContent = item.dataset.name;
+  const key = item.dataset.img;
+  const nextSrc = key ? featuredSources[key] : null;
+  if (featuredImgEl && nextSrc && featuredImgEl.getAttribute('src') !== nextSrc) {
+    featuredImgEl.style.opacity = '0';
+    setTimeout(() => {
+      featuredImgEl.setAttribute('src', nextSrc);
+      featuredImgEl.style.opacity = '1';
+    }, 200);
+  }
+}
+
+function startFeaturedAutoplay() {
+  if (featuredTimer) clearInterval(featuredTimer);
+  featuredTimer = setInterval(() => {
+    featuredAutoIndex = (featuredAutoIndex + 1) % featuredItems.length;
+    showFeaturedItem(featuredAutoIndex);
+  }, 1500);
+}
+
+featuredItems.forEach((item, idx) => {
   item.addEventListener('mouseenter', () => {
-    featuredItems.forEach(i => i.classList.remove('active'));
-    item.classList.add('active');
-    if (featuredIndex) featuredIndex.textContent = item.dataset.index;
-    if (featuredName) featuredName.textContent = item.dataset.name;
-    const key = item.dataset.img;
-    const nextSrc = key ? featuredSources[key] : null;
-    if (featuredImgEl && nextSrc && featuredImgEl.getAttribute('src') !== nextSrc) {
-      featuredImgEl.style.opacity = '0';
-      setTimeout(() => {
-        featuredImgEl.setAttribute('src', nextSrc);
-        featuredImgEl.style.opacity = '1';
-      }, 200);
-    }
+    featuredAutoIndex = idx;
+    showFeaturedItem(idx);
+    startFeaturedAutoplay();
   });
 });
+
+if (featuredItems.length) startFeaturedAutoplay();
 
 /* menu category tabs */
 const tabs = document.querySelectorAll('.cat-tab');
