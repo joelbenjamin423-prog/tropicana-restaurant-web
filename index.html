@@ -875,7 +875,7 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 })();
 
 /* carrito */
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
   const cart = {};
   const fab = document.getElementById('cartFab');
   const fabBadge = document.getElementById('cartBadge');
@@ -996,7 +996,7 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   }
 
   renderCart();
-})();
+});
 </script>
 <button class="cart-fab hidden" id="cartFab" aria-label="Ver carrito">
   🛒<span class="cart-badge" id="cartBadge">0</span>
