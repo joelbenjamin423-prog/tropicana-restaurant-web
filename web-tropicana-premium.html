@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tropicana Restaurant | Restaurante, bar y pizzería en San Francisco de Macorís</title>
+<meta name="description" content="Tropicana Restaurant: cocina criolla, mariscos, carnes importadas a la parrilla, mofongos y pizzas en la Urb. La Fortuna, San Francisco de Macorís.">
+<meta name="theme-color" content="#0b3a27">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/demo2/hero.jpg">
+<style>
+:root{
+  --green:#0b3a27;
+  --green-deep:#062619;
+  --green-soft:#12503a;
+  --gold:#a8843a;
+  --gold-light:#d6b56d;
+  --ivory:#f6f3ec;
+  --paper:#fbfaf6;
+  --ink:#1b1b18;
+  --ink-soft:#5d5b54;
+  --line:rgba(27,27,24,.12);
+  --ease:cubic-bezier(.22,.8,.24,1);
+  --max:1240px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',system-ui,sans-serif;font-weight:300;color:var(--ink);background:var(--paper);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--gold);color:#fff}
+::-webkit-scrollbar{width:9px}
+::-webkit-scrollbar-track{background:var(--ivory)}
+::-webkit-scrollbar-thumb{background:var(--green-soft);border-radius:9px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 40px}
+.label{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;font-weight:500;color:var(--gold)}
+.display{font-family:'Cormorant Garamond',serif;font-weight:400;line-height:1.05;letter-spacing:-.005em}
+.h-xl{font-size:clamp(2.8rem,7vw,6.2rem)}
+.h-l{font-size:clamp(2.2rem,4.8vw,4rem)}
+.h-m{font-size:clamp(1.7rem,3vw,2.5rem)}
+.lead{font-size:clamp(1.05rem,1.4vw,1.25rem);color:var(--ink-soft);max-width:640px}
+.more{display:inline-flex;align-items:center;gap:12px;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;padding:6px 0;position:relative}
+.more:after{content:'';position:absolute;left:0;bottom:0;height:1px;width:100%;background:currentColor;transform-origin:left;transform:scaleX(.3);transition:transform .6s var(--ease)}
+.more:hover:after{transform:scaleX(1)}
+main section[id]{scroll-margin-top:125px}
+@media (max-width:640px){main section[id]{scroll-margin-top:112px}}
+.more svg{transition:transform .5s var(--ease)}
+.more:hover svg{transform:translateX(6px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 34px;border-radius:999px;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;transition:background .4s,color .4s,transform .4s var(--ease),border-color .4s}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{background:var(--gold-light);color:var(--green-deep);transform:translateY(-2px)}
+.btn-line{border:1px solid rgba(255,255,255,.5);color:#fff}
+.btn-line:hover{background:#fff;color:var(--green-deep);transform:translateY(-2px)}
+.btn-dark{border:1px solid var(--green);color:var(--green)}
+.btn-dark:hover{background:var(--green);color:#fff}
+
+/* ---------- Reveal ---------- */
+.rv{opacity:0;transform:translateY(40px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv-fade{opacity:0;transition:opacity 1.4s var(--ease)}
+.rv-fade.in{opacity:1}
+.rv-img{overflow:hidden}
+.rv-img img{transform:scale(1.18);transition:transform 1.8s var(--ease)}
+.rv-img.in img{transform:scale(1)}
+.line-mask{display:block;overflow:hidden}
+.line-mask>span{display:block;transform:translateY(105%);transition:transform 1.2s var(--ease)}
+.in .line-mask>span,.line-mask.in>span{transform:none}
+
+/* ---------- Top bar / Nav ---------- */
+.topbar{position:fixed;inset:0 0 auto 0;z-index:100;height:84px;display:flex;align-items:center;color:#fff;transition:background .5s,color .5s,height .5s,box-shadow .5s}
+.topbar.solid{background:rgba(251,250,246,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:var(--green);height:70px;box-shadow:0 1px 0 var(--line)}
+.topbar .wrap{width:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.menu-btn{display:inline-flex;align-items:center;gap:12px;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;justify-self:start;height:44px}
+.menu-btn i{display:block;width:22px;height:1px;background:currentColor;position:relative}
+.menu-btn i:before,.menu-btn i:after{content:'';position:absolute;left:0;width:22px;height:1px;background:currentColor}
+.menu-btn i:before{top:-6px}.menu-btn i:after{top:6px}
+.brand{display:flex;flex-direction:column;align-items:center;gap:4px;line-height:1}
+.brand svg{width:30px;height:24px;color:var(--gold-light);transition:color .5s}
+.topbar.solid .brand svg{color:var(--gold)}
+.brand b{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.55rem;letter-spacing:.32em;padding-left:.32em}
+.brand small{font-size:.52rem;letter-spacing:.5em;padding-left:.5em;opacity:.8}
+.top-actions{justify-self:end;display:flex;align-items:center;gap:26px}
+.top-actions a.tel{font-size:.78rem;letter-spacing:.16em;font-weight:500}
+.top-actions .btn{padding:11px 22px;font-size:.7rem}
+.topbar:not(.solid) .top-actions .btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.4);color:#fff;backdrop-filter:blur(6px)}
+.topbar.solid .top-actions .btn{background:var(--green);color:#fff}
+
+/* drawer */
+.drawer{position:fixed;inset:0;z-index:200;pointer-events:none}
+.drawer-bg{position:absolute;inset:0;background:rgba(6,38,25,.55);opacity:0;transition:opacity .6s var(--ease)}
+.drawer-panel{position:absolute;inset:0 auto 0 0;width:min(520px,100%);background:var(--green-deep);color:#fff;padding:110px 56px 48px;transform:translateX(-100%);transition:transform .8s var(--ease);display:flex;flex-direction:column;overflow-y:auto}
+.drawer.open{pointer-events:auto}
+.drawer.open .drawer-bg{opacity:1}
+.drawer.open .drawer-panel{transform:none}
+.drawer-close{position:absolute;top:24px;left:40px;display:flex;align-items:center;gap:12px;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;height:44px}
+.drawer nav ol{list-style:none;counter-reset:n}
+.drawer nav li{counter-increment:n;border-bottom:1px solid rgba(255,255,255,.1);opacity:0;transform:translateX(-24px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.drawer.open nav li{opacity:1;transform:none}
+.drawer nav a{display:flex;align-items:baseline;gap:20px;padding:18px 0;font-family:'Cormorant Garamond',serif;font-size:2.1rem;transition:color .3s,padding-left .5s var(--ease)}
+.drawer nav a:before{content:'0' counter(n);font-family:'Jost',sans-serif;font-size:.7rem;letter-spacing:.2em;color:var(--gold-light)}
+.drawer nav a:hover{color:var(--gold-light);padding-left:10px}
+.drawer-foot{margin-top:auto;padding-top:40px;font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.9}
+.drawer-foot a{color:var(--gold-light)}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;height:100vh;height:100svh;min-height:620px;overflow:hidden;color:#fff;background:var(--green-deep)}
+.hero-media{position:absolute;inset:-6% 0 0 0;will-change:transform}
+.hero-media img{width:100%;height:100%;object-fit:cover;animation:heroZoom 2.8s var(--ease) both}
+@keyframes heroZoom{from{transform:scale(1.15)}to{transform:scale(1)}}
+.hero:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,38,25,.6) 0%,rgba(6,38,25,.1) 26%,rgba(6,38,25,.45) 50%,rgba(6,38,25,.92) 100%),linear-gradient(90deg,rgba(6,38,25,.55) 0%,transparent 60%)}
+.hero-copy{position:absolute;left:0;right:0;bottom:0;z-index:2;padding-bottom:9vh}
+.hero-copy .label{color:var(--gold-light);display:block;margin-bottom:22px;opacity:0;animation:fadeUp 1.2s .5s var(--ease) forwards}
+.hero-copy h1 .line-mask>span{animation:lineUp 1.3s var(--ease) forwards;transform:translateY(105%)}
+.hero-copy h1 .line-mask:nth-child(2)>span{animation-delay:.15s}
+.hero-row{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-top:34px;opacity:0;animation:fadeUp 1.2s .9s var(--ease) forwards}
+.hero-row p{max-width:430px;color:rgba(255,255,255,.82);font-size:1.05rem}
+.hero-row .ctas{display:flex;gap:14px;flex-wrap:wrap}
+@keyframes lineUp{to{transform:none}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.scroll-cue{position:absolute;left:50%;bottom:26px;z-index:3;width:1px;height:54px;background:rgba(255,255,255,.25);overflow:hidden}
+.scroll-cue:after{content:'';position:absolute;left:0;top:-50%;width:1px;height:50%;background:#fff;animation:cue 2.2s ease-in-out infinite}
+@keyframes cue{to{top:100%}}
+
+/* ---------- Sub nav (sticky, estilo Rolex) ---------- */
+.subnav{position:sticky;top:70px;z-index:90;background:rgba(251,250,246,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.subnav .wrap{display:flex;gap:38px;overflow-x:auto;scrollbar-width:none}
+.subnav .wrap::-webkit-scrollbar{display:none}
+.subnav a{flex-shrink:0;padding:18px 0;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--ink-soft);position:relative;transition:color .3s}
+.subnav a:after{content:'';position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--gold);transform:scaleX(0);transition:transform .5s var(--ease)}
+.subnav a:hover,.subnav a.on{color:var(--green)}
+.subnav a.on:after{transform:scaleX(1)}
+
+/* ---------- Intro ---------- */
+.intro{padding:150px 0 130px;text-align:center}
+.intro .label{display:block;margin-bottom:28px}
+.intro h2{max-width:980px;margin:0 auto 34px;color:var(--green)}
+.intro h2 em{color:var(--gold);font-style:italic}
+.intro .lead{margin:0 auto}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);max-width:900px;margin:90px auto 0;border-top:1px solid var(--line)}
+.stat{padding:36px 10px 0}
+.stat+.stat{border-left:1px solid var(--line)}
+.stat b{display:block;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(3rem,6vw,4.6rem);line-height:1;color:var(--green)}
+.stat span{display:block;margin-top:12px;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* ---------- Expanding image (scroll) ---------- */
+.expand{height:220vh;position:relative}
+.expand-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.expand-frame{position:absolute;inset:0;clip-path:inset(18% 26% 18% 26% round 6px);will-change:clip-path}
+.expand-frame img{width:100%;height:100%;object-fit:cover;transform:scale(1.25);will-change:transform}
+.expand-frame:after{content:'';position:absolute;inset:0;background:rgba(6,38,25,.35);opacity:var(--shade,0)}
+.expand-copy{position:relative;z-index:2;color:#fff;text-align:center;padding:0 24px;opacity:var(--copy,0);transform:translateY(calc((1 - var(--copy,0)) * 30px))}
+.expand-copy .label{color:var(--gold-light);display:block;margin-bottom:20px}
+.expand-copy p{max-width:520px;margin:22px auto 0;color:rgba(255,255,255,.85)}
+
+/* ---------- Split feature ---------- */
+.split{padding:140px 0}
+.split-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:90px;align-items:center}
+.split.rev .split-grid{grid-template-columns:1fr 1.15fr}
+.split.rev .split-media{order:2}
+.split-media{position:relative;aspect-ratio:4/5;border-radius:4px}
+.split-media img{width:100%;height:100%;object-fit:cover}
+.split-media .float{position:absolute;width:46%;aspect-ratio:1;right:-12%;bottom:-10%;border:10px solid var(--paper);overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.18)}
+.split.rev .split-media .float{right:auto;left:-12%}
+.split-copy .label{display:block;margin-bottom:22px}
+.split-copy h2{color:var(--green);margin-bottom:26px}
+.split-copy .lead{margin-bottom:38px}
+.spec{list-style:none;border-top:1px solid var(--line);margin-bottom:42px}
+.spec li{display:flex;justify-content:space-between;gap:20px;padding:17px 0;border-bottom:1px solid var(--line);font-size:.98rem}
+.spec li span:last-child{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--green)}
+
+/* ---------- Carousel (Rolex "collection" style) ---------- */
+.collection{padding:130px 0 140px;background:var(--ivory)}
+.col-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:60px}
+.col-head .label{display:block;margin-bottom:18px}
+.col-head h2{color:var(--green)}
+.arrows{display:flex;gap:12px}
+.arrow{width:52px;height:52px;border-radius:50%;border:1px solid rgba(11,58,39,.3);display:flex;align-items:center;justify-content:center;color:var(--green);transition:background .35s,color .35s,opacity .3s}
+.arrow:hover{background:var(--green);color:#fff}
+.arrow:disabled{opacity:.3;pointer-events:none}
+.track{display:flex;gap:28px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 max(40px,calc((100vw - var(--max))/2 + 40px));scroll-padding:0 max(40px,calc((100vw - var(--max))/2 + 40px))}
+.track::-webkit-scrollbar{display:none}
+.card{flex:0 0 clamp(260px,26vw,340px);scroll-snap-align:start;cursor:default}
+.card-img{aspect-ratio:4/5;overflow:hidden;background:#e9e4d8;border-radius:4px}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.card:hover .card-img img{transform:scale(1.07)}
+.card-body{padding:26px 4px 0;text-align:center}
+.card-body small{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+.card-body h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.65rem;color:var(--green);margin:8px 0 6px;line-height:1.15}
+.card-body p{font-size:.9rem;color:var(--ink-soft)}
+.card-body .price{display:block;margin-top:14px;font-size:.82rem;letter-spacing:.16em;color:var(--ink)}
+.progress{max-width:var(--max);margin:56px auto 0;padding:0 40px}
+.progress div{height:1px;background:rgba(11,58,39,.15);position:relative}
+.progress i{position:absolute;left:0;top:-1px;height:3px;background:var(--green);width:20%;transition:transform .3s linear}
+
+/* ---------- Bar (green full-bleed parallax) ---------- */
+.bar{position:relative;background:var(--green);color:#fff;overflow:hidden}
+.bar-hero{position:relative;height:90vh;min-height:560px;overflow:hidden}
+.bar-hero img{position:absolute;inset:-15% 0;width:100%;height:130%;object-fit:cover;will-change:transform}
+.bar-hero:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,58,39,0) 40%,var(--green) 100%)}
+.bar-copy{position:relative;z-index:2;margin-top:-26vh;padding-bottom:130px}
+.bar-copy .label{color:var(--gold-light);display:block;margin-bottom:22px}
+.bar-copy h2{max-width:760px}
+.bar-copy h2 em{color:var(--gold-light)}
+.bar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:80px}
+.bar-tile{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:4px}
+.bar-tile img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.bar-tile:hover img{transform:scale(1.07)}
+.bar-tile figcaption{position:absolute;left:0;right:0;bottom:0;padding:28px 26px;background:linear-gradient(0deg,rgba(6,38,25,.9),transparent);font-size:.74rem;letter-spacing:.24em;text-transform:uppercase}
+.bar-tile:nth-child(2){transform:translateY(60px)}
+.bar .lead{color:rgba(255,255,255,.78);margin-top:26px}
+
+/* ---------- Carta ---------- */
+.carta{padding:150px 0 140px}
+.carta-head{text-align:center;margin-bottom:64px}
+.carta-head .label{display:block;margin-bottom:20px}
+.carta-head h2{color:var(--green);margin-bottom:18px}
+.carta-head p{color:var(--ink-soft);font-size:.92rem}
+.tabs{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-bottom:70px;border-bottom:1px solid var(--line)}
+.tab{padding:16px 18px;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--ink-soft);position:relative;transition:color .3s}
+.tab:after{content:'';position:absolute;left:18px;right:18px;bottom:-1px;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .5s var(--ease)}
+.tab:hover{color:var(--green)}
+.tab[aria-selected="true"]{color:var(--green)}
+.tab[aria-selected="true"]:after{transform:scaleX(1)}
+.dish-list{display:grid;grid-template-columns:1fr 1fr;column-gap:90px;max-width:1080px;margin:0 auto}
+.dish{padding:24px 0;border-bottom:1px solid var(--line);opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.dish.in{opacity:1;transform:none}
+.dish-top{display:flex;align-items:baseline;gap:14px}
+.dish h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.4rem;color:var(--green);line-height:1.2}
+.dish .dots{flex:1;border-bottom:1px dotted rgba(11,58,39,.3);transform:translateY(-5px);min-width:20px}
+.dish .p{font-size:.9rem;letter-spacing:.08em;white-space:nowrap;font-weight:400}
+.dish p{font-size:.9rem;color:var(--ink-soft);margin-top:6px;max-width:440px}
+.carta-foot{text-align:center;margin-top:70px;display:flex;flex-direction:column;align-items:center;gap:24px}
+.carta-foot small{font-size:.8rem;color:var(--ink-soft);letter-spacing:.06em}
+
+/* ---------- Experiencias ---------- */
+.exp{padding:0 0 150px}
+.exp-head{margin-bottom:60px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
+.exp-head .label{display:block;margin-bottom:18px}
+.exp-head h2{color:var(--green)}
+.exp-head .lead{max-width:420px}
+.exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.exp-card{display:block}
+.exp-img{aspect-ratio:3/4;overflow:hidden;border-radius:4px;position:relative}
+.exp-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.exp-card:hover .exp-img img{transform:scale(1.07)}
+.exp-card h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.9rem;color:var(--green);margin:26px 0 8px}
+.exp-card p{color:var(--ink-soft);font-size:.95rem;margin-bottom:18px}
+.exp-card .more{color:var(--green)}
+
+/* ---------- Galería horizontal (scroll) ---------- */
+.reel{height:300vh;position:relative;background:var(--green-deep);color:#fff}
+.reel-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.reel-head{padding:0 40px;max-width:var(--max);margin:0 auto 46px;width:100%}
+.reel-head .label{color:var(--gold-light);display:block;margin-bottom:16px}
+.reel-row{display:flex;gap:28px;padding-left:max(40px,calc((100vw - var(--max))/2 + 40px));will-change:transform}
+.reel-row figure{flex:0 0 auto;height:56vh;overflow:hidden;border-radius:4px;position:relative}
+.reel-row figure.w{aspect-ratio:4/3}
+.reel-row figure.t{aspect-ratio:3/4}
+.reel-row img{width:100%;height:100%;object-fit:cover}
+.reel-row figcaption{position:absolute;left:20px;bottom:18px;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;text-shadow:0 1px 10px rgba(0,0,0,.5)}
+
+/* ---------- Visítanos ---------- */
+.visit{padding:150px 0;background:var(--ivory)}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:start}
+.visit .label{display:block;margin-bottom:22px}
+.visit h2{color:var(--green);margin-bottom:28px}
+.info{border-top:1px solid var(--line);margin:40px 0}
+.info-row{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:24px 0;border-bottom:1px solid var(--line)}
+.info-row dt{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);padding-top:4px;font-weight:500}
+.info-row dd{font-size:1.02rem;line-height:1.75}
+.info-row dd a{border-bottom:1px solid rgba(11,58,39,.3);transition:border-color .3s,color .3s}
+.info-row dd a:hover{color:var(--gold);border-color:var(--gold)}
+.visit .ctas{display:flex;gap:14px;flex-wrap:wrap}
+.visit-media{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:4px}
+.visit-media img{width:100%;height:100%;object-fit:cover}
+.open-badge{position:absolute;left:24px;top:24px;background:rgba(251,250,246,.94);backdrop-filter:blur(8px);padding:12px 18px;border-radius:999px;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:10px;color:var(--green);font-weight:500}
+.open-badge i{width:8px;height:8px;border-radius:50%;background:#9a9a92}
+.open-badge.is-open i{background:#2f9a5d;box-shadow:0 0 0 4px rgba(47,154,93,.2)}
+
+/* ---------- Footer ---------- */
+footer{background:var(--green-deep);color:rgba(255,255,255,.7);padding:100px 0 40px}
+.foot-top{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;padding-bottom:70px;border-bottom:1px solid rgba(255,255,255,.1)}
+.foot-top .brand{color:#fff}
+.foot-top .brand svg{width:40px;height:32px}
+.foot-top .brand b{font-size:2rem}
+.foot-top p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;color:var(--gold-light)}
+.foot-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;padding:60px 0}
+.foot-cols h4{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:#fff;font-weight:500;margin-bottom:20px}
+.foot-cols a,.foot-cols li{display:block;font-size:.92rem;line-height:2.1;transition:color .3s;list-style:none}
+.foot-cols a:hover{color:var(--gold-light)}
+.foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:30px;border-top:1px solid rgba(255,255,255,.1);font-size:.78rem}
+.foot-bottom a:hover{color:var(--gold-light)}
+
+/* ---------- Responsive ---------- */
+@media (max-width:980px){
+  .split-grid,.split.rev .split-grid,.visit-grid{grid-template-columns:1fr;gap:70px}
+  .split.rev .split-media{order:0}
+  .split-media .float{right:-4%;bottom:-6%}
+  .split.rev .split-media .float{left:-4%}
+  .bar-grid,.exp-grid{grid-template-columns:1fr 1fr}
+  .bar-tile:nth-child(2){transform:none}
+  .bar-tile:nth-child(3){display:none}
+  .exp-grid .exp-card:nth-child(3){grid-column:1/-1}
+  .exp-grid .exp-card:nth-child(3) .exp-img{aspect-ratio:16/9}
+  .dish-list{grid-template-columns:1fr}
+  .foot-cols{grid-template-columns:1fr 1fr}
+  .top-actions a.tel{display:none}
+  .exp-head,.col-head{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:640px){
+  .wrap{padding:0 20px}
+  .topbar{height:68px}.topbar.solid{height:60px}
+  .subnav{top:60px}
+  .menu-btn span{display:none}
+  .brand b{font-size:1.2rem;letter-spacing:.24em;padding-left:.24em}
+  .brand svg{width:24px;height:19px}
+  .top-actions .btn{padding:10px 16px;font-size:.64rem;letter-spacing:.14em}
+  .hero-row{flex-direction:column;align-items:flex-start;gap:26px}
+  .hero-row .ctas{width:100%}
+  .hero-row .ctas .btn{flex:1;padding:15px 18px}
+  .intro{padding:100px 0 90px}
+  .stats{grid-template-columns:1fr;margin-top:60px}
+  .stat+.stat{border-left:0;border-top:1px solid var(--line);margin-top:34px}
+  .split,.carta,.visit{padding:100px 0}
+  .collection{padding:100px 0}
+  .track{padding:0 20px;scroll-padding:0 20px;gap:18px}
+  .card{flex-basis:78vw}
+  .progress{padding:0 20px}
+  .bar-copy{padding-bottom:90px}
+  .bar-grid,.exp-grid{grid-template-columns:1fr}
+  .bar-tile:nth-child(3){display:block}
+  .bar-tile{aspect-ratio:4/3}
+  .exp-grid .exp-card:nth-child(3) .exp-img{aspect-ratio:3/4}
+  .exp{padding-bottom:100px}
+  .tabs{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;margin:0 -20px 50px;padding:0 20px;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex-shrink:0;padding:16px 12px}
+  .reel-head{padding:0 20px}
+  .reel-row{padding-left:20px;gap:16px}
+  .reel-row figure{height:46vh}
+  .info-row{grid-template-columns:1fr;gap:6px}
+  .foot-cols{grid-template-columns:1fr}
+  .drawer-panel{padding:100px 28px 40px}
+  .drawer-close{left:20px}
+  .expand-frame{clip-path:inset(22% 10% 22% 10% round 6px)}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}
+  .rv,.rv-fade,.dish{opacity:1;transform:none}
+  .rv-img img{transform:none}
+  .line-mask>span{transform:none!important}
+  .hero-copy .label,.hero-row{opacity:1}
+  .expand{height:auto}.expand-sticky{position:relative}
+  .expand-frame{clip-path:none}.expand-frame img{transform:none}
+  .expand-copy{opacity:1;transform:none}
+  .reel{height:auto}.reel-sticky{position:relative;height:auto;padding:110px 0}
+  .reel-row{overflow-x:auto;padding-right:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- Logotipo: palmera dorada -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="palm" viewBox="0 0 40 32">
+    <path fill="currentColor" d="M19 31c.6-6 1-11 .9-16h1.4c.3 5 .1 10-.6 16H19zM20.6 14.8c-3-3.8-8.3-5.6-14.6-4.6 4.3-3.2 10.3-3.2 14.6 3.2.3-6.4-2.7-10.6-7.6-12.4 6 0 9.3 4.6 8.6 12 3.3-6.2 8.7-7.3 14.4-4.5-6.3-.3-10.8 2.2-13 6.3 5.3-2.4 10.6-1 13.8 3.6-4.5-2.7-9.8-3.6-14.3-1.6l-1.9-.1-1.5.1c-4.6-.6-9.4 1-12.6 4.6 2.3-5.6 7.7-7.6 13.6-6.4l.5-.2z"/>
+  </symbol>
+  <symbol id="arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.4" d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+</svg>
+
+<!-- Barra superior -->
+<header class="topbar" id="topbar">
+  <div class="wrap">
+    <button class="menu-btn" id="openMenu" aria-controls="drawer" aria-expanded="false"><i></i><span>Menú</span></button>
+    <a href="#inicio" class="brand" aria-label="Tropicana Restaurant, inicio">
+      <svg aria-hidden="true"><use href="#palm"/></svg>
+      <b>TROPICANA</b><small>RESTAURANT</small>
+    </a>
+    <div class="top-actions">
+      <a class="tel" href="tel:+18097252728">809-725-2728</a>
+      <a class="btn" href="https://wa.me/18296026068" target="_blank" rel="noopener">Pedir</a>
+    </div>
+  </div>
+</header>
+
+<!-- Menú lateral -->
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-bg" data-close></div>
+  <aside class="drawer-panel" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+    <button class="drawer-close" data-close><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path stroke="currentColor" stroke-width="1.3" d="m2 2 14 14M16 2 2 16"/></svg>Cerrar</button>
+    <nav>
+      <ol>
+        <li><a href="#casa" data-close>La casa</a></li>
+        <li><a href="#cocina" data-close>La cocina</a></li>
+        <li><a href="#bar" data-close>El bar</a></li>
+        <li><a href="#carta" data-close>La carta</a></li>
+        <li><a href="#experiencias" data-close>Experiencias</a></li>
+        <li><a href="#visitanos" data-close>Visítanos</a></li>
+      </ol>
+    </nav>
+    <div class="drawer-foot">
+      Calle C, Urb. La Fortuna<br>San Francisco de Macorís<br>
+      <a href="tel:+18097252728">809-725-2728</a>
+    </div>
+  </aside>
+</div>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-media" id="heroMedia"><img src="assets/demo2/hero.jpg" alt="Salón elegante con mesas preparadas y luz cálida"></div>
+  <div class="hero-copy">
+    <div class="wrap">
+      <span class="label">Restaurante · Bar · Pizzería</span>
+      <h1 class="display h-xl">
+        <span class="line-mask"><span>Sabores que te</span></span>
+        <span class="line-mask"><span><em style="color:var(--gold-light)">transportan</em> al trópico</span></span>
+      </h1>
+      <div class="hero-row">
+        <p>Cocina criolla, mar y parrilla en un mismo lugar. Carnes importadas, mariscos frescos y la calidez dominicana en cada plato.</p>
+        <div class="ctas">
+          <a class="btn btn-gold" href="#carta">Ver la carta</a>
+          <a class="btn btn-line" href="https://wa.me/18296026068" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"></div>
+</section>
+
+<nav class="subnav" aria-label="Secciones">
+  <div class="wrap" id="subnav">
+    <a href="#casa">La casa</a>
+    <a href="#cocina">La cocina</a>
+    <a href="#destacados">Destacados</a>
+    <a href="#bar">El bar</a>
+    <a href="#carta">La carta</a>
+    <a href="#experiencias">Experiencias</a>
+    <a href="#visitanos">Visítanos</a>
+  </div>
+</nav>
+
+<!-- INTRO -->
+<section class="intro" id="casa">
+  <div class="wrap">
+    <span class="label rv">San Francisco de Macorís</span>
+    <h2 class="display h-l rv">Una casa tropical donde la cocina criolla, <em>el mar y la parrilla</em> se sientan a la misma mesa.</h2>
+    <p class="lead rv">Ensaladas, arroces, pastas, pescados y mariscos, mofongos, carnes importadas y pizzas. Abrimos todos los días, de lunes a viernes de 10:00 a. m. a 10:00 p. m., y sábados y domingos hasta las 10:00 p. m.</p>
+    <div class="stats">
+      <div class="stat rv"><b data-count="50">0</b><span>Platos en carta</span></div>
+      <div class="stat rv"><b data-count="8">0</b><span>Categorías</span></div>
+      <div class="stat rv"><b data-count="7">0</b><span>Días a la semana</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGEN QUE SE EXPANDE CON EL SCROLL -->
+<section class="expand" id="expand" aria-label="Ambiente">
+  <div class="expand-sticky">
+    <div class="expand-frame" id="expandFrame"><img src="assets/demo2/palmeras.jpg" alt="Palmeras frente a un mar turquesa" loading="lazy"></div>
+    <div class="expand-copy" id="expandCopy">
+      <span class="label">Espíritu Tropicana</span>
+      <h2 class="display h-l">El trópico, servido.</h2>
+      <p>La calidez del Caribe dominicano en cada plato, cada copa y cada celebración.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LA COCINA -->
+<section class="split" id="cocina">
+  <div class="wrap split-grid">
+    <div class="split-media rv-img rv">
+      <img src="assets/demo2/cocina.jpg" alt="Cocinero picando ingredientes frescos" loading="lazy">
+      <div class="float rv-img rv"><img src="assets/demo2/parrilla.jpg" alt="Carne a la parrilla cortada en lonchas" loading="lazy"></div>
+    </div>
+    <div class="split-copy">
+      <span class="label rv">La cocina</span>
+      <h2 class="display h-l rv">Del mar y la parrilla, a tu mesa.</h2>
+      <p class="lead rv">Salmón importado, mero, camarones frescos y cortes de carne importada al término que desees, con la guarnición de tu preferencia.</p>
+      <ul class="spec rv">
+        <li><span>Churrasco Angus</span><span>RD$785</span></li>
+        <li><span>Camarones Tropicana</span><span>RD$525</span></li>
+        <li><span>Salmón a la termidor</span><span>RD$495</span></li>
+        <li><span>Mofongo de camarones a la crema</span><span>RD$445</span></li>
+      </ul>
+      <a class="more rv" href="#carta" style="color:var(--green)">Descubrir la carta <svg width="20" height="20"><use href="#arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- DESTACADOS (carrusel) -->
+<section class="collection" id="destacados">
+  <div class="wrap col-head">
+    <div>
+      <span class="label rv">Selección de la casa</span>
+      <h2 class="display h-l rv">Destacados</h2>
+    </div>
+    <div class="arrows rv">
+      <button class="arrow" id="prev" aria-label="Anterior"><svg width="22" height="22" style="transform:rotate(180deg)"><use href="#arrow"/></svg></button>
+      <button class="arrow" id="next" aria-label="Siguiente"><svg width="22" height="22"><use href="#arrow"/></svg></button>
+    </div>
+  </div>
+  <div class="track" id="track">
+    <article class="card rv"><div class="card-img"><img src="assets/demo2/churrasco.jpg" alt="Churrasco con papas fritas" loading="lazy"></div><div class="card-body"><small>Carnes</small><h3>Churrasco Angus</h3><p>Importado, al término que desees.</p><span class="price">RD$785</span></div></article>
+    <article class="card rv"><div class="card-img"><img src="assets/demo2/camarones.jpg" alt="Camarones en salsa con arroz" loading="lazy"></div><div class="card-body"><small>Mariscos</small><h3>Camarones a la criolla</h3><p>En salsa de tomates, cebolla, ajo y ajíes.</p><span class="price">RD$465</span></div></article>
+    <article class="card rv"><div class="card-img"><img src="assets/demo2/salmon.jpg" alt="Salmón a la plancha" loading="lazy"></div><div class="card-body"><small>Pescados</small><h3>Salmón a la plancha</h3><p>Salmón importado con tu guarnición.</p><span class="price">RD$445</span></div></article>
+    <article class="card rv"><div class="card-img"><img src="assets/demo2/costillas.jpg" alt="Costillas en salsa BBQ" loading="lazy"></div><div class="card-body"><small>Carnes</small><h3>Costillas BBQ</h3><p>Costillitas al horno en salsa BBQ.</p><span class="price">RD$395</span></div></article>
+    <article class="card rv"><div class="card-img"><img src="assets/demo2/pizza.jpg" alt="Pizza recién horneada" loading="lazy"></div><div class="card-body"><small>Pizzas</small><h3>Pizza Tropicana</h3><p>Grande o pequeña.</p><span class="price">RD$775 · RD$295</span></div></article>
+    <article class="card rv"><div class="card-img"><img src="assets/demo2/pasta.jpg" alt="Plato de pasta" loading="lazy"></div><div class="card-body"><small>Pastas</small><h3>Pasta 4 quesos</h3><p>Mozzarella, danés, cheddar y parmesano.</p><span class="price">RD$315</span></div></article>
+    <article class="card rv"><div class="card-img"><img src="assets/demo2/ensalada.jpg" alt="Ensalada fresca" loading="lazy"></div><div class="card-body"><small>Ensaladas</small><h3>Ensalada Tropicana</h3><p>Fresca combinación de lechuga y frutas.</p><span class="price">RD$225</span></div></article>
+  </div>
+  <div class="progress" aria-hidden="true"><div><i id="trackBar"></i></div></div>
+</section>
+
+<!-- EL BAR -->
+<section class="bar" id="bar">
+  <div class="bar-hero"><img id="barImg" src="assets/demo2/bar.jpg" alt="Barra iluminada con botellas y taburetes" loading="lazy"></div>
+  <div class="wrap bar-copy">
+    <span class="label rv">El bar</span>
+    <h2 class="display h-l rv">Una copa, la buena música y <em>la noche que empieza.</em></h2>
+    <p class="lead rv">Nuestra barra con pantallas es el punto de encuentro para el partido, la tertulia o el brindis de la celebración.</p>
+    <div class="bar-grid">
+      <figure class="bar-tile rv"><img src="assets/demo2/coctel.jpg" alt="Cóctel servido sobre hielo" loading="lazy"><figcaption>Coctelería</figcaption></figure>
+      <figure class="bar-tile rv"><img src="assets/demo2/bartender.jpg" alt="Bartender preparando un trago" loading="lazy"><figcaption>Nuestra barra</figcaption></figure>
+      <figure class="bar-tile rv"><img src="assets/demo2/cocteles.jpg" alt="Tres cócteles de colores" loading="lazy"><figcaption>Para brindar</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- CARTA -->
+<section class="carta" id="carta">
+  <div class="wrap">
+    <div class="carta-head">
+      <span class="label rv">Menú a la carta</span>
+      <h2 class="display h-l rv">La carta</h2>
+      <p class="rv">Precios en pesos dominicanos (RD$). ITBIS no incluido.</p>
+    </div>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="dish-list" id="dishes" role="tabpanel" aria-live="polite"></div>
+    <div class="carta-foot">
+      <small>¿Ya sabes lo que quieres? Haz tu pedido por WhatsApp.</small>
+      <a class="btn btn-dark" href="https://wa.me/18296026068" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCIAS -->
+<section class="exp" id="experiencias">
+  <div class="wrap">
+    <div class="exp-head">
+      <div>
+        <span class="label rv">Más que un restaurante</span>
+        <h2 class="display h-l rv">Experiencias</h2>
+      </div>
+      <p class="lead rv">Cada día hay un motivo para volver a Tropicana.</p>
+    </div>
+    <div class="exp-grid">
+      <a class="exp-card rv" href="https://instagram.com/tropicana_restaurant" target="_blank" rel="noopener">
+        <div class="exp-img"><img src="assets/demo2/mesa.jpg" alt="Plato servido en una mesa elegante" loading="lazy"></div>
+        <h3>Menú del día</h3>
+        <p>Consulta cada día la propuesta del menú en nuestro Instagram.</p>
+        <span class="more">Ver en Instagram <svg width="20" height="20"><use href="#arrow"/></svg></span>
+      </a>
+      <a class="exp-card rv" href="https://wa.me/18296026068" target="_blank" rel="noopener">
+        <div class="exp-img"><img src="assets/demo2/globos.jpg" alt="Globos de colores para una fiesta" loading="lazy"></div>
+        <h3>Celebraciones</h3>
+        <p>Cumpleaños y fechas especiales con tu gente, en un ambiente para disfrutar en familia.</p>
+        <span class="more">Consultar por WhatsApp <svg width="20" height="20"><use href="#arrow"/></svg></span>
+      </a>
+      <a class="exp-card rv" href="https://instagram.com/tropicana_restaurant" target="_blank" rel="noopener">
+        <div class="exp-img"><img src="assets/demo2/amigos.jpg" alt="Amigos compartiendo una comida" loading="lazy"></div>
+        <h3>Actividades</h3>
+        <p>Música, eventos y área de juegos para los más pequeños. Mira la agenda en Instagram.</p>
+        <span class="more">Ver actividades <svg width="20" height="20"><use href="#arrow"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA HORIZONTAL -->
+<section class="reel" id="reel" aria-label="Galería">
+  <div class="reel-sticky">
+    <div class="reel-head">
+      <span class="label">Galería</span>
+      <h2 class="display h-l">Momentos Tropicana</h2>
+    </div>
+    <div class="reel-row" id="reelRow">
+      <figure class="w"><img src="assets/demo2/salon.jpg" alt="Salón amplio con luz natural" loading="lazy"><figcaption>El salón</figcaption></figure>
+      <figure class="t"><img src="assets/demo2/coctel.jpg" alt="Cóctel sobre la barra" loading="lazy"><figcaption>La barra</figcaption></figure>
+      <figure class="w"><img src="assets/demo2/parrilla.jpg" alt="Carne a la parrilla" loading="lazy"><figcaption>La parrilla</figcaption></figure>
+      <figure class="t"><img src="assets/demo2/pastel.jpg" alt="Pastel de cumpleaños de colores" loading="lazy"><figcaption>Celebraciones</figcaption></figure>
+      <figure class="w"><img src="assets/demo2/amigos.jpg" alt="Grupo de amigos comiendo" loading="lazy"><figcaption>En buena compañía</figcaption></figure>
+      <figure class="t"><img src="assets/demo2/camarones.jpg" alt="Camarones en salsa" loading="lazy"><figcaption>Del mar</figcaption></figure>
+      <figure class="w"><img src="assets/demo2/pizza.jpg" alt="Pizza en tabla de madera" loading="lazy"><figcaption>Pizzería</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- VISÍTANOS -->
+<section class="visit" id="visitanos">
+  <div class="wrap visit-grid">
+    <div>
+      <span class="label rv">Visítanos</span>
+      <h2 class="display h-l rv">Te esperamos en Tropicana</h2>
+      <p class="lead rv">Llámanos, pide por WhatsApp o ven a vernos a la Urb. La Fortuna.</p>
+      <dl class="info rv">
+        <div class="info-row"><dt>Dirección</dt><dd>Calle C, Urb. La Fortuna<br>San Francisco de Macorís, Duarte<br><a href="https://maps.app.goo.gl/qY8KhEaYszNsF7xS6" target="_blank" rel="noopener">Ver en Google Maps</a></dd></div>
+        <div class="info-row"><dt>Horario</dt><dd>Lunes a viernes · 10:00 a. m. – 10:00 p. m.<br>Sábado y domingo · hasta las 10:00 p. m.</dd></div>
+        <div class="info-row"><dt>Teléfono</dt><dd><a href="tel:+18097252728">809-725-2728</a></dd></div>
+        <div class="info-row"><dt>Instagram</dt><dd><a href="https://instagram.com/tropicana_restaurant" target="_blank" rel="noopener">@tropicana_restaurant</a></dd></div>
+      </dl>
+      <div class="ctas rv">
+        <a class="btn btn-gold" href="tel:+18097252728">Llamar</a>
+        <a class="btn btn-dark" href="https://wa.me/18296026068" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div class="visit-media rv-img rv">
+      <img src="assets/demo2/salon.jpg" alt="Interior del restaurante" loading="lazy">
+      <span class="open-badge" id="openBadge"><i></i><span>Horario</span></span>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <a href="#inicio" class="brand" aria-label="Volver arriba">
+        <svg aria-hidden="true"><use href="#palm"/></svg>
+        <b>TROPICANA</b><small>RESTAURANT</small>
+      </a>
+      <p>Sabores que te transportan al trópico</p>
+    </div>
+    <div class="foot-cols">
+      <div><h4>Descubrir</h4><a href="#casa">La casa</a><a href="#cocina">La cocina</a><a href="#bar">El bar</a><a href="#carta">La carta</a></div>
+      <div><h4>Experiencias</h4><a href="#experiencias">Menú del día</a><a href="#experiencias">Celebraciones</a><a href="#experiencias">Actividades</a></div>
+      <div><h4>Horario</h4><ul><li>Lun–Vie 10:00 a. m. – 10:00 p. m.</li><li>Sáb–Dom hasta las 10:00 p. m.</li></ul></div>
+      <div><h4>Contacto</h4><a href="tel:+18097252728">809-725-2728</a><a href="https://wa.me/18296026068" target="_blank" rel="noopener">WhatsApp</a><a href="https://instagram.com/tropicana_restaurant" target="_blank" rel="noopener">Instagram</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Tropicana Restaurant. Todos los derechos reservados.</span>
+      <span>Fotografías ilustrativas: Unsplash</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ---------- Carta (datos reales) ---------- */
+var CARTA = [
+ {cat:'Ensaladas', items:[
+  ['Ensalada verde',135,'Sabrosa combinación de lechugas, tomates y pepino, aderezo a tu gusto.'],
+  ['Ensalada al pesto',145,'Rica combinación de lechuga aderezada con un sabroso pesto de albahaca.'],
+  ['Ensalada Tropicana',225,'Fresca combinación de lechuga y frutas, pruébala.'],
+  ['Lechuga 4 quesos',250,'Lechuga combinada con trozos de queso mozzarella, cheddar y parmesano.']]},
+ {cat:'Arroces', items:[
+  ['Chofan de camarones',395,'Deliciosa combinación de arroz frito, camarones y verduras.'],
+  ['Chofan de pollo',295,'Arroz frito, pechuga, verduras y salsa china.'],
+  ['Chofan mixto',305,'Rica combinación de arroz frito, pechuga, filete de cerdo y verduras.']]},
+ {cat:'Pastas', items:[
+  ['Pasta 4 quesos',315,'Exquisita pasta preparada con queso mozzarella, danés, cheddar y parmesano.'],
+  ['Pasta Alfredo',275,'Sabroso espagueti con jamón y una sabrosa salsa bechamel.'],
+  ['Pasta carbonara',285,'Sabrosa pasta a base de salsa bechamel, tocineta y queso.'],
+  ['Pasta con camarones',395,'Deliciosa pasta en salsa blanca, mezclada con unos ricos camarones.']]},
+ {cat:'Pescados y mariscos', items:[
+  ['Salmón a la termidor',495,'Una sabrosa pieza de salmón importado, en salsa blanca, hongos y brandy.'],
+  ['Salmón a la plancha',445,'Una apetecible pieza de salmón importado, con la guarnición de tu preferencia.'],
+  ['Camarones Tropicana',525,'Ricos camarones en salsa a base de tocineta, cebolla, ajo, ajíes, alcaparras y crema de leche.'],
+  ['Camarones a la plancha',420,'Acompañados de tostones, papas fritas, puré o vegetales.'],
+  ['Camarones a la criolla',465,'Preparados en una sabrosa salsa a base de tomates, cebolla, ajo, ajíes y verduras.'],
+  ['Mero a la plancha',325,'Filete de mero, acompañado de tostones, papas fritas, puré o vegetales.'],
+  ['Mero al ajillo',345,'Irresistible filete de mero bañado en una sabrosa salsa a base de ajo y perejil.'],
+  ['Mero Tropicana',345,'Filete de mero en salsa a base de tocineta, cebolla, ajo, alcaparras y crema de leche.'],
+  ['Mero rebozado en camarones',495,'Filete de mero en salsa aurora con camarones frescos.'],
+  ['Mero jardinera',380,'Delicioso mero bañado con una rica salsa bechamel y vegetales.']]},
+ {cat:'Mofongos', items:[
+  ['Mofongo de chicharrón',295,'Plátano majado en pilón, con crocante chicharrón de cerdo.'],
+  ['Mofongo de camarones al ajillo',445,'Camarones frescos y plátanos majados en pilón, salsa de ajo y perejil o criolla.'],
+  ['Mofongo de camarones a la crema',445,'Camarones, plátanos fritos majados en pilón con salsa bechamel y queso mozzarella.'],
+  ['Mofongo de pollo al ajillo o a la criolla',325,'Plátanos majados al pilón, con salsa de ajo y perejil o salsa criolla.'],
+  ['Mofongo de queso',345,'Plátanos majados al pilón con mozzarella, cheddar y parmesano.']]},
+ {cat:'Carnes', items:[
+  ['Churrasco Angus',785,'Churrasco importado al término que desees y la guarnición de tu preferencia.'],
+  ['T-Bone (10 a 12 oz)',745,'Exquisito corte de carne importada, fresca y jugosa.'],
+  ['Sirloin (10 a 12 oz)',645,'Sabroso y jugoso corte de carne importada al término de tu preferencia.'],
+  ['Filete de res a la plancha',445,'Suave, jugoso y sabroso filete de res con la guarnición de tu preferencia.'],
+  ['Pechuga Tropicana',420,'Pechuga en salsa a base de tocineta, cebolla, alcaparras y crema de leche.'],
+  ['Pechuga a la plancha',325,'Jugosa e irresistible pechuga, con la guarnición de tu preferencia.'],
+  ['Pechuga rebozada de plátano maduro y queso',395,'Rebozada en queso fundido y plátano maduro, bañada con salsa bechamel.'],
+  ['Pechuga rebozada en camarones',425,'Rica pechuga bañada en salsa aurora con camarones frescos.'],
+  ['Filete de cerdo a la plancha',360,'Jugoso filete acompañado de la guarnición de tu preferencia.'],
+  ['Filete de cerdo en salsa de hongos',395,'Rico y jugoso filete bañado en una sabrosa salsa de hongos.'],
+  ['Lomo de cerdo al pesto',375,'Suave y sabroso lomo, destacado por un toque de pesto de albahaca.'],
+  ['Chuleta a la plancha',325,'Chuleta fresca adobada a tu gusto, con tostones o papas fritas.'],
+  ['Chuleta rebozada de tocineta y queso',395,'Chuleta rebozada con tocineta y queso mozzarella.'],
+  ['Costillas BBQ',395,'Frescas y sabrosas costillitas al horno, servidas en salsa BBQ.'],
+  ['Costillas nuevas',null,'Pregunta por esta opción en el restaurante.']]},
+ {cat:'Para compartir', items:[
+  ['Parrillada Tropicana (6 personas)',2145,'Carne, filete de res, filete de cerdo, costillitas, chuleta, salchicha, pechuga, tostones, papas fritas y vegetales salteados.'],
+  ['Parrillada Tropicana (3 personas)',1225,'La misma combinación en versión para 3 personas.'],
+  ['Parrillada Mar y Tierra (6 personas)',2525,'Camarones, calamar, mero, filete de res, filete de cerdo, costillitas, chuletas, salchichas, pechuga, tostones, papas fritas y vegetales.'],
+  ['Parrillada Mar y Tierra (3 personas)',1425,'La misma combinación en versión para 3 personas.']]},
+ {cat:'Pizzas', items:[
+  ['Pizza de jamón y queso',[360,150],'Grande o pequeña.'],
+  ['Pizza de pepperoni',null,'Grande o pequeña. Consulta el precio.'],
+  ['Pizza de queso',[360,150],'Grande o pequeña.'],
+  ['Pizza vegetariana',[420,225],'Grande o pequeña.'],
+  ['Pizza Tropicana',[775,295],'Grande o pequeña.']]}
+];
+function fmt(n){return 'RD$' + n.toLocaleString('en-US');}
+function price(p){
+  if (p === null) return 'Consultar';
+  if (Array.isArray(p)) return 'G ' + fmt(p[0]) + ' · P ' + fmt(p[1]);
+  return fmt(p);
+}
+function esc(s){return s.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+var tabsEl = document.getElementById('tabs'), dishesEl = document.getElementById('dishes');
+tabsEl.innerHTML = CARTA.map(function(g,i){
+  return '<button class="tab" role="tab" aria-selected="'+(i===0)+'" data-i="'+i+'">'+esc(g.cat)+'</button>';
+}).join('');
+function showCat(i){
+  [].forEach.call(tabsEl.children,function(t,j){t.setAttribute('aria-selected', String(i===j));});
+  dishesEl.innerHTML = CARTA[i].items.map(function(d){
+    return '<article class="dish"><div class="dish-top"><h3>'+esc(d[0])+'</h3><span class="dots"></span><span class="p">'+price(d[1])+'</span></div><p>'+esc(d[2])+'</p></article>';
+  }).join('');
+  [].forEach.call(dishesEl.children,function(el,k){
+    if (reduce) { el.classList.add('in'); return; }
+    setTimeout(function(){el.classList.add('in');}, 60*k);
+  });
+}
+tabsEl.addEventListener('click',function(e){
+  var t = e.target.closest('.tab'); if (!t) return;
+  showCat(+t.dataset.i);
+  t.scrollIntoView({block:'nearest',inline:'center',behavior:reduce?'auto':'smooth'});
+});
+showCat(0);
+
+/* ---------- Barra superior y menú lateral ---------- */
+var topbar = document.getElementById('topbar');
+var drawer = document.getElementById('drawer');
+var openBtn = document.getElementById('openMenu');
+function setDrawer(open){
+  drawer.classList.toggle('open',open);
+  drawer.setAttribute('aria-hidden',String(!open));
+  openBtn.setAttribute('aria-expanded',String(open));
+  document.body.style.overflow = open ? 'hidden' : '';
+  if (open) drawer.querySelector('.drawer-close').focus(); else openBtn.focus({preventScroll:true});
+}
+openBtn.addEventListener('click',function(){setDrawer(true);});
+drawer.querySelectorAll('[data-close]').forEach(function(el){el.addEventListener('click',function(){setDrawer(false);});});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&drawer.classList.contains('open'))setDrawer(false);});
+drawer.querySelectorAll('nav li').forEach(function(li,i){li.style.transitionDelay=(0.15+i*0.06)+'s';});
+
+/* ---------- Revelado al entrar en pantalla ---------- */
+var revealEls = document.querySelectorAll('.rv,.rv-fade');
+if (reduce || !('IntersectionObserver' in window)) {
+  revealEls.forEach(function(el){el.classList.add('in');});
+} else {
+  document.querySelectorAll('.stats,.track,.bar-grid,.exp-grid').forEach(function(g){
+    [].forEach.call(g.children,function(el,i){el.style.transitionDelay=(i*0.12)+'s';});
+  });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (!en.isIntersecting) return;
+      en.target.classList.add('in'); io.unobserve(en.target);
+    });
+  },{threshold:.15, rootMargin:'0px 0px -6% 0px'});
+  revealEls.forEach(function(el){io.observe(el);});
+}
+
+/* ---------- Contadores ---------- */
+function countUp(el){
+  var end = +el.dataset.count;
+  if (reduce) { el.textContent = end; return; }
+  var t0 = null, dur = 1800;
+  function step(t){
+    if (!t0) t0 = t;
+    var p = Math.min((t - t0)/dur,1), e = 1 - Math.pow(1-p,4);
+    el.textContent = Math.round(end*e);
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+if ('IntersectionObserver' in window) {
+  var co = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){countUp(en.target);co.unobserve(en.target);} });
+  },{threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(function(el){co.observe(el);});
+} else document.querySelectorAll('[data-count]').forEach(function(el){el.textContent=el.dataset.count;});
+
+/* ---------- Carrusel de destacados ---------- */
+var track = document.getElementById('track'), bar = document.getElementById('trackBar');
+var prev = document.getElementById('prev'), next = document.getElementById('next');
+function step(){ var c = track.querySelector('.card'); return c ? c.getBoundingClientRect().width + 28 : 300; }
+prev.addEventListener('click',function(){track.scrollBy({left:-step(),behavior:reduce?'auto':'smooth'});});
+next.addEventListener('click',function(){track.scrollBy({left:step(),behavior:reduce?'auto':'smooth'});});
+function updTrack(){
+  var max = track.scrollWidth - track.clientWidth;
+  var ratio = track.clientWidth / track.scrollWidth;
+  bar.style.width = (ratio*100)+'%';
+  bar.style.transform = 'translateX(' + (max > 0 ? (track.scrollLeft/max)*(1/ratio - 1)*100 : 0) + '%)';
+  prev.disabled = track.scrollLeft < 4;
+  next.disabled = track.scrollLeft > max - 4;
+}
+track.addEventListener('scroll',updTrack,{passive:true});
+
+/* ---------- Efectos ligados al scroll ---------- */
+var heroMedia = document.getElementById('heroMedia');
+var expand = document.getElementById('expand'), frame = document.getElementById('expandFrame'), frameImg = frame.querySelector('img'), copy = document.getElementById('expandCopy');
+var barImg = document.getElementById('barImg'), barSec = document.getElementById('bar');
+var reel = document.getElementById('reel'), reelRow = document.getElementById('reelRow');
+var subLinks = [].slice.call(document.querySelectorAll('#subnav a'));
+var sections = subLinks.map(function(a){return document.querySelector(a.getAttribute('href'));});
+var mobile = window.matchMedia('(max-width:640px)');
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+function progress(el){
+  var r = el.getBoundingClientRect();
+  return clamp(-r.top / (el.offsetHeight - innerHeight), 0, 1);
+}
+var ticking = false;
+function onScroll(){
+  var y = scrollY, vh = innerHeight;
+  topbar.classList.toggle('solid', y > vh*0.85);
+
+  // sección activa en la sub-navegación
+  var active = -1;
+  sections.forEach(function(s,i){ if (s && s.getBoundingClientRect().top < vh*0.35) active = i; });
+  subLinks.forEach(function(a,i){a.classList.toggle('on', i===active);});
+
+  if (reduce) return;
+
+  // parallax del hero
+  if (y < vh) heroMedia.style.transform = 'translate3d(0,' + (y*0.35) + 'px,0)';
+
+  // imagen que se expande a pantalla completa
+  var p = progress(expand);
+  var e = 1 - Math.pow(1 - clamp(p/0.7,0,1), 3);
+  var sx = mobile.matches ? 10 : 26, sy = mobile.matches ? 22 : 18;
+  frame.style.clipPath = 'inset(' + (sy*(1-e)) + '% ' + (sx*(1-e)) + '% ' + (sy*(1-e)) + '% ' + (sx*(1-e)) + '% round ' + (6*(1-e)) + 'px)';
+  frameImg.style.transform = 'scale(' + (1.25 - 0.25*e) + ')';
+  var c = clamp((p - 0.45)/0.3, 0, 1);
+  frame.style.setProperty('--shade', c);
+  copy.style.setProperty('--copy', c);
+
+  // parallax del bar
+  var br = barSec.getBoundingClientRect();
+  if (br.top < vh && br.bottom > 0) barImg.style.transform = 'translate3d(0,' + ((br.top)*-0.12) + 'px,0)';
+
+  // galería horizontal
+  var rp = progress(reel);
+  var dist = reelRow.scrollWidth - innerWidth + (mobile.matches ? 20 : 80);
+  reelRow.style.transform = 'translate3d(' + (-dist*rp) + 'px,0,0)';
+}
+window.addEventListener('scroll',function(){
+  if (!ticking){ requestAnimationFrame(function(){onScroll();ticking=false;}); ticking = true; }
+},{passive:true});
+window.addEventListener('resize',function(){onScroll();updTrack();});
+onScroll(); updTrack();
+
+/* ---------- ¿Abierto ahora? (hora de República Dominicana) ---------- */
+(function(){
+  var badge = document.getElementById('openBadge');
+  try {
+    var parts = new Intl.DateTimeFormat('en-US',{timeZone:'America/Santo_Domingo',weekday:'short',hour:'numeric',hour12:false}).formatToParts(new Date());
+    var wd = parts.find(function(p){return p.type==='weekday';}).value;
+    var h = +parts.find(function(p){return p.type==='hour';}).value % 24;
+    var weekend = wd === 'Sat' || wd === 'Sun';
+    // Entre semana: 10:00–22:00. Fin de semana: la fuente solo indica el cierre (22:00).
+    if (!weekend) {
+      var open = h >= 10 && h < 22;
+      badge.classList.toggle('is-open', open);
+      badge.lastElementChild.textContent = open ? 'Abierto ahora' : 'Cerrado · abre a las 10:00 a. m.';
+    } else {
+      badge.lastElementChild.textContent = h < 22 ? 'Hoy hasta las 10:00 p. m.' : 'Cerrado por hoy';
+    }
+  } catch(e) { /* sin soporte de zonas horarias: se queda "Horario" */ }
+})();
+})();
+</script>
+</body>
+</html>
