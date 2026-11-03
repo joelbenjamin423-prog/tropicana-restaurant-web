@@ -48,9 +48,9 @@ Para ver cómo queda el diseño con eventos, abre `eventos.html?ejemplo`: muestr
 
 ## Archivos multimedia
 
-- `assets/fondo2.mp4` (vídeo del hero) y `assets/ruleta.mp4` (sección Nosotros). Los vídeos solo se reproducen cuando están en pantalla, y el de Nosotros no se descarga hasta que el visitante se acerca a esa sección.
-- `assets/*.jpg`: fotos de la galería y del carrusel, de 1400 px de ancho, con carga diferida.
-- Para comprimir más los vídeos hace falta una herramienta externa (por ejemplo, HandBrake o ffmpeg), que no está instalada en este equipo.
+- `assets/fondo2.mp4` (vídeo del hero, 440 KB) y `assets/ruleta.mp4` (sección Nosotros, 730 KB). Están comprimidos en H.264 (CRF 29), sin pista de audio porque se reproducen silenciados, y con `faststart` para que empiecen antes de descargarse enteros. Los vídeos solo se reproducen cuando están en pantalla, y el de Nosotros no se descarga hasta que el visitante se acerca a esa sección.
+- `assets/fondo2-poster.webp`: primer fotograma del vídeo del hero. Se muestra al instante mientras carga el vídeo. Si cambias el vídeo, regenera esta imagen.
+- Fotos: la web usa las versiones `.webp` (40-60 % más ligeras). Los `.jpg` originales se conservan porque `og:image` (vista previa al compartir el enlace) y los datos estructurados apuntan a `plato1.jpg`. Si cambias una foto, sube el `.jpg` y genera su `.webp` con el mismo nombre.
 
 ## Publicar cambios
 
