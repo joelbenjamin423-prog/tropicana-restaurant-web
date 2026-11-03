@@ -29,6 +29,19 @@ Para **añadir un plato**, copia una tarjeta `.menu-card` de la misma categoría
 - **Horario del fin de semana:** la fuente solo dice "Sáb–Dom hasta las 10:00 p. m.", sin hora de apertura. Por eso los datos estructurados para Google solo incluyen el horario de lunes a viernes.
 - **Fotos por plato:** las fotos disponibles son genéricas y no corresponden a platos concretos de la carta. Por eso el carrusel muestra cada foto con su propia descripción, no con el nombre de un plato. Si el restaurante envía una foto de cada plato, se pueden añadir a las tarjetas de la carta.
 
+## Página de próximos eventos (`eventos.html`)
+
+Enlazada desde el menú ("Eventos") y el pie de página de la portada.
+
+1. Abre `eventos.html` y busca `const EVENTOS = [` (al principio del `<script>`). Justo encima hay una plantilla comentada con todos los campos.
+2. Añade un bloque por evento. Solo `titulo` y `fecha` (formato `AAAA-MM-DD`) son obligatorios; `hora`, `descripcion`, `categoria`, `precio`, `imagen` y `reservar` son opcionales.
+3. `reservar: true` muestra un botón que abre WhatsApp con el nombre y la fecha del evento ya escritos.
+4. Las fotos de eventos van en `assets/` (por ejemplo `assets/eventos/karaoke.jpg`).
+
+Los eventos se ordenan por fecha automáticamente y desaparecen al día siguiente (hora de República Dominicana). Los que caen en los próximos 7 días llevan la etiqueta "Esta semana" y los del día, "Hoy". Sin eventos, la página muestra "Pronto anunciaremos nuevos eventos" con enlace a Instagram.
+
+Para ver cómo queda el diseño con eventos, abre `eventos.html?ejemplo`: muestra tres eventos ficticios marcados como "Ejemplo". Sin `?ejemplo` en la dirección nunca se muestran.
+
 ## Archivos multimedia
 
 - `assets/fondo2.mp4` (vídeo del hero) y `assets/ruleta.mp4` (sección Nosotros). Los vídeos solo se reproducen cuando están en pantalla, y el de Nosotros no se descarga hasta que el visitante se acerca a esa sección.

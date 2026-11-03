@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#04130c">
+<title>Próximos eventos | Tropicana Restaurant</title>
+<meta name="description" content="Próximos eventos en Tropicana Restaurant, San Francisco de Macorís: música, celebraciones y actividades en nuestro restaurante, bar y pizzería.">
+<link rel="canonical" href="https://joelbenjamin423-prog.github.io/tropicana-restaurant-web/eventos.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_DO">
+<meta property="og:site_name" content="Tropicana Restaurant">
+<meta property="og:title" content="Próximos eventos · Tropicana Restaurant">
+<meta property="og:description" content="Música, celebraciones y actividades en Tropicana Restaurant, San Francisco de Macorís.">
+<meta property="og:url" content="https://joelbenjamin423-prog.github.io/tropicana-restaurant-web/eventos.html">
+<meta property="og:image" content="https://joelbenjamin423-prog.github.io/tropicana-restaurant-web/assets/barra.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B4%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,500;1,600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #081f14;
+    --bg-darker: #04130c;
+    --bg-card: #0e2a1b;
+    --green-light: #1c5235;
+    --gold: #d4af37;
+    --gold-light: #ecd27f;
+    --cream: #f4efe2;
+    --muted: #a9bdac;
+    --max-w: 1200px;
+    --ease: cubic-bezier(.16,.8,.3,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--cream);font-family:'Montserrat',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;}
+  h1,h2,h3{font-family:'Playfair Display',serif;font-weight:600;line-height:1.1;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  ::selection{background:var(--gold);color:var(--bg-darker);}
+  ::-webkit-scrollbar{width:10px;}
+  ::-webkit-scrollbar-track{background:var(--bg-darker);}
+  ::-webkit-scrollbar-thumb{background:var(--green-light);border-radius:10px;}
+  ::-webkit-scrollbar-thumb:hover{background:var(--gold);}
+  :focus-visible{outline:2px solid var(--gold-light);outline-offset:3px;border-radius:4px;}
+  .skip-link{position:fixed;top:-60px;left:16px;z-index:1000;background:var(--gold);color:var(--bg-darker);padding:10px 18px;border-radius:30px;font-weight:600;font-size:.85rem;transition:top .2s ease;}
+  .skip-link:focus{top:12px;}
+  .wrap{max-width:var(--max-w);margin:0 auto;padding:0 28px;}
+  .eyebrow{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold-light);letter-spacing:.06em;font-size:1.05rem;margin-bottom:10px;display:inline-block;}
+  .section-title{font-size:clamp(2rem,4.5vw,3.2rem);margin-bottom:18px;}
+  .btn{padding:15px 34px;border-radius:40px;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;display:inline-block;transition:transform .35s var(--ease), box-shadow .35s, background .35s, color .35s, border-color .35s;}
+  .btn-gold{background:var(--gold);color:var(--bg-darker);font-weight:600;box-shadow:0 10px 30px rgba(212,175,55,.18);}
+  .btn-gold:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(212,175,55,.3);}
+  .btn-ghost{border:1px solid rgba(244,239,226,.35);color:var(--cream);}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold-light);transform:translateY(-3px);}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(36px);transition:opacity .8s var(--ease), transform .8s var(--ease);}
+  .reveal.in-view{opacity:1;transform:none;}
+
+  /* ===== NAV (igual que la portada) ===== */
+  nav{position:fixed;top:0;left:0;width:100%;z-index:500;padding:18px 0;transition:background .4s ease, padding .4s ease, box-shadow .4s ease;}
+  nav.scrolled{background:rgba(4,19,12,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:12px 0;box-shadow:0 10px 30px rgba(0,0,0,.35);}
+  .nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+  .logo-text{display:flex;flex-direction:column;line-height:1;}
+  .logo-text .main{font-family:'Playfair Display',serif;font-weight:700;font-size:1.25rem;letter-spacing:.03em;color:var(--cream);}
+  .logo-text .sub{font-size:.55rem;letter-spacing:.35em;color:var(--gold-light);margin-top:3px;}
+  .nav-links{display:flex;gap:34px;list-style:none;}
+  .nav-links a{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);position:relative;padding-bottom:4px;transition:color .3s;}
+  .nav-links a:after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .3s;}
+  .nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--cream);}
+  .nav-links a:hover:after,.nav-links a[aria-current="page"]:after{width:100%;}
+  .nav-cta{border:1px solid var(--gold);color:var(--gold-light);padding:9px 20px;border-radius:30px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;transition:background .3s, color .3s;}
+  .nav-cta:hover{background:var(--gold);color:var(--bg-darker);}
+  .nav-links-cta{display:none;}
+  .nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;background:none;border:none;width:44px;height:44px;align-items:center;position:relative;z-index:2;}
+  .nav-toggle span{width:24px;height:2px;background:var(--cream);transition:transform .3s ease, opacity .3s ease;}
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  /* ===== CABECERA ===== */
+  .page-hero{position:relative;min-height:72vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--bg-darker);}
+  .page-hero img{position:absolute;inset:-10% 0;width:100%;height:120%;object-fit:cover;will-change:transform;}
+  .page-hero:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(4,19,12,.65) 0%, rgba(4,19,12,.45) 35%, rgba(4,19,12,.92) 85%, var(--bg) 100%);}
+  .page-hero .wrap{position:relative;z-index:2;width:100%;padding-bottom:70px;padding-top:140px;}
+  .page-hero h1{font-size:clamp(2.6rem,6.5vw,4.8rem);margin:6px 0 18px;}
+  .page-hero h1 em{color:var(--gold-light);font-style:italic;}
+  .page-hero p{color:var(--muted);max-width:520px;line-height:1.7;font-size:1.02rem;}
+  .hero-anim{opacity:0;transform:translateY(26px);animation:heroIn 1s var(--ease) forwards;}
+  .hero-anim:nth-child(2){animation-delay:.12s;}
+  .hero-anim:nth-child(3){animation-delay:.24s;}
+  @keyframes heroIn{to{opacity:1;transform:none;}}
+
+  /* ===== LISTA DE EVENTOS ===== */
+  .events{padding:40px 0 120px;}
+  .events-bar{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-bottom:22px;margin-bottom:40px;border-bottom:1px solid rgba(212,175,55,.15);}
+  .events-count{color:var(--muted);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;}
+  .demo-note{background:rgba(212,175,55,.12);border:1px dashed rgba(212,175,55,.5);color:var(--gold-light);padding:10px 16px;border-radius:12px;font-size:.8rem;line-height:1.5;}
+  .event-list{display:grid;gap:24px;}
+  .event{display:grid;grid-template-columns:130px 1fr;background:var(--bg-card);border:1px solid rgba(212,175,55,.12);border-radius:18px;overflow:hidden;transition:transform .45s var(--ease), border-color .45s, box-shadow .45s;}
+  .event.has-img{grid-template-columns:130px 1fr 320px;}
+  .event:hover{transform:translateY(-6px);border-color:rgba(212,175,55,.5);box-shadow:0 22px 44px rgba(0,0,0,.35);}
+  .event-date{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:26px 10px;background:linear-gradient(160deg, var(--green-light), #0e2a1b);border-right:1px solid rgba(212,175,55,.15);text-align:center;}
+  .event-date .dow{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);}
+  .event-date .day{font-family:'Playfair Display',serif;font-size:3rem;line-height:1;color:var(--gold-light);}
+  .event-date .month{font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cream);}
+  .event-body{padding:28px 30px;display:flex;flex-direction:column;justify-content:center;min-width:0;}
+  .event-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
+  .tag{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:20px;border:1px solid rgba(212,175,55,.35);color:var(--gold-light);}
+  .tag.soon{background:var(--gold);color:var(--bg-darker);border-color:var(--gold);font-weight:600;}
+  .tag.sample{border-style:dashed;color:var(--muted);border-color:rgba(169,189,172,.5);}
+  .event h2{font-size:clamp(1.35rem,2.4vw,1.75rem);margin-bottom:8px;}
+  .event-meta{color:var(--gold-light);font-size:.85rem;margin-bottom:12px;letter-spacing:.02em;}
+  .event-desc{color:var(--muted);font-size:.92rem;line-height:1.65;}
+  .event-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;}
+  .event-actions .btn{padding:12px 24px;font-size:.74rem;}
+  .event-img{position:relative;overflow:hidden;}
+  .event-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease);}
+  .event:hover .event-img img{transform:scale(1.06);}
+
+  /* estado vacío */
+  .empty{text-align:center;padding:80px 28px;border:1px solid rgba(212,175,55,.15);border-radius:22px;background:radial-gradient(ellipse at top, rgba(28,82,53,.45), transparent 70%), var(--bg-card);}
+  .empty-icon{width:74px;height:74px;margin:0 auto 26px;border-radius:50%;border:1px solid rgba(212,175,55,.4);display:flex;align-items:center;justify-content:center;color:var(--gold-light);}
+  .empty h2{font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:14px;}
+  .empty p{color:var(--muted);max-width:480px;margin:0 auto 32px;line-height:1.7;}
+  .empty .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+  /* bloque celebraciones */
+  .celebrate{padding:0 0 120px;}
+  .celebrate-box{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;padding:44px 48px;border-radius:22px;background:linear-gradient(120deg, #123a24, #0e2a1b);border:1px solid rgba(212,175,55,.2);}
+  .celebrate-box h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:10px;}
+  .celebrate-box p{color:var(--muted);line-height:1.7;max-width:560px;}
+
+  footer{border-top:1px solid rgba(212,175,55,.12);padding:34px 0;background:var(--bg-darker);}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+  .footer-inner p{color:var(--muted);font-size:.78rem;}
+  .footer-links{display:flex;gap:22px;flex-wrap:wrap;}
+  .footer-links a{color:var(--muted);font-size:.78rem;transition:color .3s;}
+  .footer-links a:hover{color:var(--gold-light);}
+
+  @media (max-width: 960px){
+    .event.has-img{grid-template-columns:110px 1fr;}
+    .event.has-img .event-img{grid-column:1 / -1;grid-row:1;aspect-ratio:16/9;}
+  }
+  @media (max-width: 860px){
+    .nav-links{position:fixed;top:0;right:0;height:100vh;height:100dvh;width:min(320px,82%);background:rgba(4,19,12,.98);flex-direction:column;justify-content:center;align-items:center;gap:30px;transform:translateX(100%);visibility:hidden;z-index:1;border-left:1px solid rgba(212,175,55,.15);transition:transform .4s var(--ease), visibility 0s linear .4s;}
+    .nav-links.open{transform:translateX(0);visibility:visible;transition:transform .4s var(--ease), visibility 0s;}
+    .nav-links a{font-size:.95rem;padding:6px 4px;}
+    .nav-cta{display:none;}
+    .nav-toggle{display:flex;}
+    .nav-links-cta{display:block;margin-top:8px;}
+    .nav-links-cta a{border:1px solid var(--gold);color:var(--gold-light);padding:12px 28px;border-radius:30px;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;}
+    .celebrate-box{grid-template-columns:1fr;padding:34px 28px;}
+  }
+  @media (max-width: 560px){
+    .wrap,.nav-inner{padding:0 20px;}
+    .page-hero{min-height:62vh;}
+    .page-hero .wrap{padding-bottom:50px;}
+    .event,.event.has-img{grid-template-columns:1fr;}
+    .event-date{flex-direction:row;gap:10px;justify-content:flex-start;padding:14px 22px;border-right:0;border-bottom:1px solid rgba(212,175,55,.15);}
+    .event-date .day{font-size:1.8rem;}
+    .event.has-img .event-img{grid-row:auto;}
+    .event-body{padding:22px;}
+    .empty{padding:60px 22px;}
+    .btn{padding:14px 24px;font-size:.75rem;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{animation-duration:.01ms !important;animation-delay:0s !important;transition-duration:.01ms !important;}
+    .reveal,.hero-anim{opacity:1;transform:none;}
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#eventos">Saltar a los eventos</a>
+
+<nav id="mainNav" aria-label="Principal">
+  <div class="nav-inner">
+    <a href="index.html" class="logo" aria-label="Tropicana Restaurant, ir a la portada">
+      <span class="logo-text"><span class="main">Tropicana</span><span class="sub">RESTAURANT</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="index.html#nosotros">Nosotros</a></li>
+      <li><a href="index.html#menu">Carta</a></li>
+      <li><a href="index.html#galeria">Galería</a></li>
+      <li><a href="eventos.html" aria-current="page">Eventos</a></li>
+      <li><a href="index.html#contacto">Contacto</a></li>
+      <li class="nav-links-cta"><a href="https://wa.me/18296026068?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">Pedir ahora</a></li>
+    </ul>
+    <a href="https://wa.me/18296026068?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" class="nav-cta">Pedir ahora</a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<main id="contenido">
+<header class="page-hero">
+  <img id="heroImg" src="assets/barra.jpg" alt="La barra de Tropicana con pantallas y taburetes de madera">
+  <div class="wrap">
+    <span class="eyebrow hero-anim">Agenda Tropicana</span>
+    <h1 class="hero-anim">Próximos <em>eventos</em></h1>
+    <p class="hero-anim">Música, celebraciones y actividades en nuestro restaurante, bar y pizzería. Aquí encontrarás todo lo que viene.</p>
+  </div>
+</header>
+
+<section class="events" id="eventos" aria-labelledby="eventosTitle">
+  <div class="wrap">
+    <h2 id="eventosTitle" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Lista de eventos</h2>
+    <div class="events-bar reveal">
+      <span class="events-count" id="eventsCount"></span>
+      <span class="demo-note" id="demoNote" hidden>Vista de ejemplo: estos eventos no son reales y solo se ven con <strong style="white-space:nowrap">?ejemplo</strong> en la dirección.</span>
+    </div>
+    <div class="event-list" id="eventList"></div>
+  </div>
+</section>
+
+<section class="celebrate" aria-labelledby="celebrarTitle">
+  <div class="wrap">
+    <div class="celebrate-box reveal">
+      <div>
+        <span class="eyebrow">Tu propio evento</span>
+        <h2 id="celebrarTitle">¿Quieres celebrar con nosotros?</h2>
+        <p>Cumpleaños y fechas especiales con tu gente. Escríbenos por WhatsApp y te ayudamos a organizarlo.</p>
+      </div>
+      <a class="btn btn-gold" href="https://wa.me/18296026068?text=Hola%2C%20quiero%20informaci%C3%B3n%20para%20celebrar%20un%20evento%20en%20Tropicana" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <p>© <span id="year"></span> Tropicana Restaurant. Todos los derechos reservados.</p>
+    <div class="footer-links">
+      <a href="index.html">Portada</a>
+      <a href="index.html#menu">Carta</a>
+      <a href="https://instagram.com/tropicana_restaurant" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.me/18296026068?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   EVENTOS — para añadir un evento, copia el bloque de ejemplo de abajo
+   dentro de los corchetes de EVENTOS y cambia los datos.
+
+   {
+     titulo: 'Noche de karaoke',             // obligatorio
+     fecha: '2026-12-05',                    // obligatorio, formato AAAA-MM-DD
+     hora: '8:00 p. m.',                     // opcional
+     descripcion: 'Texto corto del evento.', // opcional
+     categoria: 'Música',                    // opcional (etiqueta)
+     precio: 'Entrada libre',                // opcional (texto libre)
+     imagen: 'assets/eventos/karaoke.jpg',   // opcional (foto en la carpeta assets)
+     reservar: true                          // opcional: muestra botón de reserva por WhatsApp
+   },
+
+   Los eventos se ordenan solos por fecha y desaparecen al día siguiente
+   de su fecha (hora de República Dominicana). Si no hay eventos, la
+   página muestra el mensaje "Pronto anunciaremos nuevos eventos".
+   ===================================================================== */
+const EVENTOS = [
+];
+
+(function() {
+  'use strict';
+  const WHATSAPP_NUMBER = '18296026068';
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ===== Navegación ===== */
+  const nav = document.getElementById('mainNav');
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  const heroImg = document.getElementById('heroImg');
+  function onScroll() {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    if (!reduceMotion && window.scrollY < window.innerHeight) {
+      heroImg.style.transform = 'translate3d(0,' + (window.scrollY * 0.3) + 'px,0)';
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  function setMenu(open) {
+    navLinks.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  }
+  navToggle.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+  /* ===== Fecha de hoy en República Dominicana (AAAA-MM-DD) ===== */
+  function todayDR() {
+    try {
+      return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Santo_Domingo', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+    } catch (e) {
+      return new Date().toISOString().slice(0, 10);
+    }
+  }
+  function addDays(iso, n) {
+    const d = new Date(iso + 'T12:00:00Z');
+    d.setUTCDate(d.getUTCDate() + n);
+    return d.toISOString().slice(0, 10);
+  }
+  const DOW = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+  const MONTH = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+  const MONTH_LONG = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  function parts(iso) {
+    const d = new Date(iso + 'T12:00:00Z');
+    return { dow: DOW[d.getUTCDay()], day: d.getUTCDate(), month: MONTH[d.getUTCMonth()], monthLong: MONTH_LONG[d.getUTCMonth()], year: d.getUTCFullYear() };
+  }
+
+  /* ===== Vista de ejemplo (solo con ?ejemplo en la dirección) ===== */
+  const today = todayDR();
+  const isDemo = new URLSearchParams(location.search).has('ejemplo');
+  const demoEvents = [
+    { titulo: 'Evento de ejemplo: noche de música', fecha: addDays(today, 3), hora: '8:00 p. m.', categoria: 'Música', descripcion: 'Así se verá un evento con descripción, hora y botón de reserva.', reservar: true, imagen: 'assets/barra.jpg' },
+    { titulo: 'Evento de ejemplo: partido en pantalla', fecha: addDays(today, 9), hora: '7:00 p. m.', categoria: 'Deportes', precio: 'Entrada libre', descripcion: 'Así se verá un evento sin foto.' },
+    { titulo: 'Evento de ejemplo: actividad familiar', fecha: addDays(today, 16), categoria: 'Familia', descripcion: 'Así se verá un evento solo con fecha.' }
+  ];
+  const source = isDemo ? demoEvents : EVENTOS;
+
+  /* ===== Pintar la lista ===== */
+  const list = document.getElementById('eventList');
+  const countEl = document.getElementById('eventsCount');
+  document.getElementById('demoNote').hidden = !isDemo;
+
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const valid = /^\d{4}-\d{2}-\d{2}$/;
+  const upcoming = source
+    .filter(ev => ev && ev.titulo && valid.test(ev.fecha) && ev.fecha >= today)
+    .sort((a, b) => a.fecha.localeCompare(b.fecha));
+
+  if (!upcoming.length) {
+    countEl.textContent = 'Sin eventos programados';
+    list.innerHTML =
+      '<div class="empty reveal">' +
+        '<div class="empty-icon" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>' +
+        '<h2>Pronto anunciaremos nuevos eventos</h2>' +
+        '<p>Estamos preparando lo que viene. Síguenos en Instagram para enterarte antes que nadie.</p>' +
+        '<div class="btns">' +
+          '<a class="btn btn-gold" href="https://instagram.com/tropicana_restaurant" target="_blank" rel="noopener">Seguir en Instagram</a>' +
+          '<a class="btn btn-ghost" href="index.html#menu">Ver la carta</a>' +
+        '</div>' +
+      '</div>';
+  } else {
+    countEl.textContent = upcoming.length === 1 ? '1 evento próximo' : upcoming.length + ' eventos próximos';
+    const soonLimit = addDays(today, 7);
+    list.innerHTML = upcoming.map(ev => {
+      const p = parts(ev.fecha);
+      const when = ev.fecha === today ? 'Hoy' : (ev.fecha <= soonLimit ? 'Esta semana' : '');
+      const meta = [p.dow + ' ' + p.day + ' de ' + p.monthLong, ev.hora, ev.precio].filter(Boolean).map(esc).join(' · ');
+      const msg = 'Hola, quiero reservar para el evento "' + ev.titulo + '" del ' + p.day + ' de ' + p.monthLong + '.';
+      const tags = [
+        when ? '<span class="tag soon">' + when + '</span>' : '',
+        ev.categoria ? '<span class="tag">' + esc(ev.categoria) + '</span>' : '',
+        isDemo ? '<span class="tag sample">Ejemplo</span>' : ''
+      ].join('');
+      return '<article class="event reveal' + (ev.imagen ? ' has-img' : '') + '">' +
+          '<time class="event-date" datetime="' + esc(ev.fecha) + '"><span class="dow">' + p.dow + '</span><span class="day">' + p.day + '</span><span class="month">' + p.month + ' ' + p.year + '</span></time>' +
+          '<div class="event-body">' +
+            (tags ? '<div class="event-tags">' + tags + '</div>' : '') +
+            '<h2>' + esc(ev.titulo) + '</h2>' +
+            '<p class="event-meta">' + meta + '</p>' +
+            (ev.descripcion ? '<p class="event-desc">' + esc(ev.descripcion) + '</p>' : '') +
+            (ev.reservar ? '<div class="event-actions"><a class="btn btn-gold" target="_blank" rel="noopener" href="https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg) + '">Reservar por WhatsApp</a></div>' : '') +
+          '</div>' +
+          (ev.imagen ? '<div class="event-img"><img src="' + esc(ev.imagen) + '" alt="" loading="lazy"></div>' : '') +
+        '</article>';
+    }).join('');
+  }
+
+  /* ===== Aparición al hacer scroll ===== */
+  const revealEls = document.querySelectorAll('.reveal');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealEls.forEach(el => el.classList.add('in-view'));
+  } else {
+    list.querySelectorAll('.event').forEach((el, i) => { el.style.transitionDelay = (i * 0.1) + 's'; });
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+        // quita el retraso escalonado para que el hover responda al instante
+        setTimeout(() => { entry.target.style.transitionDelay = ''; }, 1400);
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  }
+})();
+</script>
+</body>
+</html>
