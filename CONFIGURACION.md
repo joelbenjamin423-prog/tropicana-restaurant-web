@@ -20,7 +20,11 @@ Web estática de un solo archivo (`index.html`, copia exacta de `web-tropicana-r
 3. El pedido se guarda en el navegador del cliente (`localStorage`, clave `tropicana-pedido-v1`), así que no se pierde al recargar la página. Si el navegador bloquea el almacenamiento, el carrito sigue funcionando, solo que no se guarda.
 4. El botón "Enviar pedido por WhatsApp" abre `wa.me` con el mensaje ya escrito: platos, cantidades, subtotales y total, con la nota "ITBIS no incluido".
 
-Para **añadir un plato**, copia una tarjeta `.menu-card` de la misma categoría y cambia el nombre, la descripción, el precio visible, `data-id` (debe ser único), `data-name` y `data-price`.
+La carta se muestra como una lista de categorías desplegables: cada una es un banner con foto (`.cat-banner`) que al pulsarlo abre sus platos en tarjetas y cierra la categoría que estuviera abierta. Cada plato muestra "Agregar al carrito" y, cuando ya está en el pedido, los botones **−** y **+** con la cantidad.
+
+Para **añadir un plato**, copia una tarjeta `.menu-card` de la misma categoría y cambia el nombre, la descripción, el precio visible, `data-id` (debe ser único), `data-name` y `data-price`. Actualiza también el texto "N platos" del banner de esa categoría.
+
+Para **cambiar la foto de una categoría**, cambia el `src` de la `<img>` dentro de su `.cat-banner`. Ensaladas y Pizzas usan fotos de Unsplash (`assets/demo2/`); las demás usan fotos del restaurante. Las tarjetas de los platos tienen un recuadro reservado (`.mc-media`) para poner una foto de cada plato cuando el restaurante las tenga.
 
 ## Pendiente de confirmar por el restaurante
 
