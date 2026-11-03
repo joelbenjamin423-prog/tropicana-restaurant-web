@@ -16,6 +16,7 @@
 <meta property="og:image" content="https://joelbenjamin423-prog.github.io/tropicana-restaurant-web/assets/barra.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B4%3C/text%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('cargando');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,500;1,600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -33,6 +34,8 @@
     --ease: cubic-bezier(.16,.8,.3,1);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
+  html.cargando body{opacity:0;}
+  body{transition:opacity .25s ease;}
   html{scroll-behavior:smooth;}
   body{background:var(--bg);color:var(--cream);font-family:'Montserrat',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;}
   h1,h2,h3{font-family:'Playfair Display',serif;font-weight:600;line-height:1.1;}
@@ -64,6 +67,7 @@
   nav.scrolled{background:rgba(4,19,12,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:12px 0;box-shadow:0 10px 30px rgba(0,0,0,.35);}
   .nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
   .logo-text{display:flex;flex-direction:column;line-height:1;}
+  .logo-img{display:block;height:44px;width:auto;max-width:180px;object-fit:contain;}
   .logo-text .main{font-family:'Playfair Display',serif;font-weight:700;font-size:1.25rem;letter-spacing:.03em;color:var(--cream);}
   .logo-text .sub{font-size:.55rem;letter-spacing:.35em;color:var(--gold-light);margin-top:3px;}
   .nav-links{display:flex;gap:34px;list-style:none;}
@@ -244,8 +248,9 @@
 
 <script>
 /* =====================================================================
-   EVENTOS — para añadir un evento, copia el bloque de ejemplo de abajo
-   dentro de los corchetes de EVENTOS y cambia los datos.
+   EVENTOS — se editan desde el panel (admin.html) y se guardan en
+   contenido.json. La lista EVENTOS de abajo solo se usa si ese archivo
+   no carga. Formato de cada evento:
 
    {
      titulo: 'Noche de karaoke',             // obligatorio
@@ -265,9 +270,12 @@
 const EVENTOS = [
 ];
 
-(function() {
+function iniciarEventos(contenido) {
   'use strict';
-  const WHATSAPP_NUMBER = '18296026068';
+  const c = contenido || {};
+  const WHATSAPP_NUMBER = String((c.contacto || {}).whatsapp || '18296026068').replace(/\D/g, '');
+  const INSTAGRAM = (c.redes || {}).instagram || 'https://instagram.com/tropicana_restaurant';
+  aplicarMarca(c, WHATSAPP_NUMBER, INSTAGRAM);
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -322,7 +330,7 @@ const EVENTOS = [
     { titulo: 'Evento de ejemplo: partido en pantalla', fecha: addDays(today, 9), hora: '7:00 p. m.', categoria: 'Deportes', precio: 'Entrada libre', descripcion: 'Así se verá un evento sin foto.' },
     { titulo: 'Evento de ejemplo: actividad familiar', fecha: addDays(today, 16), categoria: 'Familia', descripcion: 'Así se verá un evento solo con fecha.' }
   ];
-  const source = isDemo ? demoEvents : EVENTOS;
+  const source = isDemo ? demoEvents : (Array.isArray(c.eventos) ? c.eventos : EVENTOS);
 
   /* ===== Pintar la lista ===== */
   const list = document.getElementById('eventList');
@@ -343,7 +351,7 @@ const EVENTOS = [
         '<h2>Pronto anunciaremos nuevos eventos</h2>' +
         '<p>Estamos preparando lo que viene. Síguenos en Instagram para enterarte antes que nadie.</p>' +
         '<div class="btns">' +
-          '<a class="btn btn-gold" href="https://instagram.com/tropicana_restaurant" target="_blank" rel="noopener">Seguir en Instagram</a>' +
+          (INSTAGRAM ? '<a class="btn btn-gold" href="' + esc(INSTAGRAM) + '" target="_blank" rel="noopener">Seguir en Instagram</a>' : '') +
           '<a class="btn btn-ghost" href="index.html#menu">Ver la carta</a>' +
         '</div>' +
       '</div>';
@@ -391,6 +399,59 @@ const EVENTOS = [
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
   }
+}
+
+/* ===== Marca, colores, WhatsApp y pie desde contenido.json ===== */
+function aplicarMarca(c, wa, instagram) {
+  try {
+    const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+    const m = c.marca || {};
+    const ct = c.contacto || {};
+    const r = c.redes || {};
+    if (m.nombre) {
+      const logo = document.querySelector('.logo');
+      logo.innerHTML = m.logo
+        ? '<img class="logo-img" src="' + esc(m.logo) + '" alt="' + esc(m.nombre) + '">'
+        : '<span class="logo-text"><span class="main">' + esc(m.nombre) + '</span><span class="sub">' + esc(m.subtitulo) + '</span></span>';
+    }
+    const col = c.colores || {};
+    const hex = h => /^#[0-9a-f]{6}$/i.test(h || '') ? h : null;
+    const mix = (a, b, t) => '#' + [1, 3, 5].map(i => Math.round(parseInt(a.substr(i, 2), 16) * (1 - t) + parseInt(b.substr(i, 2), 16) * t).toString(16).padStart(2, '0')).join('');
+    const st = document.documentElement.style;
+    const ac = hex(col.acento), fo = hex(col.fondo);
+    if (ac && ac.toLowerCase() !== '#d4af37') { st.setProperty('--gold', ac); st.setProperty('--gold-light', mix(ac, '#ffffff', .4)); }
+    if (fo && fo.toLowerCase() !== '#081f14') {
+      st.setProperty('--bg', fo); st.setProperty('--bg-darker', mix(fo, '#000000', .5));
+      st.setProperty('--bg-card', mix(fo, '#ffffff', .04)); st.setProperty('--green-light', mix(fo, '#ffffff', .16));
+    }
+    const pedido = 'https://wa.me/' + wa + (ct.mensajePedido ? '?text=' + encodeURIComponent(ct.mensajePedido) : '');
+    document.querySelectorAll('.nav-cta, .nav-links-cta a').forEach(a => { a.href = pedido; });
+    const celebrar = document.querySelector('.celebrate-box .btn');
+    if (celebrar) celebrar.href = 'https://wa.me/' + wa + '?text=' + encodeURIComponent('Hola, quiero información para celebrar un evento en ' + (m.nombre || 'el restaurante'));
+    if (c.pie && c.pie.texto) document.querySelector('.footer-inner p').innerHTML = '© <span id="year">' + new Date().getFullYear() + '</span> ' + esc(c.pie.texto);
+    const links = ['<a href="index.html">Portada</a>', '<a href="index.html#menu">Carta</a>'];
+    if (instagram) links.push('<a href="' + esc(instagram) + '" target="_blank" rel="noopener">Instagram</a>');
+    if (r.facebook) links.push('<a href="' + esc(r.facebook) + '" target="_blank" rel="noopener">Facebook</a>');
+    if (r.tiktok) links.push('<a href="' + esc(r.tiktok) + '" target="_blank" rel="noopener">TikTok</a>');
+    links.push('<a href="' + esc(pedido) + '" target="_blank" rel="noopener">Pedir por WhatsApp</a>');
+    document.querySelector('.footer-links').innerHTML = links.join('\n');
+  } catch (e) { console.error('marca', e); }
+}
+
+/* ===== Arranque: primero el contenido, después la lista ===== */
+(function() {
+  let iniciada = false;
+  function arrancar(c) {
+    if (iniciada) return;
+    iniciada = true;
+    document.documentElement.classList.remove('cargando');
+    iniciarEventos(c);
+  }
+  const espera = setTimeout(() => arrancar(null), 2500);
+  fetch('contenido.json?v=' + Date.now(), { cache: 'no-store' })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(c => { clearTimeout(espera); arrancar(c); })
+    .catch(() => { clearTimeout(espera); arrancar(null); });
 })();
 </script>
 </body>

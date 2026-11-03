@@ -1,0 +1,687 @@
+{
+  "marca": {
+    "nombre": "Tropicana",
+    "subtitulo": "RESTAURANT",
+    "logo": "",
+    "tituloPagina": "Tropicana Restaurant | Restaurante, bar y pizzería en San Francisco de Macorís",
+    "descripcion": "Tropicana Restaurant en San Francisco de Macorís: cocina criolla, mariscos, carnes a la parrilla, mofongos y pizzas. Consulta la carta y haz tu pedido por WhatsApp."
+  },
+  "colores": {
+    "acento": "#d4af37",
+    "fondo": "#081f14"
+  },
+  "portada": {
+    "etiqueta": "Restaurante · Bar · Pizzería",
+    "titulo": "Sabores que te *transportan* al trópico",
+    "texto": "Cocina criolla, mar y parrilla en un mismo lugar. Carnes importadas, mariscos frescos y la calidez dominicana en cada plato.",
+    "video": "assets/fondo2.mp4",
+    "imagen": "assets/fondo2-poster.webp",
+    "botonCarta": "Ver la carta",
+    "botonPedir": "Pedir por WhatsApp"
+  },
+  "destacados": {
+    "etiqueta": "Destacados",
+    "titulo": "De nuestra cocina a tu mesa",
+    "platos": [
+      "item14",
+      "item27",
+      "item24",
+      "item50-g"
+    ],
+    "fotos": [
+      {
+        "imagen": "assets/plato1.webp",
+        "texto": "Plato criollo con huevo frito y aguacate"
+      },
+      {
+        "imagen": "assets/plato4.webp",
+        "texto": "Pasta con queso rallado y albahaca"
+      },
+      {
+        "imagen": "assets/plato5.webp",
+        "texto": "Chuletas a la parrilla sobre tabla de pizarra"
+      },
+      {
+        "imagen": "assets/plato6.webp",
+        "texto": "Bandeja de carnes y vegetales a la parrilla para compartir"
+      },
+      {
+        "imagen": "assets/plato2.webp",
+        "texto": "Pescado frito con tostones, tomate y limón"
+      },
+      {
+        "imagen": "assets/plato3.webp",
+        "texto": "Plato criollo con arroz, habichuelas negras y plátanos maduros"
+      }
+    ]
+  },
+  "nosotros": {
+    "etiqueta": "Nuestra casa",
+    "titulo": "Restaurante, bar y pizzería",
+    "texto": "Cocina criolla, mariscos, carnes a la parrilla, mofongos y pizzas en la Urb. La Fortuna, San Francisco de Macorís.",
+    "video": "assets/ruleta.mp4"
+  },
+  "carta": {
+    "etiqueta": "Nuestra carta",
+    "titulo": "Platos hechos para disfrutar",
+    "texto": "Precios en pesos dominicanos (RD$). ITBIS no incluido. Usa + y − para armar tu pedido y envíalo por WhatsApp.",
+    "nota": "ITBIS no incluido.",
+    "categorias": [
+      {
+        "id": "ensaladas",
+        "nombre": "Ensaladas",
+        "imagen": "assets/demo2/ensalada.webp",
+        "platos": [
+          {
+            "id": "item1",
+            "nombre": "Ensalada verde",
+            "descripcion": "Sabrosa combinación de lechugas, tomates y pepino, aderezo a tu gusto.",
+            "precio": 135,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item2",
+            "nombre": "Ensalada al pesto",
+            "descripcion": "Rica combinación de lechuga aderezada con un sabroso pesto de albahaca.",
+            "precio": 145,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item3",
+            "nombre": "Ensalada Tropicana",
+            "descripcion": "Fresca combinación de lechuga y frutas, pruébala.",
+            "precio": 225,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item4",
+            "nombre": "Lechuga 4 quesos",
+            "descripcion": "Lechuga combinada con trozos de queso mozzarella, cheddar y parmesano.",
+            "precio": 250,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          }
+        ]
+      },
+      {
+        "id": "arroces",
+        "nombre": "Arroces",
+        "imagen": "assets/plato3.webp",
+        "platos": [
+          {
+            "id": "item5",
+            "nombre": "Chofan de camarones",
+            "descripcion": "Deliciosa combinación de arroz frito, camarones y verduras.",
+            "precio": 395,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item6",
+            "nombre": "Chofan de pollo",
+            "descripcion": "Arroz frito, pechuga, verduras y salsa china.",
+            "precio": 295,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item7",
+            "nombre": "Chofan mixto",
+            "descripcion": "Rica combinación de arroz frito, pechuga, filete de cerdo y verduras.",
+            "precio": 305,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          }
+        ]
+      },
+      {
+        "id": "pastas",
+        "nombre": "Pastas",
+        "imagen": "assets/plato4.webp",
+        "platos": [
+          {
+            "id": "item8",
+            "nombre": "Pasta 4 quesos",
+            "descripcion": "Exquisita pasta preparada con queso mozzarella, danés, cheddar y parmesano.",
+            "precio": 315,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item9",
+            "nombre": "Pasta Alfredo",
+            "descripcion": "Sabroso espagueti con jamón y una sabrosa salsa bechamel.",
+            "precio": 275,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item10",
+            "nombre": "Pasta carbonara",
+            "descripcion": "Sabrosa pasta a base de salsa bechamel, tocineta y queso.",
+            "precio": 285,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item11",
+            "nombre": "Pasta con camarones",
+            "descripcion": "Deliciosa pasta en salsa blanca, mezclada con unos ricos camarones.",
+            "precio": 395,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          }
+        ]
+      },
+      {
+        "id": "pescados",
+        "nombre": "Pescados y mariscos",
+        "imagen": "assets/plato2.webp",
+        "platos": [
+          {
+            "id": "item12",
+            "nombre": "Salmón a la termidor",
+            "descripcion": "Una sabrosa pieza de salmón importado, en salsa blanca, hongos y brandy.",
+            "precio": 495,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item13",
+            "nombre": "Salmón a la plancha",
+            "descripcion": "Una apetecible pieza de salmón importado, con la guarnición de tu preferencia.",
+            "precio": 445,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item14",
+            "nombre": "Camarones Tropicana",
+            "descripcion": "Ricos camarones en salsa a base de tocineta, cebolla, ajo, ajíes, alcaparras y crema de leche.",
+            "precio": 525,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item15",
+            "nombre": "Camarones a la plancha",
+            "descripcion": "Acompañados de tostones, papas fritas, puré o vegetales.",
+            "precio": 420,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item16",
+            "nombre": "Camarones a la criolla",
+            "descripcion": "Preparados en una sabrosa salsa a base de tomates, cebolla, ajo, ajíes y verduras.",
+            "precio": 465,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item17",
+            "nombre": "Mero a la plancha",
+            "descripcion": "Filete de mero, acompañado de tostones, papas fritas, puré o vegetales.",
+            "precio": 325,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item18",
+            "nombre": "Mero al ajillo",
+            "descripcion": "Irresistible filete de mero bañado en una sabrosa salsa a base de ajo y perejil.",
+            "precio": 345,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item19",
+            "nombre": "Mero Tropicana",
+            "descripcion": "Filete de mero en salsa a base de tocineta, cebolla, ajo, alcaparras y crema de leche.",
+            "precio": 345,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item20",
+            "nombre": "Mero rebozado en camarones",
+            "descripcion": "Filete de mero en salsa aurora con camarones frescos.",
+            "precio": 495,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item21",
+            "nombre": "Mero jardinera",
+            "descripcion": "Delicioso mero bañado con una rica salsa bechamel y vegetales.",
+            "precio": 380,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          }
+        ]
+      },
+      {
+        "id": "mofongos",
+        "nombre": "Mofongos",
+        "imagen": "assets/plato1.webp",
+        "platos": [
+          {
+            "id": "item22",
+            "nombre": "Mofongo de chicharrón",
+            "descripcion": "Plátano majado en pilón, con crocante chicharrón de cerdo.",
+            "precio": 295,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item23",
+            "nombre": "Mofongo de camarones al ajillo",
+            "descripcion": "Camarones frescos y plátanos majados en pilón, salsa de ajo y perejil o criolla.",
+            "precio": 445,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item24",
+            "nombre": "Mofongo de camarones a la crema",
+            "descripcion": "Camarones, plátanos fritos majados en pilón con salsa bechamel y queso mozzarella.",
+            "precio": 445,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item25",
+            "nombre": "Mofongo de pollo al ajillo o a la criolla",
+            "descripcion": "Plátanos majados al pilón, con salsa de ajo y perejil o salsa criolla.",
+            "precio": 325,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item26",
+            "nombre": "Mofongo de queso",
+            "descripcion": "Plátanos majados al pilón con mozzarella, cheddar y parmesano.",
+            "precio": 345,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          }
+        ]
+      },
+      {
+        "id": "carnes",
+        "nombre": "Carnes",
+        "imagen": "assets/plato5.webp",
+        "platos": [
+          {
+            "id": "item27",
+            "nombre": "Churrasco Angus",
+            "descripcion": "Churrasco importado al término que desees y la guarnición de tu preferencia.",
+            "precio": 785,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item28",
+            "nombre": "T-Bone (10 a 12 oz)",
+            "descripcion": "Exquisito corte de carne importada, fresca y jugosa.",
+            "precio": 745,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item29",
+            "nombre": "Sirloin (10 a 12 oz)",
+            "descripcion": "Sabroso y jugoso corte de carne importada al término de tu preferencia.",
+            "precio": 645,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item30",
+            "nombre": "Filete de res a la plancha",
+            "descripcion": "Suave, jugoso y sabroso filete de res con la guarnición de tu preferencia.",
+            "precio": 445,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item31",
+            "nombre": "Pechuga Tropicana",
+            "descripcion": "Pechuga en salsa a base de tocineta, cebolla, alcaparras y crema de leche.",
+            "precio": 420,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item32",
+            "nombre": "Pechuga a la plancha",
+            "descripcion": "Jugosa e irresistible pechuga, con la guarnición de tu preferencia.",
+            "precio": 325,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item33",
+            "nombre": "Pechuga rebozada de plátano maduro y queso",
+            "descripcion": "Rebozada en queso fundido y plátano maduro, bañada con salsa bechamel.",
+            "precio": 395,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item34",
+            "nombre": "Pechuga rebozada en camarones",
+            "descripcion": "Rica pechuga bañada en salsa aurora con camarones frescos.",
+            "precio": 425,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item35",
+            "nombre": "Filete de cerdo a la plancha",
+            "descripcion": "Jugoso filete acompañado de la guarnición de tu preferencia.",
+            "precio": 360,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item36",
+            "nombre": "Filete de cerdo en salsa de hongos",
+            "descripcion": "Rico y jugoso filete bañado en una sabrosa salsa de hongos.",
+            "precio": 395,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item37",
+            "nombre": "Lomo de cerdo al pesto",
+            "descripcion": "Suave y sabroso lomo, destacado por un toque de pesto de albahaca.",
+            "precio": 375,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item38",
+            "nombre": "Chuleta a la plancha",
+            "descripcion": "Chuleta fresca adobada a tu gusto, con tostones o papas fritas.",
+            "precio": 325,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item39",
+            "nombre": "Chuleta rebozada de tocineta y queso",
+            "descripcion": "Chuleta rebozada con tocineta y queso mozzarella.",
+            "precio": 395,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item40",
+            "nombre": "Costillas BBQ",
+            "descripcion": "Frescas y sabrosas costillitas al horno, servidas en salsa BBQ.",
+            "precio": 395,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "p-carnes-14",
+            "nombre": "Costillas nuevas",
+            "descripcion": "Pregunta por esta opción en el restaurante.",
+            "precio": null,
+            "variantes": [],
+            "imagen": "",
+            "aviso": "Consulta disponibilidad"
+          }
+        ]
+      },
+      {
+        "id": "compartir",
+        "nombre": "Para compartir",
+        "imagen": "assets/plato6.webp",
+        "platos": [
+          {
+            "id": "item42",
+            "nombre": "Parrillada Tropicana (6 personas)",
+            "descripcion": "Carne, filete de res, filete de cerdo, costillitas, chuleta, salchicha, pechuga, tostones, papas fritas y vegetales salteados.",
+            "precio": 2145,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item43",
+            "nombre": "Parrillada Tropicana (3 personas)",
+            "descripcion": "La misma combinación en versión para 3 personas.",
+            "precio": 1225,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item44",
+            "nombre": "Parrillada Mar y Tierra (6 personas)",
+            "descripcion": "Camarones, calamar, mero, filete de res, filete de cerdo, costillitas, chuletas, salchichas, pechuga, tostones, papas fritas y vegetales.",
+            "precio": 2525,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item45",
+            "nombre": "Parrillada Mar y Tierra (3 personas)",
+            "descripcion": "La misma combinación en versión para 3 personas.",
+            "precio": 1425,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          }
+        ]
+      },
+      {
+        "id": "pizzas",
+        "nombre": "Pizzas",
+        "imagen": "assets/demo2/pizza.webp",
+        "platos": [
+          {
+            "id": "item46",
+            "nombre": "Pizza de jamón y queso",
+            "descripcion": "Disponible en tamaño grande o pequeño.",
+            "precio": null,
+            "variantes": [
+              {
+                "id": "g",
+                "nombre": "Grande",
+                "precio": 360
+              },
+              {
+                "id": "p",
+                "nombre": "Pequeña",
+                "precio": 150
+              }
+            ],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "p-pizzas-1",
+            "nombre": "Pizza de pepperoni",
+            "descripcion": "Disponible en tamaño grande o pequeño. Consulta el precio por WhatsApp.",
+            "precio": null,
+            "variantes": [],
+            "imagen": "",
+            "aviso": "Precio por confirmar"
+          },
+          {
+            "id": "item48",
+            "nombre": "Pizza de queso",
+            "descripcion": "Disponible en tamaño grande o pequeño.",
+            "precio": null,
+            "variantes": [
+              {
+                "id": "g",
+                "nombre": "Grande",
+                "precio": 360
+              },
+              {
+                "id": "p",
+                "nombre": "Pequeña",
+                "precio": 150
+              }
+            ],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item49",
+            "nombre": "Pizza vegetariana",
+            "descripcion": "Disponible en tamaño grande o pequeño.",
+            "precio": null,
+            "variantes": [
+              {
+                "id": "g",
+                "nombre": "Grande",
+                "precio": 420
+              },
+              {
+                "id": "p",
+                "nombre": "Pequeña",
+                "precio": 225
+              }
+            ],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item50",
+            "nombre": "Pizza Tropicana",
+            "descripcion": "Disponible en tamaño grande o pequeño.",
+            "precio": null,
+            "variantes": [
+              {
+                "id": "g",
+                "nombre": "Grande",
+                "precio": 775
+              },
+              {
+                "id": "p",
+                "nombre": "Pequeña",
+                "precio": 295
+              }
+            ],
+            "imagen": "",
+            "aviso": ""
+          }
+        ]
+      }
+    ]
+  },
+  "galeria": {
+    "etiqueta": "Galería",
+    "titulo": "Sabores y rincones de Tropicana",
+    "fotos": [
+      {
+        "imagen": "assets/plato4.webp",
+        "descripcion": "Pasta con queso rallado y albahaca",
+        "texto": "Pastas"
+      },
+      {
+        "imagen": "assets/barra.webp",
+        "descripcion": "Barra de Tropicana Restaurant con taburetes de madera",
+        "texto": "Nuestra barra"
+      },
+      {
+        "imagen": "assets/plato5.webp",
+        "descripcion": "Chuletas a la parrilla sobre tabla de pizarra",
+        "texto": "Carnes a la parrilla"
+      },
+      {
+        "imagen": "assets/plato6.webp",
+        "descripcion": "Bandeja de carnes y vegetales a la parrilla para compartir",
+        "texto": "Para compartir"
+      },
+      {
+        "imagen": "assets/plato2.webp",
+        "descripcion": "Pescado frito con tostones, tomate y limón",
+        "texto": "Pescado frito"
+      },
+      {
+        "imagen": "assets/plato3.webp",
+        "descripcion": "Plato criollo con arroz, habichuelas negras y plátanos maduros",
+        "texto": "Comida criolla"
+      }
+    ]
+  },
+  "contacto": {
+    "etiqueta": "Visítanos",
+    "titulo": "Te esperamos en Tropicana",
+    "texto": "Llámanos, pide por WhatsApp o visítanos en San Francisco de Macorís.",
+    "telefono": "809-725-2728",
+    "whatsapp": "18296026068",
+    "mensajePedido": "Hola, quiero hacer un pedido",
+    "direccion": "Calle C, Urb. La Fortuna, San Francisco de Macorís, Duarte",
+    "mapa": "https://maps.app.goo.gl/qY8KhEaYszNsF7xS6",
+    "horario": [
+      {
+        "dias": "Lun–Vie",
+        "horas": "10:00 a. m. – 10:00 p. m."
+      },
+      {
+        "dias": "Sáb–Dom",
+        "horas": "Hasta las 10:00 p. m."
+      }
+    ]
+  },
+  "redes": {
+    "instagram": "https://instagram.com/tropicana_restaurant",
+    "facebook": "",
+    "tiktok": ""
+  },
+  "pie": {
+    "texto": "Tropicana Restaurant. Todos los derechos reservados."
+  },
+  "eventos": []
+}

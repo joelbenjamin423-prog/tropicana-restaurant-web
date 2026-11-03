@@ -45,6 +45,7 @@
   "sameAs": ["https://instagram.com/tropicana_restaurant"]
 }
 </script>
+<script>document.documentElement.classList.add('cargando');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,500;1,600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -62,6 +63,8 @@
     --max-w: 1200px;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
+  html.cargando body{opacity:0;}
+  body{transition:opacity .25s ease;}
   html{scroll-behavior:smooth;}
   body{
     background:var(--bg);
@@ -130,6 +133,7 @@
   .logo{display:flex;align-items:center;gap:10px;opacity:0;pointer-events:none;transition:opacity .5s ease;}
   .logo.visible{opacity:1;pointer-events:auto;}
   .logo-text{display:flex;flex-direction:column;line-height:1;}
+  .logo-img{display:block;height:44px;width:auto;max-width:180px;object-fit:contain;}
   .logo-text .main{font-family:'Playfair Display',serif;font-weight:700;font-size:1.25rem;letter-spacing:.03em;color:var(--cream);}
   .logo-text .sub{font-size:.55rem;letter-spacing:.35em;color:var(--gold-light);margin-top:3px;}
   .nav-links{display:flex;gap:34px;list-style:none;}
@@ -358,6 +362,8 @@
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-opacity='.35' stroke-width='1.2' stroke-linecap='round'%3E%3Cpath d='M7 2v8a2 2 0 0 0 4 0V2M9 10v12M17 2c-2 1.5-3 4-3 7v3h3v10'/%3E%3C/svg%3E") center/38px no-repeat,
       radial-gradient(ellipse at 50% 40%, rgba(28,82,53,.55), transparent 70%), #081c12;
   }
+  .mc-media.has-img{background:#081c12;overflow:hidden;}
+  .mc-media img{width:100%;height:100%;object-fit:cover;display:block;}
   .mc-top{display:contents;}
   .mc-name{order:1;flex:0 0 auto;padding:0 20px;font-size:1.12rem;line-height:1.25;}
   .mc-desc{order:2;padding:6px 20px 0;font-size:.84rem;line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
@@ -972,10 +978,214 @@
 <div class="cart-toast" id="cartToast" role="status" aria-live="polite"></div>
 
 <script>
-(function() {
+/* =====================================================================
+   CONTENIDO EDITABLE — la web lee contenido.json (lo edita admin.html)
+   y reconstruye con él los textos, fotos, carta, galería, contacto y pie.
+   Si el archivo no carga, se queda el contenido escrito en este HTML.
+   ===================================================================== */
+function aplicarContenido(c) {
+  'use strict';
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+  const enfasis = s => esc(s).replace(/\*([^*]+)\*/g, '<em>$1</em>');
+  const rd = n => 'RD$' + Number(n).toLocaleString('es-DO');
+  const seguro = (nombre, fn) => { try { fn(); } catch (e) { console.error('contenido: ' + nombre, e); } };
+  const ct = c.contacto || {};
+  const wa = String(ct.whatsapp || '').replace(/\D/g, '');
+  const waPedido = 'https://wa.me/' + wa + (ct.mensajePedido ? '?text=' + encodeURIComponent(ct.mensajePedido) : '');
+  if (wa) window.TROPICANA_WA = wa;
+
+  /* --- colores --- */
+  seguro('colores', () => {
+    const col = c.colores || {};
+    const hex = h => /^#[0-9a-f]{6}$/i.test(h || '') ? h : null;
+    const mix = (a, b, t) => '#' + [1, 3, 5].map(i => Math.round(parseInt(a.substr(i, 2), 16) * (1 - t) + parseInt(b.substr(i, 2), 16) * t).toString(16).padStart(2, '0')).join('');
+    const r = document.documentElement.style;
+    const ac = hex(col.acento), fo = hex(col.fondo);
+    if (ac && ac.toLowerCase() !== '#d4af37') {
+      r.setProperty('--gold', ac);
+      r.setProperty('--gold-light', mix(ac, '#ffffff', .4));
+    }
+    if (fo && fo.toLowerCase() !== '#081f14') {
+      r.setProperty('--bg', fo);
+      r.setProperty('--bg-darker', mix(fo, '#000000', .5));
+      r.setProperty('--bg-card', mix(fo, '#ffffff', .04));
+      r.setProperty('--green', mix(fo, '#ffffff', .08));
+      r.setProperty('--green-light', mix(fo, '#ffffff', .16));
+      document.querySelector('meta[name="theme-color"]').content = mix(fo, '#000000', .5);
+    }
+  });
+
+  /* --- marca, título y enlaces de WhatsApp --- */
+  seguro('marca', () => {
+    const m = c.marca || {};
+    if (m.tituloPagina) document.title = m.tituloPagina;
+    if (m.descripcion) document.querySelector('meta[name="description"]').content = m.descripcion;
+    const logo = $('.logo');
+    logo.setAttribute('aria-label', (m.nombre || '') + ', ir al inicio');
+    logo.innerHTML = m.logo
+      ? '<img class="logo-img" src="' + esc(m.logo) + '" alt="' + esc(m.nombre) + '">'
+      : '<span class="logo-text"><span class="main">' + esc(m.nombre) + '</span><span class="sub">' + esc(m.subtitulo) + '</span></span>';
+    if (wa) document.querySelectorAll('a[href^="https://wa.me/"]:not(#cartCheckout)').forEach(a => { a.href = waPedido; });
+  });
+
+  /* --- portada --- */
+  seguro('portada', () => {
+    const p = c.portada || {};
+    const box = $('.hero-content-inner');
+    box.querySelector('.eyebrow').textContent = p.etiqueta || '';
+    box.querySelector('h1').innerHTML = enfasis(p.titulo);
+    box.querySelector('p').textContent = p.texto || '';
+    const h = (ct.horario || []).map(x => esc(x.dias) + ' ' + esc(x.horas)).join(' · ');
+    box.querySelector('.hero-badge .txt span').innerHTML = h;
+    const btns = box.querySelectorAll('.hero-btns a');
+    if (p.botonCarta) btns[0].textContent = p.botonCarta;
+    if (p.botonPedir) btns[1].textContent = p.botonPedir;
+    const v = $('#heroVideo');
+    if (p.imagen) v.poster = p.imagen;
+    if (p.video) { if (v.getAttribute('src') !== p.video) v.src = p.video; }
+    else { v.removeAttribute('src'); v.removeAttribute('autoplay'); v.load(); }
+  });
+
+  /* --- carta --- */
+  const platos = {};
+  seguro('carta', () => {
+    const k = c.carta || {};
+    const head = $('#menu .menu-header');
+    head.querySelector('.eyebrow').textContent = k.etiqueta || '';
+    head.querySelector('.section-title').textContent = k.titulo || '';
+    head.querySelector('.section-sub').textContent = k.texto || '';
+    const note = $('.menu-note');
+    note.textContent = k.nota || '';
+    note.hidden = !k.nota;
+    const cart = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L22 7H6"/></svg>';
+    const ctrl = (id, nombre, precio, largo) =>
+      '<div class="qty-controls is-empty" data-id="' + esc(id) + '" data-name="' + esc(nombre) + '" data-price="' + Number(precio) + '">' +
+        '<button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span>' +
+        '<button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button>' +
+        '<button class="qty-btn qty-plus add-btn" type="button">' + cart + (largo ? '<span>Agregar<span class="add-long"> al carrito</span></span>' : 'Agregar') + '</button>' +
+      '</div>';
+    const cats = (k.categorias || []).filter(cat => cat && cat.nombre);
+    $('#catList').innerHTML = cats.map((cat, ci) => {
+      const key = esc(String(cat.id || 'cat' + ci).replace(/[^\w-]/g, ''));
+      const lista = (cat.platos || []).filter(p => p && p.nombre);
+      const cards = lista.map(p => {
+        const media = '<div class="mc-media' + (p.imagen ? ' has-img' : '') + '" aria-hidden="true">' + (p.imagen ? '<img src="' + esc(p.imagen) + '" alt="" loading="lazy" decoding="async">' : '') + '</div>';
+        const vars = (p.variantes || []).filter(v => v && v.nombre && Number(v.precio) > 0);
+        let body = '';
+        if (vars.length) {
+          body = '<div class="mc-top"><span class="mc-name">' + esc(p.nombre) + '</span></div>' +
+            (p.descripcion ? '<p class="mc-desc">' + esc(p.descripcion) + '</p>' : '') +
+            vars.map(v => {
+              const id = p.id + '-' + (v.id || v.nombre.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 6));
+              const nombre = p.nombre + ' (' + v.nombre.toLowerCase() + ')';
+              platos[id] = { nombre, cat: cat.nombre, precio: Number(v.precio) };
+              return '<div class="variant-row"><span class="variant-label">' + esc(v.nombre) + '</span><span class="variant-price">' + rd(v.precio) + '</span>' + ctrl(id, nombre, v.precio, false) + '</div>';
+            }).join('');
+        } else if (Number(p.precio) > 0) {
+          platos[p.id] = { nombre: p.nombre, cat: cat.nombre, precio: Number(p.precio) };
+          body = '<div class="mc-top"><span class="mc-name">' + esc(p.nombre) + '</span><span class="mc-price">' + rd(p.precio) + '</span></div>' +
+            (p.descripcion ? '<p class="mc-desc">' + esc(p.descripcion) + '</p>' : '') + ctrl(p.id, p.nombre, p.precio, true);
+        } else {
+          body = '<div class="mc-top"><span class="mc-name">' + esc(p.nombre) + '</span><span class="mc-price">Consultar</span></div>' +
+            (p.descripcion ? '<p class="mc-desc">' + esc(p.descripcion) + '</p>' : '') +
+            '<p class="qty-unavailable">' + esc(p.aviso || 'Consulta disponibilidad') + '</p>';
+        }
+        return '<div class="menu-card reveal">' + media + body + '</div>';
+      }).join('\n');
+      return '<div class="menu-group reveal" data-group="' + key + '">' +
+        '<button class="cat-banner" type="button" id="cat-' + key + '" aria-expanded="false" aria-controls="panel-' + key + '">' +
+          (cat.imagen ? '<img src="' + esc(cat.imagen) + '" alt="" loading="lazy" decoding="async">' : '') +
+          '<span class="cat-text"><span class="cat-name">' + esc(cat.nombre) + '</span><span class="cat-count">' + lista.length + (lista.length === 1 ? ' plato' : ' platos') + '</span></span>' +
+          '<span class="cat-chevron" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span>' +
+        '</button>' +
+        '<div class="cat-panel" id="panel-' + key + '" role="region" aria-labelledby="cat-' + key + '" inert><div class="cat-panel-inner"><div class="menu-grid">' + cards + '</div></div></div>' +
+      '</div>';
+    }).join('\n');
+  });
+
+  /* --- destacados --- */
+  seguro('destacados', () => {
+    const d = c.destacados || {};
+    const box = $('.featured-content');
+    box.querySelector('.eyebrow').textContent = d.etiqueta || '';
+    box.querySelector('.section-title').innerHTML = esc(d.titulo);
+    box.querySelector('.featured-list').innerHTML = (d.platos || []).filter(id => platos[id]).map(id => {
+      const p = platos[id];
+      return '<li class="featured-item"><span class="fi-dot" aria-hidden="true"></span><span class="fi-name">' + esc(p.nombre) + '</span>' +
+        '<span class="fi-cat">' + esc(p.cat) + '</span><span class="fi-price">' + rd(p.precio) + '</span>' +
+        '<button class="fi-add" type="button" data-target="' + esc(id) + '" aria-label="Añadir ' + esc(p.nombre) + ' al pedido">+</button></li>';
+    }).join('');
+    const fotos = (d.fotos || []).filter(f => f && f.imagen);
+    const frame = $('.featured-image');
+    if (!fotos.length) { frame.hidden = true; return; }
+    window.TROPICANA_FOTOS = fotos.map(f => ({ src: f.imagen, alt: f.texto || '' }));
+    const img = $('#featuredImg');
+    img.src = fotos[0].imagen;
+    img.alt = fotos[0].texto || '';
+  });
+
+  /* --- nosotros --- */
+  seguro('nosotros', () => {
+    const n = c.nosotros || {};
+    const box = $('.brand-copy');
+    box.querySelector('.eyebrow').textContent = n.etiqueta || '';
+    box.querySelector('.section-title').textContent = n.titulo || '';
+    box.querySelector('p').textContent = n.texto || '';
+    const v = $('#ruletaVideo');
+    if (n.video) { if (v.getAttribute('src') !== n.video) v.setAttribute('src', n.video); }
+    else $('#nosotros').hidden = true;
+  });
+
+  /* --- galería --- */
+  seguro('galeria', () => {
+    const g = c.galeria || {};
+    const head = $('#galeria .menu-header');
+    head.querySelector('.eyebrow').textContent = g.etiqueta || '';
+    head.querySelector('.section-title').textContent = g.titulo || '';
+    const fotos = (g.fotos || []).filter(f => f && f.imagen);
+    $('#galeria').hidden = !fotos.length;
+    $('.gallery-grid').innerHTML = fotos.map((f, i) =>
+      '<figure class="g-item g' + (i % 6 + 1) + ' reveal-scale"><img src="' + esc(f.imagen) + '" alt="' + esc(f.descripcion || f.texto) + '" width="1400" height="781" loading="lazy" decoding="async">' +
+      (f.texto ? '<figcaption>' + esc(f.texto) + '</figcaption>' : '') + '</figure>').join('');
+  });
+
+  /* --- contacto --- */
+  seguro('contacto', () => {
+    const box = $('#contacto');
+    box.querySelector('.eyebrow').textContent = ct.etiqueta || '';
+    box.querySelector('.section-title').textContent = ct.titulo || '';
+    box.querySelector('.section-sub').textContent = ct.texto || '';
+    const tel = String(ct.telefono || '').replace(/\D/g, '');
+    const cards = [];
+    if (ct.telefono) cards.push('<div class="c-card"><div class="ico" aria-hidden="true">☎</div><h3 class="c-title">Teléfono</h3><p><a class="link" href="tel:+' + (tel.length === 10 ? '1' : '') + tel + '">' + esc(ct.telefono) + '</a></p></div>');
+    if ((ct.horario || []).length) cards.push('<div class="c-card"><div class="ico" aria-hidden="true">🕒</div><h3 class="c-title">Horario</h3><dl>' +
+      ct.horario.map(x => '<dt>' + esc(x.dias) + '</dt><dd>' + esc(x.horas) + '</dd>').join('') + '</dl></div>');
+    if (ct.direccion) cards.push('<div class="c-card wide"><div class="ico" aria-hidden="true">📍</div><h3 class="c-title">Dirección</h3><p>' + esc(ct.direccion) +
+      (ct.mapa ? '<br><a class="link" href="' + esc(ct.mapa) + '" target="_blank" rel="noopener">Ver en Google Maps →</a>' : '') + '</p></div>');
+    box.querySelector('.contact-cards').innerHTML = cards.join('');
+  });
+
+  /* --- pie --- */
+  seguro('pie', () => {
+    const r = c.redes || {};
+    $('footer .footer-inner p').innerHTML = '© <span id="year"></span> ' + esc((c.pie || {}).texto);
+    const links = ['<a href="eventos.html">Próximos eventos</a>'];
+    if (r.instagram) links.push('<a href="' + esc(r.instagram) + '" target="_blank" rel="noopener">Instagram</a>');
+    if (r.facebook) links.push('<a href="' + esc(r.facebook) + '" target="_blank" rel="noopener">Facebook</a>');
+    if (r.tiktok) links.push('<a href="' + esc(r.tiktok) + '" target="_blank" rel="noopener">TikTok</a>');
+    if (wa) links.push('<a href="' + esc(waPedido) + '" target="_blank" rel="noopener">Pedir por WhatsApp</a>');
+    links.push('<a href="#inicio">Volver arriba</a>');
+    $('footer .footer-links').innerHTML = links.join('\n');
+  });
+}
+</script>
+
+<script>
+function iniciarWeb() {
   'use strict';
 
-  const WHATSAPP_NUMBER = '18296026068';
+  const WHATSAPP_NUMBER = window.TROPICANA_WA || '18296026068';
   const STORAGE_KEY = 'tropicana-pedido-v1';
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -1068,10 +1278,12 @@
     const frame = img ? img.closest('.featured-image') : null;
     if (!img || !frame) return;
 
-    const slides = [{ src: img.getAttribute('src'), alt: img.alt }];
-    document.querySelectorAll('.gallery-grid .g-item:not(.g2) img').forEach(g => {
-      slides.push({ src: g.getAttribute('src'), alt: g.alt });
-    });
+    const slides = window.TROPICANA_FOTOS || [{ src: img.getAttribute('src'), alt: img.alt }];
+    if (!window.TROPICANA_FOTOS) {
+      document.querySelectorAll('.gallery-grid .g-item:not(.g2) img').forEach(g => {
+        slides.push({ src: g.getAttribute('src'), alt: g.alt });
+      });
+    }
     const pad = n => String(n).padStart(2, '0');
     dotsEl.innerHTML = slides.map(() => '<span></span>').join('');
     const dots = dotsEl.querySelectorAll('span');
@@ -1352,6 +1564,39 @@
 
   load();
   render();
+}
+
+/* ===== Arranque: primero el contenido, después la web ===== */
+(function() {
+  let iniciada = false;
+  function arrancar() {
+    if (iniciada) return;
+    iniciada = true;
+    document.documentElement.classList.remove('cargando');
+    iniciarWeb();
+  }
+  // vista previa desde el panel (admin.html): usa los cambios aún sin guardar
+  if (/[?&]vista-previa\b/.test(location.search)) {
+    try {
+      const c = JSON.parse(localStorage.getItem('tropicana-vista-previa'));
+      if (c) {
+        aplicarContenido(c);
+        arrancar();
+        const aviso = document.createElement('div');
+        aviso.textContent = 'Vista previa · cambios sin guardar';
+        aviso.style.cssText = 'position:fixed;left:12px;bottom:12px;z-index:9999;background:#d4af37;color:#04130c;font:600 12px Montserrat,sans-serif;padding:8px 14px;border-radius:20px;pointer-events:none;';
+        document.body.appendChild(aviso);
+        return;
+      }
+    } catch (e) { /* sin vista previa: se carga lo publicado */ }
+  }
+  // si el contenido tarda demasiado, se muestra la versión escrita en el HTML
+  const espera = setTimeout(arrancar, 2500);
+  fetch('contenido.json?v=' + Date.now(), { cache: 'no-store' })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(c => { if (!iniciada) aplicarContenido(c); })
+    .catch(() => { /* sin contenido.json: se usa el HTML tal cual */ })
+    .finally(() => { clearTimeout(espera); arrancar(); });
 })();
 </script>
 </body>

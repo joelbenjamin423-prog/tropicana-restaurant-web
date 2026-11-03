@@ -1,0 +1,853 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#04130c">
+<title>Panel de la web | Tropicana</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%99%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#06170f; --panel:#0c2419; --panel-2:#10301f; --line:rgba(212,175,55,.16); --line-2:rgba(244,239,226,.12);
+    --gold:#d4af37; --gold-light:#ecd27f; --cream:#f4efe2; --muted:#a9bdac; --danger:#ef7d6b; --ok:#5fcf8f;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--cream);font-family:'Montserrat',system-ui,sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:'Playfair Display',serif;font-weight:600;line-height:1.15;}
+  a{color:var(--gold-light);}
+  button,input,textarea,select{font:inherit;color:inherit;}
+  :focus-visible{outline:2px solid var(--gold-light);outline-offset:2px;}
+  [hidden]{display:none !important;}
+
+  /* ---------- botones ---------- */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;border-radius:12px;border:1px solid var(--line-2);background:transparent;cursor:pointer;font-weight:600;font-size:.86rem;text-decoration:none;color:var(--cream);transition:background .2s,border-color .2s,color .2s,opacity .2s;}
+  .btn:hover{border-color:var(--gold);color:var(--gold-light);}
+  .btn-gold{background:var(--gold);border-color:var(--gold);color:#04130c;}
+  .btn-gold:hover{background:var(--gold-light);color:#04130c;}
+  .btn-sm{padding:7px 12px;font-size:.78rem;border-radius:10px;}
+  .btn-danger:hover{border-color:var(--danger);color:var(--danger);}
+  .btn[disabled]{opacity:.45;pointer-events:none;}
+  .icon-btn{width:34px;height:34px;padding:0;border-radius:10px;}
+
+  /* ---------- acceso ---------- */
+  .login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:30px 18px;}
+  .login-box{width:min(480px,100%);background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:34px 30px;}
+  .login-box h1{font-size:1.8rem;margin-bottom:6px;}
+  .login-box > p{color:var(--muted);margin-bottom:24px;font-size:.92rem;}
+  .help{margin-top:22px;border-top:1px solid var(--line-2);padding-top:16px;font-size:.86rem;color:var(--muted);}
+  .help summary{cursor:pointer;color:var(--cream);font-weight:600;}
+  .help ol{padding-left:20px;margin-top:10px;display:grid;gap:6px;}
+  .help code{background:rgba(0,0,0,.3);padding:1px 6px;border-radius:6px;color:var(--gold-light);}
+
+  /* ---------- campos ---------- */
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+  .field > span{font-size:.78rem;font-weight:600;letter-spacing:.04em;color:var(--muted);text-transform:uppercase;}
+  .field small{color:var(--muted);font-size:.78rem;}
+  .input{width:100%;background:rgba(0,0,0,.28);border:1px solid var(--line-2);border-radius:10px;padding:11px 13px;transition:border-color .2s;}
+  .input:focus{border-color:var(--gold);outline:none;}
+  textarea.input{resize:vertical;min-height:84px;}
+  .row{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));}
+  .check{display:flex;align-items:center;gap:10px;margin-bottom:16px;cursor:pointer;font-size:.9rem;}
+  .check input{width:18px;height:18px;accent-color:var(--gold);}
+  .color-row{display:flex;align-items:center;gap:10px;}
+  .color-row input[type=color]{width:52px;height:42px;border:1px solid var(--line-2);border-radius:10px;background:none;padding:3px;cursor:pointer;}
+
+  /* imagen */
+  .img-field{display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+  .img-prev{width:132px;aspect-ratio:16/10;border-radius:12px;border:1px dashed var(--line-2);background:rgba(0,0,0,.3) center/cover no-repeat;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.72rem;flex-shrink:0;overflow:hidden;}
+  .img-prev.logo{background-size:contain;background-color:rgba(255,255,255,.04);}
+  .img-prev video{width:100%;height:100%;object-fit:cover;}
+  .img-actions{display:flex;gap:8px;flex-wrap:wrap;}
+  .pending-tag{font-size:.7rem;color:var(--gold-light);}
+
+  /* ---------- estructura ---------- */
+  .app{display:grid;grid-template-columns:240px 1fr;min-height:100vh;}
+  .side{background:var(--panel);border-right:1px solid var(--line);padding:22px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px;overflow-y:auto;}
+  .side .brand{padding:0 10px 18px;border-bottom:1px solid var(--line-2);margin-bottom:12px;}
+  .side .brand b{font-family:'Playfair Display',serif;font-size:1.25rem;display:block;}
+  .side .brand span{font-size:.72rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;}
+  .tab{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:0;border-radius:10px;padding:10px 12px;cursor:pointer;color:var(--muted);font-weight:500;font-size:.9rem;}
+  .tab:hover{background:rgba(255,255,255,.04);color:var(--cream);}
+  .tab[aria-selected="true"]{background:rgba(212,175,55,.14);color:var(--gold-light);}
+  .side-foot{margin-top:auto;padding-top:16px;display:grid;gap:8px;}
+  .main{min-width:0;}
+  .topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 28px;background:rgba(6,23,15,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .status{font-size:.84rem;color:var(--muted);display:flex;align-items:center;gap:8px;}
+  .status i{width:9px;height:9px;border-radius:50%;background:var(--ok);display:inline-block;}
+  .status.dirty i{background:var(--gold);}
+  .status.error{color:var(--danger);}
+  .status.error i{background:var(--danger);}
+  .top-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
+  .content{padding:28px;max-width:980px;}
+  .section-head{margin-bottom:22px;}
+  .section-head h2{font-size:1.7rem;margin-bottom:4px;}
+  .section-head p{color:var(--muted);font-size:.9rem;}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:18px;}
+  .card > h3{font-size:1.15rem;margin-bottom:16px;}
+
+  /* listas */
+  .item{background:var(--panel-2);border:1px solid var(--line-2);border-radius:14px;padding:16px;margin-bottom:12px;}
+  .item-head{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+  .item-head .title{flex:1;min-width:0;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .item-tools{display:flex;gap:6px;flex-shrink:0;}
+  details.cat{background:var(--panel-2);border:1px solid var(--line-2);border-radius:16px;margin-bottom:12px;overflow:hidden;}
+  details.cat > summary{list-style:none;display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer;}
+  details.cat > summary::-webkit-details-marker{display:none;}
+  details.cat > summary .thumb{width:64px;height:42px;border-radius:8px;background:rgba(0,0,0,.3) center/cover;flex-shrink:0;}
+  details.cat > summary .title{flex:1;min-width:0;font-weight:600;}
+  details.cat > summary .count{color:var(--muted);font-size:.78rem;}
+  details.cat[open] > summary{border-bottom:1px solid var(--line-2);}
+  .cat-body{padding:16px;}
+  .dish{display:grid;grid-template-columns:1fr;gap:0;}
+  .dish .item-head .title small{color:var(--muted);font-weight:400;margin-left:6px;}
+  .variant{display:grid;grid-template-columns:1fr 130px 34px;gap:8px;margin-bottom:8px;align-items:center;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
+  .chip{display:inline-flex;align-items:center;gap:8px;padding:7px 8px 7px 14px;border-radius:30px;background:var(--panel-2);border:1px solid var(--line-2);font-size:.84rem;}
+  .chip button{width:24px;height:24px;border-radius:50%;border:0;background:rgba(255,255,255,.08);cursor:pointer;}
+  .empty{color:var(--muted);font-size:.88rem;padding:6px 0 14px;}
+  .add-row{display:flex;gap:10px;flex-wrap:wrap;}
+
+  /* aviso / toast */
+  .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--panel-2);border:1px solid var(--line);padding:12px 20px;border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,.4);transition:opacity .25s,transform .25s;z-index:50;max-width:calc(100% - 32px);font-size:.9rem;}
+  .toast.show{opacity:1;transform:translate(-50%,0);}
+  .toast.error{border-color:var(--danger);}
+  .overlay{position:fixed;inset:0;background:rgba(4,19,12,.75);z-index:60;display:flex;align-items:center;justify-content:center;padding:20px;}
+  .overlay .box{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px;max-width:420px;text-align:center;}
+  .spinner{width:36px;height:36px;border:3px solid rgba(212,175,55,.2);border-top-color:var(--gold);border-radius:50%;margin:0 auto 14px;animation:spin 1s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  @media (max-width: 860px){
+    .app{grid-template-columns:minmax(0,1fr);}
+    .side{min-width:0;position:sticky;top:0;z-index:30;height:auto;flex-direction:row;overflow-x:auto;padding:10px;border-right:0;border-bottom:1px solid var(--line);gap:6px;}
+    .side .brand,.side-foot{display:none;}
+    .tab{white-space:nowrap;width:auto;}
+    .topbar{position:static;padding:12px 16px;flex-wrap:wrap;}
+    .content{padding:18px 14px;}
+    .card{padding:16px;}
+    .variant{grid-template-columns:1fr 100px 34px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ ACCESO ============ -->
+<section class="login" id="login" hidden>
+  <form class="login-box" id="loginForm">
+    <h1>Panel de la web</h1>
+    <p>Entra con tu clave de GitHub para editar textos, fotos, carta, contacto y eventos.</p>
+    <label class="field"><span>Repositorio</span><input class="input" id="lRepo" required placeholder="usuario/repositorio"></label>
+    <label class="field"><span>Rama</span><input class="input" id="lBranch" required value="master"></label>
+    <label class="field"><span>Clave de acceso (token)</span><input class="input" id="lToken" type="password" required autocomplete="off" placeholder="github_pat_..."></label>
+    <label class="check"><input type="checkbox" id="lRemember" checked> Recordar en este dispositivo</label>
+    <button class="btn btn-gold" type="submit" style="width:100%">Entrar</button>
+    <p class="status error" id="loginError" hidden style="margin-top:14px"></p>
+    <details class="help">
+      <summary>¿Cómo consigo la clave?</summary>
+      <ol>
+        <li>Entra en GitHub y abre <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">crear un token (fine-grained)</a>.</li>
+        <li>Ponle un nombre (por ejemplo <code>Panel web</code>) y una caducidad.</li>
+        <li>En <b>Repository access</b> elige <b>Only select repositories</b> y marca solo el repositorio de la web.</li>
+        <li>En <b>Permissions → Repository permissions</b>, pon <b>Contents</b> en <b>Read and write</b>.</li>
+        <li>Pulsa <b>Generate token</b>, cópialo y pégalo aquí.</li>
+      </ol>
+      <p style="margin-top:10px">La clave solo se guarda en este navegador. No la compartas: quien la tenga puede cambiar la web.</p>
+    </details>
+  </form>
+</section>
+
+<!-- ============ PANEL ============ -->
+<div class="app" id="app" hidden>
+  <nav class="side" id="tabs" aria-label="Secciones">
+    <div class="brand"><b id="sideName">Tropicana</b><span>Panel de la web</span></div>
+    <div class="side-foot">
+      <button class="btn btn-sm" type="button" id="reloadBtn">Descartar cambios</button>
+      <button class="btn btn-sm btn-danger" type="button" id="logoutBtn">Cerrar sesión</button>
+    </div>
+  </nav>
+  <div class="main">
+    <header class="topbar">
+      <span class="status" id="status"><i></i><span>Todo guardado</span></span>
+      <div class="top-actions">
+        <button class="btn btn-sm" type="button" id="previewBtn">Vista previa</button>
+        <a class="btn btn-sm" id="siteLink" href="index.html" target="_blank" rel="noopener">Ver web</a>
+        <button class="btn btn-gold" type="button" id="saveBtn" disabled>Guardar cambios</button>
+      </div>
+    </header>
+    <div class="content" id="content"></div>
+  </div>
+</div>
+
+<div class="overlay" id="busy" hidden><div class="box"><div class="spinner"></div><p id="busyText">Cargando…</p></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function() {
+  'use strict';
+
+  /* =================== configuración =================== */
+  const CFG_KEY = 'panel-web-config';
+  const PREVIEW_KEY = 'tropicana-vista-previa';
+  const DEFAULT_REPO = 'joelbenjamin423-prog/tropicana-restaurant-web';
+  const FILE = 'contenido.json';
+  const MAX_VIDEO_MB = 20;
+
+  let cfg = null;              // { repo, branch, token }
+  let data = null;             // contenido editable
+  let jsonSha = null;          // sha del contenido.json cargado
+  const pending = new Map();   // ruta -> { base64, url }
+  let dirty = false;
+  let tab = 'marca';
+  const openCats = new Set();
+
+  const $ = s => document.querySelector(s);
+  const h = (tag, attrs, ...kids) => {
+    const el = document.createElement(tag);
+    if (attrs) Object.entries(attrs).forEach(([k, v]) => {
+      if (v == null || v === false) return;
+      if (k === 'class') el.className = v;
+      else if (k.startsWith('on')) el.addEventListener(k.slice(2), v);
+      else if (k === 'html') el.innerHTML = v;
+      else el.setAttribute(k, v === true ? '' : v);
+    });
+    kids.flat().forEach(k => { if (k != null && k !== false) el.append(k.nodeType ? k : String(k)); });
+    return el;
+  };
+  const uid = p => p + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
+  const slug = s => String(s || 'img').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 30) || 'img';
+
+  /* =================== avisos =================== */
+  let toastTimer;
+  function toast(msg, error) {
+    const t = $('#toast');
+    t.textContent = msg;
+    t.classList.toggle('error', !!error);
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), error ? 6000 : 3000);
+  }
+  function busy(text) {
+    $('#busy').hidden = !text;
+    if (text) $('#busyText').textContent = text;
+  }
+  function setDirty(v) {
+    dirty = v;
+    const s = $('#status');
+    s.classList.toggle('dirty', v);
+    s.classList.remove('error');
+    s.lastElementChild.textContent = v ? 'Cambios sin guardar' : 'Todo guardado';
+    $('#saveBtn').disabled = !v;
+  }
+  const touch = () => { if (!dirty) setDirty(true); };
+  window.addEventListener('beforeunload', e => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+
+  /* =================== GitHub =================== */
+  async function api(path, opts = {}) {
+    const res = await fetch('https://api.github.com/repos/' + cfg.repo + path, {
+      ...opts,
+      headers: { 'Accept': 'application/vnd.github+json', 'Authorization': 'Bearer ' + cfg.token, 'X-GitHub-Api-Version': '2022-11-28', ...(opts.body ? { 'Content-Type': 'application/json' } : {}) }
+    });
+    if (!res.ok) {
+      let msg = res.status + '';
+      try { msg = (await res.json()).message || msg; } catch (e) { /* sin cuerpo */ }
+      const err = new Error(msg);
+      err.status = res.status;
+      throw err;
+    }
+    return res.status === 204 ? null : res.json();
+  }
+  const b64ToText = b => new TextDecoder().decode(Uint8Array.from(atob(b.replace(/\s/g, '')), c => c.charCodeAt(0)));
+
+  async function loadContent() {
+    busy('Cargando contenido…');
+    try {
+      const f = await api('/contents/' + FILE + '?ref=' + encodeURIComponent(cfg.branch));
+      data = JSON.parse(b64ToText(f.content));
+      jsonSha = f.sha;
+      normalize();
+      pending.clear();
+      setDirty(false);
+      render();
+    } finally { busy(null); }
+  }
+
+  async function save() {
+    const problems = validate();
+    if (problems.length) { toast('Revisa: ' + problems[0], true); return; }
+    busy('Guardando cambios…');
+    try {
+      const ref = await api('/git/ref/heads/' + encodeURIComponent(cfg.branch));
+      const head = ref.object.sha;
+      const commit = await api('/git/commits/' + head);
+      // ¿alguien cambió el contenido desde que se cargó?
+      try {
+        const now = await api('/contents/' + FILE + '?ref=' + head);
+        if (now.sha !== jsonSha && !confirm('El contenido se cambió desde otro sitio después de abrir el panel. ¿Guardar igualmente y reemplazarlo con tu versión?')) { busy(null); return; }
+      } catch (e) { if (e.status !== 404) throw e; }
+
+      const tree = [];
+      let n = 0;
+      for (const [path, file] of pending) {
+        if (!usedPaths().has(path)) continue; // imagen subida y luego quitada
+        busy('Subiendo archivos… (' + (++n) + ')');
+        const blob = await api('/git/blobs', { method: 'POST', body: JSON.stringify({ content: file.base64, encoding: 'base64' }) });
+        tree.push({ path, mode: '100644', type: 'blob', sha: blob.sha });
+      }
+      busy('Guardando contenido…');
+      const json = JSON.stringify(data, null, 2) + '\n';
+      const jblob = await api('/git/blobs', { method: 'POST', body: JSON.stringify({ content: json, encoding: 'utf-8' }) });
+      tree.push({ path: FILE, mode: '100644', type: 'blob', sha: jblob.sha });
+      const newTree = await api('/git/trees', { method: 'POST', body: JSON.stringify({ base_tree: commit.tree.sha, tree }) });
+      const newCommit = await api('/git/commits', { method: 'POST', body: JSON.stringify({ message: 'Actualizar contenido desde el panel', tree: newTree.sha, parents: [head] }) });
+      await api('/git/refs/heads/' + encodeURIComponent(cfg.branch), { method: 'PATCH', body: JSON.stringify({ sha: newCommit.sha }) });
+      jsonSha = jblob.sha;
+      pending.forEach((f, p) => { f.saved = true; });
+      setDirty(false);
+      toast('Guardado. La web se actualiza en 1-2 minutos.');
+    } catch (e) {
+      const s = $('#status');
+      s.classList.add('error');
+      s.lastElementChild.textContent = 'Error al guardar';
+      toast(e.status === 409 || e.status === 422 ? 'Hubo un cambio al mismo tiempo. Pulsa Guardar de nuevo.' : (e.status === 401 || e.status === 403) ? 'La clave no tiene permiso para escribir (Contents: Read and write).' : 'No se pudo guardar: ' + e.message, true);
+    } finally { busy(null); }
+  }
+
+  /* =================== datos =================== */
+  function normalize() {
+    const d = data;
+    const o = (k, v) => { if (!d[k] || typeof d[k] !== 'object') d[k] = v; return d[k]; };
+    o('marca', {}); o('colores', { acento: '#d4af37', fondo: '#081f14' }); o('portada', {}); o('destacados', {}); o('nosotros', {});
+    o('carta', {}); o('galeria', {}); o('contacto', {}); o('redes', {}); o('pie', {});
+    if (!Array.isArray(d.eventos)) d.eventos = [];
+    if (!Array.isArray(d.carta.categorias)) d.carta.categorias = [];
+    if (!Array.isArray(d.galeria.fotos)) d.galeria.fotos = [];
+    if (!Array.isArray(d.destacados.fotos)) d.destacados.fotos = [];
+    if (!Array.isArray(d.destacados.platos)) d.destacados.platos = [];
+    if (!Array.isArray(d.contacto.horario)) d.contacto.horario = [];
+    d.carta.categorias.forEach(c => {
+      if (!Array.isArray(c.platos)) c.platos = [];
+      c.platos.forEach(p => { if (!Array.isArray(p.variantes)) p.variantes = []; });
+    });
+  }
+
+  function usedPaths() {
+    const set = new Set();
+    JSON.stringify(data, (k, v) => { if (typeof v === 'string' && v.startsWith('assets/')) set.add(v); return v; });
+    return set;
+  }
+
+  function dishOptions() {
+    const out = [];
+    data.carta.categorias.forEach(c => c.platos.forEach(p => {
+      const vars = (p.variantes || []).filter(v => v.nombre && Number(v.precio) > 0);
+      if (vars.length) vars.forEach(v => out.push({ id: p.id + '-' + v.id, label: p.nombre + ' (' + v.nombre.toLowerCase() + ')', cat: c.nombre }));
+      else if (Number(p.precio) > 0) out.push({ id: p.id, label: p.nombre, cat: c.nombre });
+    }));
+    return out;
+  }
+
+  function validate() {
+    const out = [];
+    const wa = String(data.contacto.whatsapp || '').replace(/\D/g, '');
+    if (wa && wa.length < 10) out.push('el número de WhatsApp (formato 1 + código + número, por ejemplo 18291234567).');
+    data.carta.categorias.forEach((c, i) => {
+      if (!c.nombre) out.push('la categoría nº ' + (i + 1) + ' no tiene nombre.');
+      c.platos.forEach(p => {
+        if (!p.nombre) out.push('hay un plato sin nombre en «' + (c.nombre || 'categoría ' + (i + 1)) + '».');
+        p.variantes.forEach(v => { if (!v.nombre) out.push('un tamaño de «' + p.nombre + '» no tiene nombre.'); });
+      });
+    });
+    data.eventos.forEach((e, i) => {
+      if (!e.titulo) out.push('el evento nº ' + (i + 1) + ' no tiene título.');
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(e.fecha || '')) out.push('el evento «' + (e.titulo || i + 1) + '» no tiene fecha.');
+    });
+    return out;
+  }
+
+  /* =================== archivos =================== */
+  const src = path => (pending.get(path) || {}).url || path;
+
+  function readAsBase64(blob) {
+    return new Promise((ok, fail) => {
+      const r = new FileReader();
+      r.onload = () => ok(String(r.result).split(',')[1]);
+      r.onerror = fail;
+      r.readAsDataURL(blob);
+    });
+  }
+
+  async function processImage(file, maxSide) {
+    const bmp = await createImageBitmap(file);
+    const scale = Math.min(1, maxSide / Math.max(bmp.width, bmp.height));
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.round(bmp.width * scale);
+    canvas.height = Math.round(bmp.height * scale);
+    canvas.getContext('2d').drawImage(bmp, 0, 0, canvas.width, canvas.height);
+    const blob = await new Promise(ok => canvas.toBlob(ok, 'image/webp', 0.82));
+    if (!blob || blob.type !== 'image/webp') throw new Error('Este navegador no puede convertir la imagen.');
+    return blob;
+  }
+
+  function pickFile(accept) {
+    return new Promise(ok => {
+      const i = h('input', { type: 'file', accept });
+      i.addEventListener('change', () => ok(i.files[0] || null));
+      i.click();
+    });
+  }
+
+  async function uploadImage(name, maxSide) {
+    const file = await pickFile('image/*');
+    if (!file) return null;
+    busy('Preparando imagen…');
+    try {
+      const blob = await processImage(file, maxSide || 1600);
+      const path = 'assets/subidas/' + slug(name || file.name.replace(/\.\w+$/, '')) + '-' + Date.now().toString(36) + '.webp';
+      pending.set(path, { base64: await readAsBase64(blob), url: URL.createObjectURL(blob) });
+      return path;
+    } catch (e) {
+      toast('No se pudo usar esa imagen: ' + e.message, true);
+      return null;
+    } finally { busy(null); }
+  }
+
+  async function uploadVideo(name) {
+    const file = await pickFile('video/mp4');
+    if (!file) return null;
+    if (file.size > MAX_VIDEO_MB * 1024 * 1024) { toast('El vídeo pesa ' + (file.size / 1048576).toFixed(1) + ' MB. Máximo ' + MAX_VIDEO_MB + ' MB: comprímelo antes de subirlo.', true); return null; }
+    busy('Preparando vídeo…');
+    try {
+      const path = 'assets/subidas/' + slug(name) + '-' + Date.now().toString(36) + '.mp4';
+      pending.set(path, { base64: await readAsBase64(file), url: URL.createObjectURL(file) });
+      if (file.size > 5 * 1048576) toast('Vídeo de ' + (file.size / 1048576).toFixed(1) + ' MB: hará que la web cargue más lento. Lo ideal es menos de 2 MB.');
+      return path;
+    } finally { busy(null); }
+  }
+
+  /* =================== componentes =================== */
+  function field(obj, key, label, opts = {}) {
+    const attrs = { class: 'input', placeholder: opts.placeholder || '' };
+    let input;
+    if (opts.type === 'textarea') input = h('textarea', attrs);
+    else input = h('input', { ...attrs, type: opts.type || 'text', min: opts.min, step: opts.step, inputmode: opts.inputmode });
+    input.value = obj[key] == null ? '' : obj[key];
+    input.addEventListener('input', () => {
+      let v = input.value;
+      if (opts.type === 'number') v = v === '' ? null : Number(v);
+      obj[key] = v;
+      touch();
+      if (opts.onChange) opts.onChange(v);
+    });
+    return h('label', { class: 'field' }, h('span', null, label), input, opts.hint ? h('small', null, opts.hint) : null);
+  }
+
+  function check(obj, key, label, onChange) {
+    const i = h('input', { type: 'checkbox' });
+    i.checked = !!obj[key];
+    i.addEventListener('change', () => { obj[key] = i.checked; touch(); if (onChange) onChange(i.checked); });
+    return h('label', { class: 'check' }, i, label);
+  }
+
+  function imageField(obj, key, label, opts = {}) {
+    const prev = h('div', { class: 'img-prev' + (opts.logo ? ' logo' : '') });
+    const tag = h('span', { class: 'pending-tag' });
+    const paint = () => {
+      const v = obj[key];
+      prev.style.backgroundImage = v ? 'url("' + src(v) + '")' : '';
+      prev.textContent = v ? '' : (opts.empty || 'Sin imagen');
+      tag.textContent = v && pending.has(v) && !pending.get(v).saved ? 'Nueva (se sube al guardar)' : '';
+      rm.hidden = !v || opts.required;
+    };
+    const rm = h('button', { class: 'btn btn-sm btn-danger', type: 'button', onclick: () => { obj[key] = ''; touch(); paint(); if (opts.onChange) opts.onChange(); } }, 'Quitar');
+    const change = h('button', { class: 'btn btn-sm', type: 'button', onclick: async () => {
+      const p = await uploadImage(opts.name || label, opts.maxSide);
+      if (p) { obj[key] = p; touch(); paint(); if (opts.onChange) opts.onChange(); }
+    } }, 'Cambiar imagen');
+    paint();
+    return h('div', { class: 'field' }, h('span', null, label), h('div', { class: 'img-field' }, prev, h('div', null, h('div', { class: 'img-actions' }, change, rm), tag)), opts.hint ? h('small', null, opts.hint) : null);
+  }
+
+  function videoField(obj, key, label, hint) {
+    const box = h('div', { class: 'img-prev' });
+    const paint = () => {
+      box.innerHTML = '';
+      if (obj[key]) box.append(h('video', { src: src(obj[key]), muted: true, loop: true, autoplay: true, playsinline: true }));
+      else box.textContent = 'Sin vídeo';
+      rm.hidden = !obj[key];
+    };
+    const rm = h('button', { class: 'btn btn-sm btn-danger', type: 'button', onclick: () => { obj[key] = ''; touch(); paint(); } }, 'Quitar');
+    const change = h('button', { class: 'btn btn-sm', type: 'button', onclick: async () => {
+      const p = await uploadVideo(label);
+      if (p) { obj[key] = p; touch(); paint(); }
+    } }, 'Cambiar vídeo (MP4)');
+    paint();
+    return h('div', { class: 'field' }, h('span', null, label), h('div', { class: 'img-field' }, box, h('div', { class: 'img-actions' }, change, rm)), hint ? h('small', null, hint) : null);
+  }
+
+  // herramientas para mover / borrar elementos de una lista
+  function tools(arr, i, what, rerender) {
+    const move = d => { const j = i + d; if (j < 0 || j >= arr.length) return; [arr[i], arr[j]] = [arr[j], arr[i]]; touch(); rerender(); };
+    return h('div', { class: 'item-tools' },
+      h('button', { class: 'btn icon-btn', type: 'button', title: 'Subir', 'aria-label': 'Subir', disabled: i === 0, onclick: () => move(-1) }, '↑'),
+      h('button', { class: 'btn icon-btn', type: 'button', title: 'Bajar', 'aria-label': 'Bajar', disabled: i === arr.length - 1, onclick: () => move(1) }, '↓'),
+      h('button', { class: 'btn icon-btn btn-danger', type: 'button', title: 'Eliminar', 'aria-label': 'Eliminar', onclick: () => {
+        if (!confirm('¿Eliminar ' + what + '?')) return;
+        arr.splice(i, 1); touch(); rerender();
+      } }, '✕'));
+  }
+
+  const card = (title, ...kids) => h('div', { class: 'card' }, title ? h('h3', null, title) : null, ...kids);
+  const head = (title, text) => h('div', { class: 'section-head' }, h('h2', null, title), text ? h('p', null, text) : null);
+
+  /* =================== secciones =================== */
+  const SECTIONS = {
+    marca: ['Marca y colores', () => {
+      const m = data.marca, c = data.colores;
+      const color = (key, label, def) => {
+        const i = h('input', { type: 'color' });
+        i.value = c[key] || def;
+        i.addEventListener('input', () => { c[key] = i.value; touch(); });
+        return h('div', { class: 'field' }, h('span', null, label), h('div', { class: 'color-row' }, i,
+          h('button', { class: 'btn btn-sm', type: 'button', onclick: () => { c[key] = def; i.value = def; touch(); } }, 'Original')));
+      };
+      return [
+        head('Marca y colores', 'Nombre, logo y colores que se ven en toda la web.'),
+        card('Nombre y logo',
+          h('div', { class: 'row' }, field(m, 'nombre', 'Nombre', { onChange: v => { $('#sideName').textContent = v; } }), field(m, 'subtitulo', 'Texto bajo el nombre', { placeholder: 'RESTAURANT' })),
+          imageField(m, 'logo', 'Logo (opcional)', { logo: true, maxSide: 600, name: 'logo', empty: 'Usa el nombre', hint: 'Si pones un logo, sustituye al nombre escrito en la barra de arriba. Mejor PNG con fondo transparente.' })),
+        card('Colores',
+          h('div', { class: 'row' }, color('acento', 'Color de acento (botones, precios)', '#d4af37'), color('fondo', 'Color de fondo', '#081f14')),
+          h('small', { style: 'color:var(--muted)' }, 'Los tonos más claros y oscuros se calculan solos a partir de estos dos.')),
+        card('Buscadores (Google)',
+          field(m, 'tituloPagina', 'Título de la pestaña'),
+          field(m, 'descripcion', 'Descripción', { type: 'textarea', hint: 'Texto que puede mostrar Google bajo el enlace.' }))
+      ];
+    }],
+
+    portada: ['Portada', () => {
+      const p = data.portada;
+      return [
+        head('Portada', 'Lo primero que se ve al entrar en la web.'),
+        card('Textos',
+          field(p, 'etiqueta', 'Texto pequeño superior'),
+          field(p, 'titulo', 'Título', { hint: 'Pon *entre asteriscos* la palabra que quieres resaltar en dorado.' }),
+          field(p, 'texto', 'Texto', { type: 'textarea' }),
+          h('div', { class: 'row' }, field(p, 'botonCarta', 'Botón 1 (ir a la carta)'), field(p, 'botonPedir', 'Botón 2 (WhatsApp)')),
+          h('small', { style: 'color:var(--muted)' }, 'El horario de la portada se toma de la sección Contacto y horario.')),
+        card('Fondo',
+          videoField(p, 'video', 'Vídeo de fondo', 'MP4 corto (5-10 s) y ligero. Si quitas el vídeo se muestra la imagen de abajo.'),
+          imageField(p, 'imagen', 'Imagen de fondo', { name: 'portada', maxSide: 1920, hint: 'Se ve mientras carga el vídeo, o siempre si no hay vídeo.' }))
+      ];
+    }],
+
+    destacados: ['Destacados', () => {
+      const d = data.destacados;
+      const opts = dishOptions();
+      const byId = Object.fromEntries(opts.map(o => [o.id, o]));
+      const chips = h('div', { class: 'chips' });
+      const sel = h('select', { class: 'input' });
+      const paintChips = () => {
+        chips.innerHTML = '';
+        d.platos = d.platos.filter(id => byId[id]);
+        if (!d.platos.length) chips.append(h('p', { class: 'empty' }, 'No hay platos destacados.'));
+        d.platos.forEach((id, i) => chips.append(h('span', { class: 'chip' }, byId[id].label,
+          h('button', { type: 'button', 'aria-label': 'Quitar ' + byId[id].label, onclick: () => { d.platos.splice(i, 1); touch(); paintChips(); } }, '✕'))));
+        sel.innerHTML = '';
+        sel.append(h('option', { value: '' }, 'Elegir plato…'));
+        opts.filter(o => !d.platos.includes(o.id)).forEach(o => sel.append(h('option', { value: o.id }, o.cat + ' · ' + o.label)));
+      };
+      sel.addEventListener('change', () => { if (sel.value) { d.platos.push(sel.value); touch(); paintChips(); } });
+      paintChips();
+      const fotos = h('div');
+      const paintFotos = () => {
+        fotos.innerHTML = '';
+        d.fotos.forEach((f, i) => fotos.append(h('div', { class: 'item' },
+          h('div', { class: 'item-head' }, h('span', { class: 'title' }, 'Foto ' + (i + 1)), tools(d.fotos, i, 'esta foto', paintFotos)),
+          imageField(f, 'imagen', 'Imagen', { required: true, name: 'carrusel' }),
+          field(f, 'texto', 'Texto que aparece sobre la foto'))));
+      };
+      paintFotos();
+      return [
+        head('Destacados', 'La sección con el carrusel de fotos y la lista de platos recomendados.'),
+        card('Textos', h('div', { class: 'row' }, field(d, 'etiqueta', 'Texto pequeño'), field(d, 'titulo', 'Título'))),
+        card('Platos destacados', chips, h('label', { class: 'field' }, h('span', null, 'Añadir plato'), sel)),
+        card('Fotos del carrusel', fotos, h('button', { class: 'btn', type: 'button', onclick: async () => {
+          const p = await uploadImage('carrusel', 1600);
+          if (p) { d.fotos.push({ imagen: p, texto: '' }); touch(); paintFotos(); }
+        } }, '+ Añadir foto'))
+      ];
+    }],
+
+    nosotros: ['Nosotros', () => {
+      const n = data.nosotros;
+      return [
+        head('Nosotros', 'La franja con vídeo que presenta el restaurante.'),
+        card('Textos', field(n, 'etiqueta', 'Texto pequeño'), field(n, 'titulo', 'Título'), field(n, 'texto', 'Texto', { type: 'textarea' })),
+        card('Vídeo', videoField(n, 'video', 'Vídeo', 'Si quitas el vídeo, esta sección se oculta.'))
+      ];
+    }],
+
+    carta: ['Carta', () => {
+      const k = data.carta;
+      const list = h('div');
+      const rerender = () => { list.innerHTML = ''; list.append(...k.categorias.map(catBlock)); };
+
+      function dishBlock(cat, p, i, rerenderCat) {
+        const box = h('div', { class: 'item dish' });
+        const hasVars = () => p.variantes.length > 0;
+        const priceArea = h('div');
+        const paintPrice = () => {
+          priceArea.innerHTML = '';
+          if (hasVars()) {
+            priceArea.append(h('span', { class: 'field' }, h('span', null, 'Tamaños y precios (RD$)')));
+            p.variantes.forEach((v, j) => {
+              const name = h('input', { class: 'input', placeholder: 'Tamaño' }); name.value = v.nombre || '';
+              name.addEventListener('input', () => { v.nombre = name.value; touch(); });
+              const pr = h('input', { class: 'input', type: 'number', min: '0', step: '1', inputmode: 'numeric', placeholder: 'Precio' }); pr.value = v.precio == null ? '' : v.precio;
+              pr.addEventListener('input', () => { v.precio = pr.value === '' ? null : Number(pr.value); touch(); });
+              priceArea.append(h('div', { class: 'variant' }, name, pr, h('button', { class: 'btn icon-btn btn-danger', type: 'button', 'aria-label': 'Quitar tamaño', onclick: () => { p.variantes.splice(j, 1); touch(); paintPrice(); } }, '✕')));
+            });
+            priceArea.append(h('button', { class: 'btn btn-sm', type: 'button', onclick: () => { p.variantes.push({ id: uid('v'), nombre: '', precio: null }); touch(); paintPrice(); } }, '+ Tamaño'));
+          } else {
+            priceArea.append(h('div', { class: 'row' },
+              field(p, 'precio', 'Precio (RD$)', { type: 'number', min: '0', step: '1', inputmode: 'numeric', hint: 'Vacío = se muestra «Consultar» y no se puede pedir.' }),
+              field(p, 'aviso', 'Aviso si no hay precio', { placeholder: 'Consulta disponibilidad' })));
+          }
+        };
+        paintPrice();
+        const title = h('span', { class: 'title' }, p.nombre || 'Plato nuevo');
+        box.append(
+          h('div', { class: 'item-head' }, title, tools(cat.platos, i, 'el plato «' + (p.nombre || 'sin nombre') + '»', rerenderCat)),
+          field(p, 'nombre', 'Nombre', { onChange: v => { title.textContent = v || 'Plato nuevo'; } }),
+          field(p, 'descripcion', 'Descripción', { type: 'textarea' }),
+          check({ get v() { return hasVars(); }, set v(on) {
+            if (on) p.variantes = [{ id: 'g', nombre: 'Grande', precio: p.precio || null }, { id: 'p', nombre: 'Pequeña', precio: null }];
+            else { p.precio = (p.variantes[0] || {}).precio || null; p.variantes = []; }
+            paintPrice();
+          } }, 'v', 'Tiene varios tamaños (por ejemplo, Grande / Pequeña)'),
+          priceArea,
+          imageField(p, 'imagen', 'Foto del plato (opcional)', { name: p.nombre || 'plato', maxSide: 1000 }));
+        return box;
+      }
+
+      function catBlock(cat, ci) {
+        const det = h('details', { class: 'cat', open: openCats.has(cat.id) });
+        det.addEventListener('toggle', () => { det.open ? openCats.add(cat.id) : openCats.delete(cat.id); });
+        const thumb = h('span', { class: 'thumb' });
+        const paintThumb = () => { thumb.style.backgroundImage = cat.imagen ? 'url("' + src(cat.imagen) + '")' : ''; };
+        paintThumb();
+        const name = h('span', { class: 'title' }, cat.nombre || 'Categoría nueva');
+        const count = h('span', { class: 'count' }, cat.platos.length + ' platos');
+        const dishes = h('div');
+        const rerenderCat = () => { dishes.innerHTML = ''; dishes.append(...cat.platos.map((p, i) => dishBlock(cat, p, i, rerenderCat))); count.textContent = cat.platos.length + ' platos'; };
+        rerenderCat();
+        det.append(
+          h('summary', null, thumb, name, count),
+          h('div', { class: 'cat-body' },
+            h('div', { class: 'item-head' }, h('span', { class: 'title' }, 'Categoría'), tools(k.categorias, ci, 'la categoría «' + (cat.nombre || '') + '» y todos sus platos', rerender)),
+            field(cat, 'nombre', 'Nombre de la categoría', { onChange: v => { name.textContent = v || 'Categoría nueva'; } }),
+            imageField(cat, 'imagen', 'Foto del banner', { name: cat.nombre || 'categoria', maxSide: 1600, onChange: paintThumb }),
+            h('h3', { style: 'font-size:1.05rem;margin:22px 0 12px' }, 'Platos'),
+            dishes,
+            h('button', { class: 'btn', type: 'button', onclick: () => {
+              cat.platos.push({ id: uid('p'), nombre: '', descripcion: '', precio: null, variantes: [], imagen: '', aviso: '' });
+              touch(); rerenderCat();
+              dishes.lastElementChild.querySelector('input').focus();
+            } }, '+ Añadir plato')));
+        return det;
+      }
+
+      rerender();
+      return [
+        head('Carta', 'Categorías y platos. Pulsa una categoría para ver y editar sus platos.'),
+        card('Textos de la sección',
+          h('div', { class: 'row' }, field(k, 'etiqueta', 'Texto pequeño'), field(k, 'titulo', 'Título')),
+          field(k, 'texto', 'Texto bajo el título', { type: 'textarea' }),
+          field(k, 'nota', 'Nota al final de la carta', { placeholder: 'ITBIS no incluido.' })),
+        list,
+        h('button', { class: 'btn', type: 'button', onclick: () => {
+          const c = { id: uid('cat'), nombre: '', imagen: '', platos: [] };
+          k.categorias.push(c); openCats.add(c.id); touch(); rerender();
+          list.lastElementChild.querySelector('.cat-body input').focus();
+        } }, '+ Añadir categoría')
+      ];
+    }],
+
+    galeria: ['Galería', () => {
+      const g = data.galeria;
+      const list = h('div');
+      const rerender = () => {
+        list.innerHTML = '';
+        if (!g.fotos.length) list.append(h('p', { class: 'empty' }, 'Sin fotos: la sección Galería no se mostrará.'));
+        g.fotos.forEach((f, i) => list.append(h('div', { class: 'item' },
+          h('div', { class: 'item-head' }, h('span', { class: 'title' }, f.texto || 'Foto ' + (i + 1)), tools(g.fotos, i, 'esta foto', rerender)),
+          imageField(f, 'imagen', 'Imagen', { required: true, name: f.texto || 'galeria' }),
+          h('div', { class: 'row' }, field(f, 'texto', 'Rótulo sobre la foto'), field(f, 'descripcion', 'Descripción (accesibilidad)', { hint: 'Qué se ve en la foto, para personas que no pueden verla.' })))));
+      };
+      rerender();
+      return [
+        head('Galería', 'Fotos del restaurante y de los platos.'),
+        card('Textos', h('div', { class: 'row' }, field(g, 'etiqueta', 'Texto pequeño'), field(g, 'titulo', 'Título'))),
+        list,
+        h('button', { class: 'btn', type: 'button', onclick: async () => {
+          const p = await uploadImage('galeria', 1600);
+          if (p) { g.fotos.push({ imagen: p, texto: '', descripcion: '' }); touch(); rerender(); }
+        } }, '+ Añadir foto')
+      ];
+    }],
+
+    contacto: ['Contacto y horario', () => {
+      const c = data.contacto;
+      const hours = h('div');
+      const rerender = () => {
+        hours.innerHTML = '';
+        c.horario.forEach((x, i) => hours.append(h('div', { class: 'item' },
+          h('div', { class: 'item-head' }, h('span', { class: 'title' }, x.dias || 'Nuevo horario'), tools(c.horario, i, 'esta línea de horario', rerender)),
+          h('div', { class: 'row' }, field(x, 'dias', 'Días', { placeholder: 'Lun–Vie' }), field(x, 'horas', 'Horas', { placeholder: '10:00 a. m. – 10:00 p. m.' })))));
+      };
+      rerender();
+      return [
+        head('Contacto y horario', 'Datos de contacto, dirección y horario. El horario también aparece en la portada.'),
+        card('Textos', h('div', { class: 'row' }, field(c, 'etiqueta', 'Texto pequeño'), field(c, 'titulo', 'Título')), field(c, 'texto', 'Texto', { type: 'textarea' })),
+        card('Teléfono y WhatsApp',
+          h('div', { class: 'row' },
+            field(c, 'telefono', 'Teléfono (como se muestra)', { placeholder: '809-725-2728', inputmode: 'tel' }),
+            field(c, 'whatsapp', 'Número de WhatsApp para pedidos', { inputmode: 'numeric', hint: 'Solo números: 1 + código de área + número. Ej.: 18291234567' })),
+          field(c, 'mensajePedido', 'Mensaje inicial al escribir por WhatsApp')),
+        card('Dirección', field(c, 'direccion', 'Dirección'), field(c, 'mapa', 'Enlace de Google Maps', { type: 'url' })),
+        card('Horario', hours, h('button', { class: 'btn', type: 'button', onclick: () => { c.horario.push({ dias: '', horas: '' }); touch(); rerender(); } }, '+ Añadir línea'))
+      ];
+    }],
+
+    pie: ['Pie y redes', () => {
+      const r = data.redes, p = data.pie;
+      return [
+        head('Pie de página y redes sociales', 'Los enlaces del pie se crean solos con las redes que rellenes.'),
+        card('Pie de página', field(p, 'texto', 'Texto del pie', { hint: 'Se muestra después de «© ' + new Date().getFullYear() + '».' })),
+        card('Redes sociales',
+          field(r, 'instagram', 'Instagram', { type: 'url', placeholder: 'https://instagram.com/…' }),
+          field(r, 'facebook', 'Facebook', { type: 'url', placeholder: 'https://facebook.com/…' }),
+          field(r, 'tiktok', 'TikTok', { type: 'url', placeholder: 'https://tiktok.com/@…' }),
+          h('small', { style: 'color:var(--muted)' }, 'Deja vacía una red para que no aparezca.'))
+      ];
+    }],
+
+    eventos: ['Eventos', () => {
+      const list = h('div');
+      const today = new Date().toISOString().slice(0, 10);
+      const rerender = () => {
+        list.innerHTML = '';
+        if (!data.eventos.length) list.append(h('p', { class: 'empty' }, 'No hay eventos. La página de eventos muestra «Pronto anunciaremos nuevos eventos».'));
+        data.eventos.forEach((e, i) => {
+          const past = e.fecha && e.fecha < today;
+          const title = h('span', { class: 'title' }, (e.titulo || 'Evento nuevo') + (past ? ' (ya pasó, no se muestra)' : ''));
+          list.append(h('div', { class: 'item' },
+            h('div', { class: 'item-head' }, title, tools(data.eventos, i, 'el evento «' + (e.titulo || '') + '»', rerender)),
+            field(e, 'titulo', 'Título', { onChange: v => { title.textContent = v || 'Evento nuevo'; } }),
+            h('div', { class: 'row' }, field(e, 'fecha', 'Fecha', { type: 'date' }), field(e, 'hora', 'Hora', { placeholder: '8:00 p. m.' }), field(e, 'categoria', 'Etiqueta', { placeholder: 'Música' }), field(e, 'precio', 'Precio / entrada', { placeholder: 'Entrada libre' })),
+            field(e, 'descripcion', 'Descripción', { type: 'textarea' }),
+            check(e, 'reservar', 'Mostrar botón «Reservar por WhatsApp»'),
+            imageField(e, 'imagen', 'Foto (opcional)', { name: e.titulo || 'evento', maxSide: 1400 })));
+        });
+      };
+      rerender();
+      return [
+        head('Eventos', 'Se ordenan solos por fecha y desaparecen al día siguiente.'),
+        list,
+        h('button', { class: 'btn', type: 'button', onclick: () => {
+          data.eventos.push({ titulo: '', fecha: '', hora: '', categoria: '', precio: '', descripcion: '', imagen: '', reservar: true });
+          touch(); rerender();
+          list.lastElementChild.querySelector('input').focus();
+        } }, '+ Añadir evento')
+      ];
+    }]
+  };
+
+  function render() {
+    const tabs = $('#tabs');
+    tabs.querySelectorAll('.tab').forEach(t => t.remove());
+    const foot = tabs.querySelector('.side-foot');
+    Object.entries(SECTIONS).forEach(([id, [label]]) => {
+      tabs.insertBefore(h('button', { class: 'tab', type: 'button', 'aria-selected': String(id === tab), onclick: () => { tab = id; render(); window.scrollTo(0, 0); } }, label), foot);
+    });
+    $('#sideName').textContent = data.marca.nombre || 'Mi web';
+    const content = $('#content');
+    content.innerHTML = '';
+    content.append(...SECTIONS[tab][1]());
+  }
+
+  /* =================== vista previa =================== */
+  $('#previewBtn').addEventListener('click', () => {
+    const copy = JSON.parse(JSON.stringify(data));
+    // las imágenes nuevas aún no están en la web: se usan las de este navegador
+    const swap = o => {
+      if (Array.isArray(o)) o.forEach((v, i) => { if (typeof v === 'string' && pending.has(v)) o[i] = pending.get(v).url; else swap(v); });
+      else if (o && typeof o === 'object') Object.keys(o).forEach(k => { const v = o[k]; if (typeof v === 'string' && pending.has(v)) o[k] = pending.get(v).url; else swap(v); });
+    };
+    swap(copy);
+    try { localStorage.setItem(PREVIEW_KEY, JSON.stringify(copy)); }
+    catch (e) { toast('No se pudo preparar la vista previa en este navegador.', true); return; }
+    window.open('index.html?vista-previa', '_blank');
+  });
+
+  /* =================== sesión =================== */
+  function showLogin(err) {
+    $('#app').hidden = true;
+    $('#login').hidden = false;
+    $('#lRepo').value = (cfg && cfg.repo) || DEFAULT_REPO;
+    $('#lBranch').value = (cfg && cfg.branch) || 'master';
+    $('#loginError').hidden = !err;
+    $('#loginError').textContent = err || '';
+  }
+
+  async function enter() {
+    busy('Comprobando acceso…');
+    try {
+      const repo = await api('');
+      if (repo.permissions && !repo.permissions.push) throw Object.assign(new Error('Esta clave solo puede leer. Necesita «Contents: Read and write».'), { status: 403 });
+      $('#siteLink').href = 'index.html';
+      $('#login').hidden = true;
+      $('#app').hidden = false;
+      await loadContent();
+    } catch (e) {
+      busy(null);
+      showLogin(e.status === 401 ? 'La clave no es válida o ha caducado.' : e.status === 404 ? 'No se encuentra el repositorio o la clave no tiene acceso a él (o falta contenido.json).' : e.message);
+    }
+  }
+
+  $('#loginForm').addEventListener('submit', e => {
+    e.preventDefault();
+    cfg = { repo: $('#lRepo').value.trim().replace(/^https:\/\/github\.com\//, '').replace(/\/$/, ''), branch: $('#lBranch').value.trim(), token: $('#lToken').value.trim() };
+    try {
+      if ($('#lRemember').checked) localStorage.setItem(CFG_KEY, JSON.stringify(cfg));
+      else { localStorage.removeItem(CFG_KEY); sessionStorage.setItem(CFG_KEY, JSON.stringify(cfg)); }
+    } catch (err) { /* almacenamiento no disponible */ }
+    $('#lToken').value = '';
+    enter();
+  });
+
+  $('#logoutBtn').addEventListener('click', () => {
+    if (dirty && !confirm('Tienes cambios sin guardar. ¿Salir igualmente?')) return;
+    try { localStorage.removeItem(CFG_KEY); sessionStorage.removeItem(CFG_KEY); } catch (e) { /* nada */ }
+    cfg = { repo: cfg.repo, branch: cfg.branch, token: '' };
+    setDirty(false);
+    showLogin();
+  });
+  $('#reloadBtn').addEventListener('click', () => {
+    if (dirty && !confirm('¿Descartar todos los cambios sin guardar?')) return;
+    loadContent().catch(e => toast('No se pudo cargar: ' + e.message, true));
+  });
+  $('#saveBtn').addEventListener('click', save);
+  document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') { e.preventDefault(); if (dirty) save(); }
+  });
+
+  try { cfg = JSON.parse(localStorage.getItem(CFG_KEY) || sessionStorage.getItem(CFG_KEY) || 'null'); } catch (e) { cfg = null; }
+  if (cfg && cfg.token) enter(); else showLogin();
+})();
+</script>
+</body>
+</html>
