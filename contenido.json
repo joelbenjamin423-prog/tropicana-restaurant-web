@@ -26,7 +26,7 @@
       "item14",
       "item27",
       "item24",
-      "item50-g"
+      "item50"
     ],
     "fotos": [
       {
@@ -111,33 +111,94 @@
         ]
       },
       {
+        "id": "sopas",
+        "nombre": "Sopas",
+        "imagen": "",
+        "platos": [
+          {
+            "id": "sopas-pescado",
+            "nombre": "Sopa de pescado",
+            "descripcion": "Reconfortante caldo de mero fresco y vegetales.",
+            "precio": 525,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "sopas-camarones",
+            "nombre": "Sopa de camarones",
+            "descripcion": "Rico y sabroso caldo de camarones frescos y vegetales.",
+            "precio": 625,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "sopas-pollo",
+            "nombre": "Sopa de pollo",
+            "descripcion": "Sabroso caldo casero con trozos de pollo y vegetales.",
+            "precio": 430,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "sopas-vegetales",
+            "nombre": "Sopa de vegetales",
+            "descripcion": "Nutritivo y delicioso caldo de brócoli, coliflor, zanahoria y papa.",
+            "precio": 390,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          }
+        ]
+      },
+      {
         "id": "arroces",
         "nombre": "Arroces",
         "imagen": "assets/plato3.webp",
         "platos": [
           {
-            "id": "item5",
-            "nombre": "Chofan de camarones",
-            "descripcion": "Deliciosa combinación de arroz frito, camarones y verduras.",
-            "precio": 395,
+            "id": "item7",
+            "nombre": "Chofán mixto",
+            "descripcion": "Arroz salteado con verduras frescas, pechuga de pollo, filete de cerdo y un toque de salsa china que lo hace irresistible.",
+            "precio": 525,
             "variantes": [],
             "imagen": "",
             "aviso": ""
           },
           {
             "id": "item6",
-            "nombre": "Chofan de pollo",
-            "descripcion": "Arroz frito, pechuga, verduras y salsa china.",
-            "precio": 295,
+            "nombre": "Chofán de pollo",
+            "descripcion": "Irresistible arroz salteado con verduras frescas, pechuga de pollo y salsa china.",
+            "precio": 475,
             "variantes": [],
             "imagen": "",
             "aviso": ""
           },
           {
-            "id": "item7",
-            "nombre": "Chofan mixto",
-            "descripcion": "Rica combinación de arroz frito, pechuga, filete de cerdo y verduras.",
-            "precio": 305,
+            "id": "item5",
+            "nombre": "Chofán de camarones",
+            "descripcion": "Delicioso arroz salteado con verduras y camarones frescos en salsa china.",
+            "precio": 645,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "arroces-vegetales",
+            "nombre": "Arroz con vegetales",
+            "descripcion": "Sabroso y ligero arroz salteado en una variedad de vegetales frescos.",
+            "precio": 430,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "arroces-camarones",
+            "nombre": "Arroz con camarones",
+            "descripcion": "Rica combinación de arroz amarillo y camarones frescos para un sabor marino delicioso.",
+            "precio": 645,
             "variantes": [],
             "imagen": "",
             "aviso": ""
@@ -150,28 +211,19 @@
         "imagen": "assets/plato4.webp",
         "platos": [
           {
-            "id": "item8",
-            "nombre": "Pasta 4 quesos",
-            "descripcion": "Exquisita pasta preparada con queso mozzarella, danés, cheddar y parmesano.",
-            "precio": 315,
+            "id": "pastas-tropicana",
+            "nombre": "Pasta Tropicana",
+            "descripcion": "Sabrosa, en salsa a base de tocineta, vegetales, crema de leche y queso parmesano.",
+            "precio": 575,
             "variantes": [],
             "imagen": "",
             "aviso": ""
           },
           {
-            "id": "item9",
-            "nombre": "Pasta Alfredo",
-            "descripcion": "Sabroso espagueti con jamón y una sabrosa salsa bechamel.",
-            "precio": 275,
-            "variantes": [],
-            "imagen": "",
-            "aviso": ""
-          },
-          {
-            "id": "item10",
-            "nombre": "Pasta carbonara",
-            "descripcion": "Sabrosa pasta a base de salsa bechamel, tocineta y queso.",
-            "precio": 285,
+            "id": "pastas-parmesana",
+            "nombre": "Pasta parmesana",
+            "descripcion": "Cocida y bañada en una exquisita salsa de crema con queso parmesano.",
+            "precio": 525,
             "variantes": [],
             "imagen": "",
             "aviso": ""
@@ -179,8 +231,26 @@
           {
             "id": "item11",
             "nombre": "Pasta con camarones",
-            "descripcion": "Deliciosa pasta en salsa blanca, mezclada con unos ricos camarones.",
-            "precio": 395,
+            "descripcion": "Suculenta y servida en salsa bechamel, camarones salteados y queso parmesano.",
+            "precio": 675,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item10",
+            "nombre": "Pasta carbonara",
+            "descripcion": "Deliciosa, en una salsa cremosa de tocineta, con un sabor ahumado inconfundible.",
+            "precio": 525,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item8",
+            "nombre": "Pasta 4 quesos",
+            "descripcion": "Rica crema de cuatro quesos cremosos, que ofrece una textura suave y un sabor intenso.",
+            "precio": 565,
             "variantes": [],
             "imagen": "",
             "aviso": ""
@@ -193,46 +263,28 @@
         "imagen": "assets/plato2.webp",
         "platos": [
           {
-            "id": "item12",
-            "nombre": "Salmón a la termidor",
-            "descripcion": "Una sabrosa pieza de salmón importado, en salsa blanca, hongos y brandy.",
-            "precio": 495,
-            "variantes": [],
-            "imagen": "",
-            "aviso": ""
-          },
-          {
             "id": "item13",
             "nombre": "Salmón a la plancha",
-            "descripcion": "Una apetecible pieza de salmón importado, con la guarnición de tu preferencia.",
-            "precio": 445,
+            "descripcion": "Filete de salmón perfectamente cocinado a la plancha, con un toque de limón.",
+            "precio": 825,
             "variantes": [],
             "imagen": "",
             "aviso": ""
           },
           {
-            "id": "item14",
-            "nombre": "Camarones Tropicana",
-            "descripcion": "Ricos camarones en salsa a base de tocineta, cebolla, ajo, ajíes, alcaparras y crema de leche.",
-            "precio": 525,
+            "id": "item12",
+            "nombre": "Salmón termidor",
+            "descripcion": "Una sabrosa pieza de salmón importado en salsa blanca, hongos y brandy.",
+            "precio": 895,
             "variantes": [],
             "imagen": "",
             "aviso": ""
           },
           {
-            "id": "item15",
-            "nombre": "Camarones a la plancha",
-            "descripcion": "Acompañados de tostones, papas fritas, puré o vegetales.",
-            "precio": 420,
-            "variantes": [],
-            "imagen": "",
-            "aviso": ""
-          },
-          {
-            "id": "item16",
-            "nombre": "Camarones a la criolla",
-            "descripcion": "Preparados en una sabrosa salsa a base de tomates, cebolla, ajo, ajíes y verduras.",
-            "precio": 465,
+            "id": "pescados-salmon-tropicana",
+            "nombre": "Salmón Tropicana",
+            "descripcion": "Salmón a la plancha acompañado de salsa a base de tocineta, vegetales, crema de leche y queso parmesano.",
+            "precio": 825,
             "variantes": [],
             "imagen": "",
             "aviso": ""
@@ -240,17 +292,17 @@
           {
             "id": "item17",
             "nombre": "Mero a la plancha",
-            "descripcion": "Filete de mero, acompañado de tostones, papas fritas, puré o vegetales.",
-            "precio": 325,
+            "descripcion": "Jugosa pieza de mero basa, acompañada de la guarnición de tu preferencia.",
+            "precio": 525,
             "variantes": [],
             "imagen": "",
             "aviso": ""
           },
           {
-            "id": "item18",
-            "nombre": "Mero al ajillo",
-            "descripcion": "Irresistible filete de mero bañado en una sabrosa salsa a base de ajo y perejil.",
-            "precio": 345,
+            "id": "item20",
+            "nombre": "Mero rebosado en camarones",
+            "descripcion": "Mero basa cubierto con camarones frescos y una deliciosa salsa aurora.",
+            "precio": 895,
             "variantes": [],
             "imagen": "",
             "aviso": ""
@@ -258,26 +310,44 @@
           {
             "id": "item19",
             "nombre": "Mero Tropicana",
-            "descripcion": "Filete de mero en salsa a base de tocineta, cebolla, ajo, alcaparras y crema de leche.",
-            "precio": 345,
+            "descripcion": "Delicioso mero servido en salsa a base de tocineta, vegetales, crema de leche y queso parmesano.",
+            "precio": 825,
             "variantes": [],
             "imagen": "",
             "aviso": ""
           },
           {
-            "id": "item20",
-            "nombre": "Mero rebozado en camarones",
-            "descripcion": "Filete de mero en salsa aurora con camarones frescos.",
-            "precio": 495,
+            "id": "item14",
+            "nombre": "Camarones Tropicana",
+            "descripcion": "Frescos y salteados en salsa a base de tocineta, vegetales, crema de leche y queso parmesano.",
+            "precio": 925,
             "variantes": [],
             "imagen": "",
             "aviso": ""
           },
           {
-            "id": "item21",
-            "nombre": "Mero jardinera",
-            "descripcion": "Delicioso mero bañado con una rica salsa bechamel y vegetales.",
-            "precio": 380,
+            "id": "item15",
+            "nombre": "Camarones a la plancha",
+            "descripcion": "Camarones jugosos cocidos a la plancha, sazonados con ajo y especias, con la guarnición de tu preferencia.",
+            "precio": 825,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "pescados-camarones-ajillo",
+            "nombre": "Camarones al ajillo",
+            "descripcion": "Camarones cocinados con ajo, aceite de oliva y hierbas, con la guarnición de tu preferencia.",
+            "precio": 845,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "pescados-camarones-carbonara",
+            "nombre": "Camarones a la carbonara",
+            "descripcion": "Camarones salteados en una crema con queso parmesano, tocineta ahumada y un toque de vino.",
+            "precio": 875,
             "variantes": [],
             "imagen": "",
             "aviso": ""
@@ -290,10 +360,64 @@
         "imagen": "assets/plato1.webp",
         "platos": [
           {
+            "id": "item25",
+            "nombre": "Mofongo de pollo al ajillo",
+            "descripcion": "Pechuga de pollo y plátanos majados en pilón con una rica salsa a base de ajo y perejil.",
+            "precio": 450,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "mofongos-pollo-criolla",
+            "nombre": "Mofongo de pollo a la criolla",
+            "descripcion": "Pechuga de pollo y plátanos majados en pilón con una rica salsa a base de tomates, cebollas y verduras.",
+            "precio": 450,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
             "id": "item22",
             "nombre": "Mofongo de chicharrón",
-            "descripcion": "Plátano majado en pilón, con crocante chicharrón de cerdo.",
-            "precio": 295,
+            "descripcion": "Chicharrón de cerdo crocante envuelto en plátanos fritos majados al pilón.",
+            "precio": 425,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "mofongos-filete-res",
+            "nombre": "Mofongo de filete de res",
+            "descripcion": "Salteados y jugosos trozos de res, servidos con plátano frito majado en pilón y una cremosa salsa.",
+            "precio": 565,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "mofongos-filete-cerdo",
+            "nombre": "Mofongo de filete de cerdo",
+            "descripcion": "Jugosos trozos de cerdo dorados a la perfección, servidos con plátano frito majado en pilón y una cremosa salsa.",
+            "precio": 475,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item26",
+            "nombre": "Mofongo cuatro quesos",
+            "descripcion": "Exquisito fundido de queso crema, mozzarella, cheddar y parmesano con plátanos fritos majados al pilón.",
+            "precio": 550,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "mofongos-mero-ajillo",
+            "nombre": "Mofongo de mero al ajillo",
+            "descripcion": "Suculentos filetes de mero en una deliciosa salsa al ajillo y plátanos fritos majados en pilón.",
+            "precio": 525,
             "variantes": [],
             "imagen": "",
             "aviso": ""
@@ -301,8 +425,17 @@
           {
             "id": "item23",
             "nombre": "Mofongo de camarones al ajillo",
-            "descripcion": "Camarones frescos y plátanos majados en pilón, salsa de ajo y perejil o criolla.",
-            "precio": 445,
+            "descripcion": "Plátanos fritos majados en pilón con camarones salteados en una aromática salsa a base de ajo y perejil.",
+            "precio": 595,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "mofongos-camarones-criolla",
+            "nombre": "Mofongo de camarones a la criolla",
+            "descripcion": "Camarones frescos y plátanos majados en pilón con una rica salsa a base de tomates, cebollas y verduras.",
+            "precio": 595,
             "variantes": [],
             "imagen": "",
             "aviso": ""
@@ -310,26 +443,8 @@
           {
             "id": "item24",
             "nombre": "Mofongo de camarones a la crema",
-            "descripcion": "Camarones, plátanos fritos majados en pilón con salsa bechamel y queso mozzarella.",
-            "precio": 445,
-            "variantes": [],
-            "imagen": "",
-            "aviso": ""
-          },
-          {
-            "id": "item25",
-            "nombre": "Mofongo de pollo al ajillo o a la criolla",
-            "descripcion": "Plátanos majados al pilón, con salsa de ajo y perejil o salsa criolla.",
-            "precio": 325,
-            "variantes": [],
-            "imagen": "",
-            "aviso": ""
-          },
-          {
-            "id": "item26",
-            "nombre": "Mofongo de queso",
-            "descripcion": "Plátanos majados al pilón con mozzarella, cheddar y parmesano.",
-            "precio": 345,
+            "descripcion": "Camarones frescos y plátanos fritos majados al pilón en salsa bechamel y queso mozzarella.",
+            "precio": 625,
             "variantes": [],
             "imagen": "",
             "aviso": ""
@@ -343,27 +458,18 @@
         "platos": [
           {
             "id": "item27",
-            "nombre": "Churrasco Angus",
-            "descripcion": "Churrasco importado al término que desees y la guarnición de tu preferencia.",
-            "precio": 785,
-            "variantes": [],
-            "imagen": "",
-            "aviso": ""
-          },
-          {
-            "id": "item28",
-            "nombre": "T-Bone (10 a 12 oz)",
-            "descripcion": "Exquisito corte de carne importada, fresca y jugosa.",
-            "precio": 745,
+            "nombre": "Churrasco Angus (10 oz)",
+            "descripcion": "Churrasco importado al término que desees, con la guarnición de tu preferencia.",
+            "precio": 1325,
             "variantes": [],
             "imagen": "",
             "aviso": ""
           },
           {
             "id": "item29",
-            "nombre": "Sirloin (10 a 12 oz)",
-            "descripcion": "Sabroso y jugoso corte de carne importada al término de tu preferencia.",
-            "precio": 645,
+            "nombre": "Sirloin Steak",
+            "descripcion": "Sabroso y jugoso corte de carne importada al término de tu preferencia, con la guarnición de tu preferencia.",
+            "precio": 1275,
             "variantes": [],
             "imagen": "",
             "aviso": ""
@@ -371,44 +477,44 @@
           {
             "id": "item30",
             "nombre": "Filete de res a la plancha",
-            "descripcion": "Suave, jugoso y sabroso filete de res con la guarnición de tu preferencia.",
-            "precio": 445,
+            "descripcion": "Exquisito filete a la plancha, sazonado con hierbas frescas y acompañado de la guarnición de tu elección.",
+            "precio": 775,
             "variantes": [],
             "imagen": "",
             "aviso": ""
           },
           {
-            "id": "item31",
-            "nombre": "Pechuga Tropicana",
-            "descripcion": "Pechuga en salsa a base de tocineta, cebolla, alcaparras y crema de leche.",
-            "precio": 420,
+            "id": "carnes-res-encebollado",
+            "nombre": "Filete de res encebollado",
+            "descripcion": "Delicioso filete a la plancha, bañado en abundante cebolla salteada.",
+            "precio": 825,
             "variantes": [],
             "imagen": "",
             "aviso": ""
           },
           {
-            "id": "item32",
-            "nombre": "Pechuga a la plancha",
-            "descripcion": "Jugosa e irresistible pechuga, con la guarnición de tu preferencia.",
-            "precio": 325,
+            "id": "carnes-res-mingon",
+            "nombre": "Filete de res salteado en salsa mingón",
+            "descripcion": "Jugoso filete bañado en la clásica salsa mingón con un sutil toque de vino.",
+            "precio": 925,
             "variantes": [],
             "imagen": "",
             "aviso": ""
           },
           {
-            "id": "item33",
-            "nombre": "Pechuga rebozada de plátano maduro y queso",
-            "descripcion": "Rebozada en queso fundido y plátano maduro, bañada con salsa bechamel.",
-            "precio": 395,
+            "id": "carnes-cerdo-salteado",
+            "nombre": "Filete de cerdo salteado",
+            "descripcion": "Jugoso filete de cerdo cortado en tiras y salteado con vegetales frescos.",
+            "precio": 645,
             "variantes": [],
             "imagen": "",
             "aviso": ""
           },
           {
-            "id": "item34",
-            "nombre": "Pechuga rebozada en camarones",
-            "descripcion": "Rica pechuga bañada en salsa aurora con camarones frescos.",
-            "precio": 425,
+            "id": "carnes-cerdo-carbonara",
+            "nombre": "Filete de cerdo a la carbonara",
+            "descripcion": "Delicioso filete bañado en una salsa cremosa de tocineta, con un sabor ahumado inconfundible.",
+            "precio": 675,
             "variantes": [],
             "imagen": "",
             "aviso": ""
@@ -416,26 +522,17 @@
           {
             "id": "item35",
             "nombre": "Filete de cerdo a la plancha",
-            "descripcion": "Jugoso filete acompañado de la guarnición de tu preferencia.",
-            "precio": 360,
+            "descripcion": "Jugoso filete de cerdo cocido a la perfección, con tu guarnición preferida.",
+            "precio": 575,
             "variantes": [],
             "imagen": "",
             "aviso": ""
           },
           {
-            "id": "item36",
-            "nombre": "Filete de cerdo en salsa de hongos",
-            "descripcion": "Rico y jugoso filete bañado en una sabrosa salsa de hongos.",
-            "precio": 395,
-            "variantes": [],
-            "imagen": "",
-            "aviso": ""
-          },
-          {
-            "id": "item37",
-            "nombre": "Lomo de cerdo al pesto",
-            "descripcion": "Suave y sabroso lomo, destacado por un toque de pesto de albahaca.",
-            "precio": 375,
+            "id": "carnes-cerdo-teriyaki",
+            "nombre": "Filete de cerdo teriyaki",
+            "descripcion": "Tiernos filetes salteados en una salsa perfectamente equilibrada entre lo dulce y lo salado.",
+            "precio": 675,
             "variantes": [],
             "imagen": "",
             "aviso": ""
@@ -443,17 +540,17 @@
           {
             "id": "item38",
             "nombre": "Chuleta a la plancha",
-            "descripcion": "Chuleta fresca adobada a tu gusto, con tostones o papas fritas.",
-            "precio": 325,
+            "descripcion": "Fresca y exquisita, con un acabado a tu gusto y la guarnición de tu preferencia.",
+            "precio": 525,
             "variantes": [],
             "imagen": "",
             "aviso": ""
           },
           {
-            "id": "item39",
-            "nombre": "Chuleta rebozada de tocineta y queso",
-            "descripcion": "Chuleta rebozada con tocineta y queso mozzarella.",
-            "precio": 395,
+            "id": "carnes-chuleta-carbonara",
+            "nombre": "Chuleta a la carbonara",
+            "descripcion": "Chuleta fresca bañada en una salsa cremosa de tocineta, con un sabor ahumado inconfundible.",
+            "precio": 625,
             "variantes": [],
             "imagen": "",
             "aviso": ""
@@ -461,61 +558,110 @@
           {
             "id": "item40",
             "nombre": "Costillas BBQ",
-            "descripcion": "Frescas y sabrosas costillitas al horno, servidas en salsa BBQ.",
-            "precio": 395,
+            "descripcion": "Frescas y sabrosas, hechas al horno y bañadas en una salsa barbacoa dulce y ahumada.",
+            "precio": 775,
             "variantes": [],
             "imagen": "",
             "aviso": ""
           },
           {
-            "id": "p-carnes-14",
-            "nombre": "Costillas nuevas",
-            "descripcion": "Pregunta por esta opción en el restaurante.",
-            "precio": null,
+            "id": "carnes-costillas-naturales",
+            "nombre": "Costillas naturales",
+            "descripcion": "Cocidas lentamente al natural para lograr una textura jugosa, con la guarnición de tu preferencia.",
+            "precio": 725,
             "variantes": [],
             "imagen": "",
-            "aviso": "Consulta disponibilidad"
+            "aviso": ""
+          },
+          {
+            "id": "item32",
+            "nombre": "Pechuga a la plancha",
+            "descripcion": "Irresistible y jugosa pechuga, acompañada de la guarnición de tu elección.",
+            "precio": 525,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "carnes-pechuga-salteada",
+            "nombre": "Pechuga salteada",
+            "descripcion": "Jugosas tiras de pechuga de pollo salteadas en vegetales, con tu guarnición preferida.",
+            "precio": 595,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item31",
+            "nombre": "Pechuga Tropicana",
+            "descripcion": "Jugosa pechuga en una rica salsa a base de tocineta, vegetales, crema de leche y queso parmesano.",
+            "precio": 625,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "carnes-pechuga-teriyaki",
+            "nombre": "Pechuga teriyaki",
+            "descripcion": "Tiernas tiras de pollo salteadas en una salsa perfectamente equilibrada entre lo dulce y lo salado.",
+            "precio": 625,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "item33",
+            "nombre": "Pechuga rebosada de plátano maduro",
+            "descripcion": "Jugosa pechuga bañada con crema bechamel y queso mozzarella, con trocitos de plátano maduro.",
+            "precio": 645,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
           }
         ]
       },
       {
         "id": "compartir",
-        "nombre": "Para compartir",
+        "nombre": "Parrilladas",
         "imagen": "assets/plato6.webp",
         "platos": [
           {
             "id": "item42",
-            "nombre": "Parrillada Tropicana (6 personas)",
-            "descripcion": "Carne, filete de res, filete de cerdo, costillitas, chuleta, salchicha, pechuga, tostones, papas fritas y vegetales salteados.",
-            "precio": 2145,
-            "variantes": [],
-            "imagen": "",
-            "aviso": ""
-          },
-          {
-            "id": "item43",
-            "nombre": "Parrillada Tropicana (3 personas)",
-            "descripcion": "La misma combinación en versión para 3 personas.",
-            "precio": 1225,
-            "variantes": [],
+            "nombre": "Parrillada Tropicana",
+            "descripcion": "Filete de res, filete de cerdo, costillas, chuleta ahumada, salchichas, pechuga de pollo a la plancha y vegetales salteados, con tostones y papas fritas.",
+            "precio": null,
+            "variantes": [
+              {
+                "id": "p4",
+                "nombre": "4 personas",
+                "precio": 2725
+              },
+              {
+                "id": "p6",
+                "nombre": "6 personas",
+                "precio": 3465
+              }
+            ],
             "imagen": "",
             "aviso": ""
           },
           {
             "id": "item44",
-            "nombre": "Parrillada Mar y Tierra (6 personas)",
-            "descripcion": "Camarones, calamar, mero, filete de res, filete de cerdo, costillitas, chuletas, salchichas, pechuga, tostones, papas fritas y vegetales.",
-            "precio": 2525,
-            "variantes": [],
-            "imagen": "",
-            "aviso": ""
-          },
-          {
-            "id": "item45",
-            "nombre": "Parrillada Mar y Tierra (3 personas)",
-            "descripcion": "La misma combinación en versión para 3 personas.",
-            "precio": 1425,
-            "variantes": [],
+            "nombre": "Parrillada Mar y Tierra",
+            "descripcion": "Camarones, calamar, filetes de mero, res y cerdo, costillas, chuleta ahumada, salchichas, pechuga de pollo a la plancha y vegetales salteados, con tostones y papas fritas.",
+            "precio": null,
+            "variantes": [
+              {
+                "id": "p4",
+                "nombre": "4 personas",
+                "precio": 3485
+              },
+              {
+                "id": "p6",
+                "nombre": "6 personas",
+                "precio": 4225
+              }
+            ],
             "imagen": "",
             "aviso": ""
           }
@@ -529,89 +675,27 @@
           {
             "id": "item46",
             "nombre": "Pizza de jamón y queso",
-            "descripcion": "Disponible en tamaño grande o pequeño.",
-            "precio": null,
-            "variantes": [
-              {
-                "id": "g",
-                "nombre": "Grande",
-                "precio": 360
-              },
-              {
-                "id": "p",
-                "nombre": "Pequeña",
-                "precio": 150
-              }
-            ],
+            "descripcion": "Un clásico con salsa de tomate, jamón cocido y una generosa capa de queso mozzarella derretido.",
+            "precio": 560,
+            "variantes": [],
             "imagen": "",
             "aviso": ""
           },
           {
             "id": "p-pizzas-1",
             "nombre": "Pizza de pepperoni",
-            "descripcion": "Disponible en tamaño grande o pequeño. Consulta el precio por WhatsApp.",
-            "precio": null,
+            "descripcion": "Masa crujiente al horno con salsa de tomate, queso mozzarella y abundantes rodajas de pepperoni.",
+            "precio": 625,
             "variantes": [],
-            "imagen": "",
-            "aviso": "Precio por confirmar"
-          },
-          {
-            "id": "item48",
-            "nombre": "Pizza de queso",
-            "descripcion": "Disponible en tamaño grande o pequeño.",
-            "precio": null,
-            "variantes": [
-              {
-                "id": "g",
-                "nombre": "Grande",
-                "precio": 360
-              },
-              {
-                "id": "p",
-                "nombre": "Pequeña",
-                "precio": 150
-              }
-            ],
-            "imagen": "",
-            "aviso": ""
-          },
-          {
-            "id": "item49",
-            "nombre": "Pizza vegetariana",
-            "descripcion": "Disponible en tamaño grande o pequeño.",
-            "precio": null,
-            "variantes": [
-              {
-                "id": "g",
-                "nombre": "Grande",
-                "precio": 420
-              },
-              {
-                "id": "p",
-                "nombre": "Pequeña",
-                "precio": 225
-              }
-            ],
             "imagen": "",
             "aviso": ""
           },
           {
             "id": "item50",
             "nombre": "Pizza Tropicana",
-            "descripcion": "Disponible en tamaño grande o pequeño.",
-            "precio": null,
-            "variantes": [
-              {
-                "id": "g",
-                "nombre": "Grande",
-                "precio": 775
-              },
-              {
-                "id": "p",
-                "nombre": "Pequeña",
-                "precio": 295
-              }
-            ],
+            "descripcion": "Pechuga de pollo, jamón, pepperoni, salchicha, maíz dulce, aceitunas, champiñones, cebolla, ají cubanela y ají morrón sobre salsa de tomate y queso mozzarella.",
+            "precio": 1025,
+            "variantes": [],
             "imagen": "",
             "aviso": ""
           }
