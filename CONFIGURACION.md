@@ -113,6 +113,8 @@ Para ver cómo queda el diseño con eventos, abre `eventos.html?ejemplo`: muestr
 | `sopas.webp` | Banner de Sopas | https://unsplash.com/photos/7ax3l4quF-M (Keesha's Kitchen) |
 | `ensalada.webp`, `pizza.webp` | Banners de Ensaladas y Pizzas | Unsplash |
 
+- **Fotos de los platos (`assets/platos/<id del plato>.webp`):** hay 45, también de Unsplash con la misma licencia gratuita. Están recortadas a 640×400 y pesan unos 50 KB cada una. Se eligieron solo cuando la foto se parece de verdad al plato; los demás (mofongos y algunos platos de la casa) no tienen foto. La lista de qué foto original corresponde a cada plato está en `assets/platos/FUENTES.txt`. Para cambiar una por una foto real: panel → Carta → plato → Foto del plato.
+
 ## Cambios en el código
 
 Edita `web-tropicana-restaurant.html`, cópialo sobre `index.html`, haz commit y push a `master`. GitHub Pages se actualiza en 1-2 minutos. Los textos del HTML solo se ven si `contenido.json` no carga: para cambiar contenido, usa el panel.

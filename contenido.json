@@ -78,7 +78,7 @@
             "descripcion": "Crujientes y sabrosos, rellenos de queso mozzarella, con una rica salsa tártara.",
             "precio": 265,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/entradas-deditos-queso.webp",
             "aviso": ""
           },
           {
@@ -87,7 +87,7 @@
             "descripcion": "Suaves por dentro y doradas por fuera, rellenas de pollo desmenuzado con especias y un toque de cremosidad que se deshace en la boca.",
             "precio": 240,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/entradas-croquetas-pollo.webp",
             "aviso": ""
           },
           {
@@ -105,7 +105,7 @@
             "descripcion": "Croquetas empanizadas rellenas de bacalao desmenuzado, con un sabor inconfundible.",
             "precio": 275,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/entradas-croquetas-bacalao.webp",
             "aviso": ""
           },
           {
@@ -114,7 +114,7 @@
             "descripcion": "Jugosas, crocantes e irresistibles.",
             "precio": 240,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/entradas-croquetas-jamon.webp",
             "aviso": ""
           }
         ]
@@ -130,7 +130,7 @@
             "descripcion": "Fresca combinación de lechuga, tomate y pepino, aderezada a tu gusto.",
             "precio": 215,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item1.webp",
             "aviso": ""
           },
           {
@@ -139,7 +139,7 @@
             "descripcion": "Fresca lechuga, tomate y trozos de queso, aderezada a tu gusto.",
             "precio": 310,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/ensaladas-queso.webp",
             "aviso": ""
           },
           {
@@ -148,7 +148,7 @@
             "descripcion": "Fresca combinación de lechuga con trozos de pechuga de pollo a la plancha, aderezada a tu gusto.",
             "precio": 375,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/ensaladas-pollo.webp",
             "aviso": ""
           }
         ]
@@ -164,7 +164,7 @@
             "descripcion": "Reconfortante caldo de mero fresco y vegetales.",
             "precio": 525,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/sopas-pescado.webp",
             "aviso": ""
           },
           {
@@ -173,7 +173,7 @@
             "descripcion": "Rico y sabroso caldo de camarones frescos y vegetales.",
             "precio": 625,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/sopas-camarones.webp",
             "aviso": ""
           },
           {
@@ -182,7 +182,7 @@
             "descripcion": "Sabroso caldo casero con trozos de pollo y vegetales.",
             "precio": 430,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/sopas-pollo.webp",
             "aviso": ""
           },
           {
@@ -191,7 +191,7 @@
             "descripcion": "Nutritivo y delicioso caldo de brócoli, coliflor, zanahoria y papa.",
             "precio": 390,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/sopas-vegetales.webp",
             "aviso": ""
           }
         ]
@@ -207,7 +207,7 @@
             "descripcion": "Arroz salteado con verduras frescas, pechuga de pollo, filete de cerdo y un toque de salsa china que lo hace irresistible.",
             "precio": 525,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item7.webp",
             "aviso": ""
           },
           {
@@ -216,7 +216,7 @@
             "descripcion": "Irresistible arroz salteado con verduras frescas, pechuga de pollo y salsa china.",
             "precio": 475,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item6.webp",
             "aviso": ""
           },
           {
@@ -225,7 +225,7 @@
             "descripcion": "Delicioso arroz salteado con verduras y camarones frescos en salsa china.",
             "precio": 645,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item5.webp",
             "aviso": ""
           },
           {
@@ -234,7 +234,7 @@
             "descripcion": "Sabroso y ligero arroz salteado en una variedad de vegetales frescos.",
             "precio": 430,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/arroces-vegetales.webp",
             "aviso": ""
           },
           {
@@ -243,7 +243,7 @@
             "descripcion": "Rica combinación de arroz amarillo y camarones frescos para un sabor marino delicioso.",
             "precio": 645,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/arroces-camarones.webp",
             "aviso": ""
           }
         ]
@@ -259,7 +259,7 @@
             "descripcion": "Sabrosa, en salsa a base de tocineta, vegetales, crema de leche y queso parmesano.",
             "precio": 575,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/pastas-tropicana.webp",
             "aviso": ""
           },
           {
@@ -268,7 +268,7 @@
             "descripcion": "Cocida y bañada en una exquisita salsa de crema con queso parmesano.",
             "precio": 525,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/pastas-parmesana.webp",
             "aviso": ""
           },
           {
@@ -277,7 +277,7 @@
             "descripcion": "Suculenta y servida en salsa bechamel, camarones salteados y queso parmesano.",
             "precio": 675,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item11.webp",
             "aviso": ""
           },
           {
@@ -286,7 +286,7 @@
             "descripcion": "Deliciosa, en una salsa cremosa de tocineta, con un sabor ahumado inconfundible.",
             "precio": 525,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item10.webp",
             "aviso": ""
           },
           {
@@ -295,7 +295,7 @@
             "descripcion": "Rica crema de cuatro quesos cremosos, que ofrece una textura suave y un sabor intenso.",
             "precio": 565,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item8.webp",
             "aviso": ""
           }
         ]
@@ -311,7 +311,7 @@
             "descripcion": "Filete de salmón perfectamente cocinado a la plancha, con un toque de limón.",
             "precio": 825,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item13.webp",
             "aviso": ""
           },
           {
@@ -320,7 +320,7 @@
             "descripcion": "Una sabrosa pieza de salmón importado en salsa blanca, hongos y brandy.",
             "precio": 895,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item12.webp",
             "aviso": ""
           },
           {
@@ -329,7 +329,7 @@
             "descripcion": "Salmón a la plancha acompañado de salsa a base de tocineta, vegetales, crema de leche y queso parmesano.",
             "precio": 925,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/pescados-salmon-tropicana.webp",
             "aviso": ""
           },
           {
@@ -338,7 +338,7 @@
             "descripcion": "Jugosa pieza de mero basa, acompañada de la guarnición de tu preferencia.",
             "precio": 525,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item17.webp",
             "aviso": ""
           },
           {
@@ -356,7 +356,7 @@
             "descripcion": "Delicioso mero servido en salsa a base de tocineta, vegetales, crema de leche y queso parmesano.",
             "precio": 825,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item19.webp",
             "aviso": ""
           },
           {
@@ -365,7 +365,7 @@
             "descripcion": "Frescos y salteados en salsa a base de tocineta, vegetales, crema de leche y queso parmesano.",
             "precio": 925,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item14.webp",
             "aviso": ""
           },
           {
@@ -374,7 +374,7 @@
             "descripcion": "Camarones jugosos cocidos a la plancha, sazonados con ajo y especias, con la guarnición de tu preferencia.",
             "precio": 825,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item15.webp",
             "aviso": ""
           },
           {
@@ -383,7 +383,7 @@
             "descripcion": "Camarones cocinados con ajo, aceite de oliva y hierbas, con la guarnición de tu preferencia.",
             "precio": 845,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/pescados-camarones-ajillo.webp",
             "aviso": ""
           },
           {
@@ -505,7 +505,7 @@
             "descripcion": "Churrasco importado al término que desees, con la guarnición de tu preferencia.",
             "precio": 1325,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item27.webp",
             "aviso": ""
           },
           {
@@ -514,7 +514,7 @@
             "descripcion": "Sabroso y jugoso corte de carne importada al término de tu preferencia, con la guarnición de tu preferencia.",
             "precio": 1275,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item29.webp",
             "aviso": ""
           },
           {
@@ -523,7 +523,7 @@
             "descripcion": "Exquisito filete a la plancha, sazonado con hierbas frescas y acompañado de la guarnición de tu elección.",
             "precio": 775,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item30.webp",
             "aviso": ""
           },
           {
@@ -532,7 +532,7 @@
             "descripcion": "Delicioso filete a la plancha, bañado en abundante cebolla salteada.",
             "precio": 825,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/carnes-res-encebollado.webp",
             "aviso": ""
           },
           {
@@ -550,7 +550,7 @@
             "descripcion": "Jugoso filete de cerdo cortado en tiras y salteado con vegetales frescos.",
             "precio": 645,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/carnes-cerdo-salteado.webp",
             "aviso": ""
           },
           {
@@ -577,7 +577,7 @@
             "descripcion": "Tiernos filetes salteados en una salsa perfectamente equilibrada entre lo dulce y lo salado.",
             "precio": 675,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/carnes-cerdo-teriyaki.webp",
             "aviso": ""
           },
           {
@@ -586,7 +586,7 @@
             "descripcion": "Fresca y exquisita, con un acabado a tu gusto y la guarnición de tu preferencia.",
             "precio": 525,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item38.webp",
             "aviso": ""
           },
           {
@@ -604,7 +604,7 @@
             "descripcion": "Frescas y sabrosas, hechas al horno y bañadas en una salsa barbacoa dulce y ahumada.",
             "precio": 775,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item40.webp",
             "aviso": ""
           },
           {
@@ -622,7 +622,7 @@
             "descripcion": "Irresistible y jugosa pechuga, acompañada de la guarnición de tu elección.",
             "precio": 525,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item32.webp",
             "aviso": ""
           },
           {
@@ -640,7 +640,7 @@
             "descripcion": "Jugosa pechuga en una rica salsa a base de tocineta, vegetales, crema de leche y queso parmesano.",
             "precio": 625,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item31.webp",
             "aviso": ""
           },
           {
@@ -649,7 +649,7 @@
             "descripcion": "Tiernas tiras de pollo salteadas en una salsa perfectamente equilibrada entre lo dulce y lo salado.",
             "precio": 625,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/carnes-pechuga-teriyaki.webp",
             "aviso": ""
           },
           {
@@ -685,7 +685,7 @@
                 "precio": 3465
               }
             ],
-            "imagen": "",
+            "imagen": "assets/platos/item42.webp",
             "aviso": ""
           },
           {
@@ -705,7 +705,7 @@
                 "precio": 4225
               }
             ],
-            "imagen": "",
+            "imagen": "assets/platos/item44.webp",
             "aviso": ""
           }
         ]
@@ -721,7 +721,7 @@
             "descripcion": "Un clásico con salsa de tomate, jamón cocido y una generosa capa de queso mozzarella derretido.",
             "precio": 560,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item46.webp",
             "aviso": ""
           },
           {
@@ -730,7 +730,7 @@
             "descripcion": "Masa crujiente al horno con salsa de tomate, queso mozzarella y abundantes rodajas de pepperoni.",
             "precio": 625,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/p-pizzas-1.webp",
             "aviso": ""
           },
           {
@@ -739,7 +739,7 @@
             "descripcion": "Pechuga de pollo, jamón, pepperoni, salchicha, maíz dulce, aceitunas, champiñones, cebolla, ají cubanela y ají morrón sobre salsa de tomate y queso mozzarella.",
             "precio": 1025,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item50.webp",
             "aviso": ""
           }
         ]
