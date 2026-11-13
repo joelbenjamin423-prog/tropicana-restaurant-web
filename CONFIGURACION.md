@@ -80,7 +80,7 @@ Un plato sin precio muestra "Consultar" y su aviso (por defecto "Consulta dispon
 
 ## Pendiente de confirmar por el restaurante
 
-- **Carta:** actualizada con la carta impresa del restaurante (noviembre 2026). **Entradas** y **Sopas** no tienen foto de banner. Se pueden subir desde el panel.
+- **Carta:** actualizada con la carta impresa del restaurante (noviembre 2026).
 - **Horario del fin de semana:** la fuente solo dice "Sáb–Dom hasta las 10:00 p. m.", sin hora de apertura. Por eso los datos estructurados para Google solo incluyen el horario de lunes a viernes.
 - **Fotos por plato:** las fotos disponibles son genéricas y no corresponden a platos concretos de la carta. Cuando el restaurante tenga una foto de cada plato, se pueden subir desde el panel (Carta → plato → Foto del plato).
 
@@ -105,6 +105,13 @@ Para ver cómo queda el diseño con eventos, abre `eventos.html?ejemplo`: muestr
   - El de Nosotros no se descarga hasta que el visitante se acerca a esa sección.
 - **`assets/fondo2-poster.webp`:** primer fotograma del vídeo de la portada. Se muestra al instante mientras carga el vídeo. Si cambias el vídeo desde el panel, cambia también la imagen de fondo.
 - **Fotos:** la web usa versiones `.webp`. Los `.jpg` originales se conservan porque `og:image` y los datos estructurados apuntan a `plato1.jpg`.
+- **Fotos de banco (`assets/demo2/`):** son de Unsplash, con licencia gratuita que permite uso comercial sin citar al autor. No son platos del restaurante; conviene cambiarlas por fotos propias cuando las haya.
+
+| Archivo | Uso | Foto original |
+|---|---|---|
+| `entradas.webp` | Banner de Entradas | https://unsplash.com/photos/la8l6y8_AHg (Div) |
+| `sopas.webp` | Banner de Sopas | https://unsplash.com/photos/7ax3l4quF-M (Keesha's Kitchen) |
+| `ensalada.webp`, `pizza.webp` | Banners de Ensaladas y Pizzas | Unsplash |
 
 ## Cambios en el código
 

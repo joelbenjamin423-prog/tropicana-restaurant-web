@@ -70,7 +70,7 @@
       {
         "id": "entradas",
         "nombre": "Entradas",
-        "imagen": "",
+        "imagen": "assets/demo2/entradas.webp",
         "platos": [
           {
             "id": "entradas-deditos-queso",
@@ -156,7 +156,7 @@
       {
         "id": "sopas",
         "nombre": "Sopas",
-        "imagen": "",
+        "imagen": "assets/demo2/sopas.webp",
         "platos": [
           {
             "id": "sopas-pescado",
