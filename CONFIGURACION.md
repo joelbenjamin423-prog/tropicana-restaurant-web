@@ -80,9 +80,7 @@ Un plato sin precio muestra "Consultar" y su aviso (por defecto "Consulta dispon
 
 ## Pendiente de confirmar por el restaurante
 
-- **Carta:** actualizada con la carta impresa del restaurante (noviembre 2026). Dos partes no salían en esas fotos:
-  - **Ensaladas** sigue con los precios anteriores. Hay que confirmarlos.
-  - **Sopas** no tiene foto de banner. Se puede subir desde el panel.
+- **Carta:** actualizada con la carta impresa del restaurante (noviembre 2026). **Entradas** y **Sopas** no tienen foto de banner. Se pueden subir desde el panel.
 - **Horario del fin de semana:** la fuente solo dice "Sáb–Dom hasta las 10:00 p. m.", sin hora de apertura. Por eso los datos estructurados para Google solo incluyen el horario de lunes a viernes.
 - **Fotos por plato:** las fotos disponibles son genéricas y no corresponden a platos concretos de la carta. Cuando el restaurante tenga una foto de cada plato, se pueden subir desde el panel (Carta → plato → Foto del plato).
 

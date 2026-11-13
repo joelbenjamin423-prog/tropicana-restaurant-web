@@ -68,6 +68,58 @@
     "nota": "ITBIS no incluido.",
     "categorias": [
       {
+        "id": "entradas",
+        "nombre": "Entradas",
+        "imagen": "",
+        "platos": [
+          {
+            "id": "entradas-deditos-queso",
+            "nombre": "Deditos de queso",
+            "descripcion": "Crujientes y sabrosos, rellenos de queso mozzarella, con una rica salsa tártara.",
+            "precio": 265,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "entradas-croquetas-pollo",
+            "nombre": "Croquetas de pollo",
+            "descripcion": "Suaves por dentro y doradas por fuera, rellenas de pollo desmenuzado con especias y un toque de cremosidad que se deshace en la boca.",
+            "precio": 240,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "entradas-croquetas-vegetales",
+            "nombre": "Croquetas de vegetales",
+            "descripcion": "Irresistible combinación de vegetales frescos y especias envueltos en una capa dorada y crujiente.",
+            "precio": 240,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "entradas-croquetas-bacalao",
+            "nombre": "Croquetas de bacalao",
+            "descripcion": "Croquetas empanizadas rellenas de bacalao desmenuzado, con un sabor inconfundible.",
+            "precio": 275,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          },
+          {
+            "id": "entradas-croquetas-jamon",
+            "nombre": "Croquetas de jamón",
+            "descripcion": "Jugosas, crocantes e irresistibles.",
+            "precio": 240,
+            "variantes": [],
+            "imagen": "",
+            "aviso": ""
+          }
+        ]
+      },
+      {
         "id": "ensaladas",
         "nombre": "Ensaladas",
         "imagen": "assets/demo2/ensalada.webp",
@@ -75,35 +127,26 @@
           {
             "id": "item1",
             "nombre": "Ensalada verde",
-            "descripcion": "Sabrosa combinación de lechugas, tomates y pepino, aderezo a tu gusto.",
-            "precio": 135,
+            "descripcion": "Fresca combinación de lechuga, tomate y pepino, aderezada a tu gusto.",
+            "precio": 215,
             "variantes": [],
             "imagen": "",
             "aviso": ""
           },
           {
-            "id": "item2",
-            "nombre": "Ensalada al pesto",
-            "descripcion": "Rica combinación de lechuga aderezada con un sabroso pesto de albahaca.",
-            "precio": 145,
+            "id": "ensaladas-queso",
+            "nombre": "Ensalada de queso",
+            "descripcion": "Fresca lechuga, tomate y trozos de queso, aderezada a tu gusto.",
+            "precio": 310,
             "variantes": [],
             "imagen": "",
             "aviso": ""
           },
           {
-            "id": "item3",
-            "nombre": "Ensalada Tropicana",
-            "descripcion": "Fresca combinación de lechuga y frutas, pruébala.",
-            "precio": 225,
-            "variantes": [],
-            "imagen": "",
-            "aviso": ""
-          },
-          {
-            "id": "item4",
-            "nombre": "Lechuga 4 quesos",
-            "descripcion": "Lechuga combinada con trozos de queso mozzarella, cheddar y parmesano.",
-            "precio": 250,
+            "id": "ensaladas-pollo",
+            "nombre": "Ensalada de pollo",
+            "descripcion": "Fresca combinación de lechuga con trozos de pechuga de pollo a la plancha, aderezada a tu gusto.",
+            "precio": 375,
             "variantes": [],
             "imagen": "",
             "aviso": ""
@@ -284,7 +327,7 @@
             "id": "pescados-salmon-tropicana",
             "nombre": "Salmón Tropicana",
             "descripcion": "Salmón a la plancha acompañado de salsa a base de tocineta, vegetales, crema de leche y queso parmesano.",
-            "precio": 825,
+            "precio": 925,
             "variantes": [],
             "imagen": "",
             "aviso": ""
