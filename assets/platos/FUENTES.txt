@@ -46,3 +46,25 @@ item44 -> https://images.unsplash.com/photo-1777199298385-07e46ccc2004
 item46 -> https://images.unsplash.com/photo-1595378833483-c995dbe4d74f
 p-pizzas-1 -> https://images.unsplash.com/photo-1534308983496-4fabb1a015ee
 item50 -> https://images.unsplash.com/photo-1604382354936-07c5d9983bd3
+
+Generadas con IA por el restaurante (Google Flow, noviembre 2026):
+entradas-croquetas-vegetales -> Google Flow
+item20 -> Google Flow
+pescados-camarones-carbonara -> Google Flow
+item25 -> Google Flow
+mofongos-pollo-criolla -> Google Flow
+item22 -> Google Flow
+mofongos-filete-res -> Google Flow
+mofongos-filete-cerdo -> Google Flow
+item26 -> Google Flow
+mofongos-mero-ajillo -> Google Flow
+item23 -> Google Flow
+item24 -> Google Flow
+mofongos-camarones-criolla -> Google Flow
+carnes-res-mingon -> Google Flow
+carnes-cerdo-carbonara -> Google Flow
+item35 -> Google Flow
+carnes-chuleta-carbonara -> Google Flow
+carnes-costillas-naturales -> Google Flow
+carnes-pechuga-salteada -> Google Flow
+item33 -> Google Flow

@@ -96,7 +96,7 @@
             "descripcion": "Irresistible combinación de vegetales frescos y especias envueltos en una capa dorada y crujiente.",
             "precio": 240,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/entradas-croquetas-vegetales.webp",
             "aviso": ""
           },
           {
@@ -347,7 +347,7 @@
             "descripcion": "Mero basa cubierto con camarones frescos y una deliciosa salsa aurora.",
             "precio": 895,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item20.webp",
             "aviso": ""
           },
           {
@@ -392,7 +392,7 @@
             "descripcion": "Camarones salteados en una crema con queso parmesano, tocineta ahumada y un toque de vino.",
             "precio": 875,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/pescados-camarones-carbonara.webp",
             "aviso": ""
           }
         ]
@@ -408,7 +408,7 @@
             "descripcion": "Pechuga de pollo y plátanos majados en pilón con una rica salsa a base de ajo y perejil.",
             "precio": 450,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item25.webp",
             "aviso": ""
           },
           {
@@ -417,7 +417,7 @@
             "descripcion": "Pechuga de pollo y plátanos majados en pilón con una rica salsa a base de tomates, cebollas y verduras.",
             "precio": 450,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/mofongos-pollo-criolla.webp",
             "aviso": ""
           },
           {
@@ -426,7 +426,7 @@
             "descripcion": "Chicharrón de cerdo crocante envuelto en plátanos fritos majados al pilón.",
             "precio": 425,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item22.webp",
             "aviso": ""
           },
           {
@@ -435,7 +435,7 @@
             "descripcion": "Salteados y jugosos trozos de res, servidos con plátano frito majado en pilón y una cremosa salsa.",
             "precio": 565,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/mofongos-filete-res.webp",
             "aviso": ""
           },
           {
@@ -444,7 +444,7 @@
             "descripcion": "Jugosos trozos de cerdo dorados a la perfección, servidos con plátano frito majado en pilón y una cremosa salsa.",
             "precio": 475,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/mofongos-filete-cerdo.webp",
             "aviso": ""
           },
           {
@@ -453,7 +453,7 @@
             "descripcion": "Exquisito fundido de queso crema, mozzarella, cheddar y parmesano con plátanos fritos majados al pilón.",
             "precio": 550,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item26.webp",
             "aviso": ""
           },
           {
@@ -462,7 +462,7 @@
             "descripcion": "Suculentos filetes de mero en una deliciosa salsa al ajillo y plátanos fritos majados en pilón.",
             "precio": 525,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/mofongos-mero-ajillo.webp",
             "aviso": ""
           },
           {
@@ -471,7 +471,7 @@
             "descripcion": "Plátanos fritos majados en pilón con camarones salteados en una aromática salsa a base de ajo y perejil.",
             "precio": 595,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item23.webp",
             "aviso": ""
           },
           {
@@ -480,7 +480,7 @@
             "descripcion": "Camarones frescos y plátanos majados en pilón con una rica salsa a base de tomates, cebollas y verduras.",
             "precio": 595,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/mofongos-camarones-criolla.webp",
             "aviso": ""
           },
           {
@@ -489,7 +489,7 @@
             "descripcion": "Camarones frescos y plátanos fritos majados al pilón en salsa bechamel y queso mozzarella.",
             "precio": 625,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item24.webp",
             "aviso": ""
           }
         ]
@@ -541,7 +541,7 @@
             "descripcion": "Jugoso filete bañado en la clásica salsa mingón con un sutil toque de vino.",
             "precio": 925,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/carnes-res-mingon.webp",
             "aviso": ""
           },
           {
@@ -559,7 +559,7 @@
             "descripcion": "Delicioso filete bañado en una salsa cremosa de tocineta, con un sabor ahumado inconfundible.",
             "precio": 675,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/carnes-cerdo-carbonara.webp",
             "aviso": ""
           },
           {
@@ -568,7 +568,7 @@
             "descripcion": "Jugoso filete de cerdo cocido a la perfección, con tu guarnición preferida.",
             "precio": 575,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item35.webp",
             "aviso": ""
           },
           {
@@ -595,7 +595,7 @@
             "descripcion": "Chuleta fresca bañada en una salsa cremosa de tocineta, con un sabor ahumado inconfundible.",
             "precio": 625,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/carnes-chuleta-carbonara.webp",
             "aviso": ""
           },
           {
@@ -613,7 +613,7 @@
             "descripcion": "Cocidas lentamente al natural para lograr una textura jugosa, con la guarnición de tu preferencia.",
             "precio": 725,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/carnes-costillas-naturales.webp",
             "aviso": ""
           },
           {
@@ -631,7 +631,7 @@
             "descripcion": "Jugosas tiras de pechuga de pollo salteadas en vegetales, con tu guarnición preferida.",
             "precio": 595,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/carnes-pechuga-salteada.webp",
             "aviso": ""
           },
           {
@@ -658,7 +658,7 @@
             "descripcion": "Jugosa pechuga bañada con crema bechamel y queso mozzarella, con trocitos de plátano maduro.",
             "precio": 645,
             "variantes": [],
-            "imagen": "",
+            "imagen": "assets/platos/item33.webp",
             "aviso": ""
           }
         ]

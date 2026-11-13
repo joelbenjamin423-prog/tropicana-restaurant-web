@@ -82,7 +82,7 @@ Un plato sin precio muestra "Consultar" y su aviso (por defecto "Consulta dispon
 
 - **Carta:** actualizada con la carta impresa del restaurante (noviembre 2026).
 - **Horario del fin de semana:** la fuente solo dice "Sáb–Dom hasta las 10:00 p. m.", sin hora de apertura. Por eso los datos estructurados para Google solo incluyen el horario de lunes a viernes.
-- **Fotos por plato:** las fotos disponibles son genéricas y no corresponden a platos concretos de la carta. Cuando el restaurante tenga una foto de cada plato, se pueden subir desde el panel (Carta → plato → Foto del plato).
+- **Fotos por plato:** son de banco o generadas con IA, no de los platos reales del restaurante. Cuando el restaurante tenga una foto de cada plato, se pueden subir desde el panel (Carta → plato → Foto del plato).
 
 ## Página de próximos eventos (`eventos.html`)
 
@@ -113,7 +113,11 @@ Para ver cómo queda el diseño con eventos, abre `eventos.html?ejemplo`: muestr
 | `sopas.webp` | Banner de Sopas | https://unsplash.com/photos/7ax3l4quF-M (Keesha's Kitchen) |
 | `ensalada.webp`, `pizza.webp` | Banners de Ensaladas y Pizzas | Unsplash |
 
-- **Fotos de los platos (`assets/platos/<id del plato>.webp`):** hay 45, también de Unsplash con la misma licencia gratuita. Están recortadas a 640×400 y pesan unos 50 KB cada una. Se eligieron solo cuando la foto se parece de verdad al plato; los demás (mofongos y algunos platos de la casa) no tienen foto. La lista de qué foto original corresponde a cada plato está en `assets/platos/FUENTES.txt`. Para cambiar una por una foto real: panel → Carta → plato → Foto del plato.
+- **Fotos de los platos (`assets/platos/<id del plato>.webp`):** los 65 platos tienen foto, recortada a 640×400. Son de dos tipos:
+  - **45 de Unsplash**, con la misma licencia gratuita. Pesan unos 50 KB cada una.
+  - **20 generadas con IA** por el restaurante con Google Flow (noviembre 2026): los mofongos y los platos de la casa que no tenían foto de banco. Pesan unos 25 KB cada una.
+
+  La lista de qué foto corresponde a cada plato está en `assets/platos/FUENTES.txt`. Para cambiar una por una foto real: panel → Carta → plato → Foto del plato.
 
 ## Cambios en el código
 
