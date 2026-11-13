@@ -400,7 +400,7 @@
       {
         "id": "mofongos",
         "nombre": "Mofongos",
-        "imagen": "assets/plato1.webp",
+        "imagen": "assets/demo2/mofongos.webp",
         "platos": [
           {
             "id": "item25",

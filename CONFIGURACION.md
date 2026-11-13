@@ -112,6 +112,7 @@ Para ver cómo queda el diseño con eventos, abre `eventos.html?ejemplo`: muestr
 | `entradas.webp` | Banner de Entradas | https://unsplash.com/photos/la8l6y8_AHg (Div) |
 | `sopas.webp` | Banner de Sopas | https://unsplash.com/photos/7ax3l4quF-M (Keesha's Kitchen) |
 | `ensalada.webp`, `pizza.webp` | Banners de Ensaladas y Pizzas | Unsplash |
+| `mofongos.webp` | Banner de Mofongos | Generada con IA (Google Flow) por el restaurante: el mofongo cuatro quesos, recortado |
 
 - **Fotos de los platos (`assets/platos/<id del plato>.webp`):** los 65 platos tienen foto, recortada a 640×400. Son de dos tipos:
   - **45 de Unsplash**, con la misma licencia gratuita. Pesan unos 50 KB cada una.
