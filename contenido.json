@@ -30,28 +30,20 @@
     ],
     "fotos": [
       {
-        "imagen": "assets/plato1.webp",
-        "texto": "Plato criollo con huevo frito y aguacate"
+        "imagen": "assets/destacados/item14.webp",
+        "texto": "Camarones Tropicana"
       },
       {
-        "imagen": "assets/plato4.webp",
-        "texto": "Pasta con queso rallado y albahaca"
+        "imagen": "assets/destacados/item27.webp",
+        "texto": "Churrasco Angus (10 oz)"
       },
       {
-        "imagen": "assets/plato5.webp",
-        "texto": "Chuletas a la parrilla sobre tabla de pizarra"
+        "imagen": "assets/destacados/item24.webp",
+        "texto": "Mofongo de camarones a la crema"
       },
       {
-        "imagen": "assets/plato6.webp",
-        "texto": "Bandeja de carnes y vegetales a la parrilla para compartir"
-      },
-      {
-        "imagen": "assets/plato2.webp",
-        "texto": "Pescado frito con tostones, tomate y limón"
-      },
-      {
-        "imagen": "assets/plato3.webp",
-        "texto": "Plato criollo con arroz, habichuelas negras y plátanos maduros"
+        "imagen": "assets/destacados/item50.webp",
+        "texto": "Pizza Tropicana"
       }
     ]
   },
@@ -774,11 +766,6 @@
         "imagen": "assets/plato2.webp",
         "descripcion": "Pescado frito con tostones, tomate y limón",
         "texto": "Pescado frito"
-      },
-      {
-        "imagen": "assets/plato3.webp",
-        "descripcion": "Plato criollo con arroz, habichuelas negras y plátanos maduros",
-        "texto": "Comida criolla"
       }
     ]
   },

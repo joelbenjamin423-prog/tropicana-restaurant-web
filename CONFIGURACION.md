@@ -118,7 +118,8 @@ Para ver cómo queda el diseño con eventos, abre `eventos.html?ejemplo`: muestr
   - **45 de Unsplash**, con la misma licencia gratuita. Pesan unos 50 KB cada una.
   - **20 generadas con IA** por el restaurante con Google Flow (noviembre 2026): los mofongos y los platos de la casa que no tenían foto de banco. Pesan unos 25 KB cada una.
 
-  La lista de qué foto corresponde a cada plato está en `assets/platos/FUENTES.txt`. Para cambiar una por una foto real: panel → Carta → plato → Foto del plato.
+  La lista de qué foto corresponde a cada plato está en `assets/platos/FUENTES.txt`.
+- **Fotos del carrusel de Destacados (`assets/destacados/<id del plato>.webp`):** las de los 4 platos destacados, en grande (1000×1000) y con el nombre del plato. Si cambias los platos destacados en el panel, cambia también las fotos del carrusel (panel → Destacados) para que coincidan. Para cambiar una por una foto real: panel → Carta → plato → Foto del plato.
 
 ## Cambios en el código
 
