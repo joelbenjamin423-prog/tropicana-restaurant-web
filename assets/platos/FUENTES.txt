@@ -25,7 +25,7 @@ item8 -> https://images.unsplash.com/photo-1781332147533-aefdfe14dc2c
 item13 -> https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2
 item12 -> https://images.unsplash.com/photo-1611657366409-55549160be82
 pescados-salmon-tropicana -> https://images.unsplash.com/photo-1580959375944-abd7e991f971
-item17 -> https://images.unsplash.com/photo-1644784643137-b9073dd262f6
+item17 -> https://images.unsplash.com/photo-1714559899701-fd966509f726
 item19 -> https://images.unsplash.com/photo-1750256869570-606aa859749c
 item14 -> https://images.unsplash.com/photo-1781941622564-f4b056a1820e
 item15 -> https://images.unsplash.com/photo-1559742811-822873691df8
