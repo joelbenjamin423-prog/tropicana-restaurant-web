@@ -501,6 +501,65 @@
     .cart-item .qty-btn{width:34px;height:34px;}
     .cart-header,.cart-items,.cart-footer{padding-left:20px;padding-right:20px;}
   }
+  .cart-item{align-items:flex-start;}
+  .cart-item .qty-controls,.cart-item-subtotal{margin-top:2px;}
+  .cart-item-opts{color:var(--muted);font-size:.76rem;line-height:1.5;margin-top:4px;overflow-wrap:anywhere;}
+  .cart-item-opts b{color:var(--cream);font-weight:500;}
+  .cart-edit{background:none;border:none;padding:4px 0;margin-left:6px;color:var(--gold-light);font:inherit;font-size:.74rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer;}
+  .cart-edit:hover{color:var(--cream);}
+  .cart-extra-note{color:var(--gold-light);}
+
+  /* ===== OPCIONES DEL PLATO (guarnición y comentario) ===== */
+  .opt-overlay{position:fixed;inset:0;z-index:800;background:rgba(4,19,12,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);}
+  .opt-dialog{
+    position:fixed;z-index:801;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:min(480px,calc(100% - 32px));max-height:calc(100vh - 40px);max-height:calc(100dvh - 40px);
+    display:flex;flex-direction:column;background:var(--bg-darker);color:var(--cream);
+    border:1px solid rgba(212,175,55,.3);border-radius:22px;box-shadow:0 30px 70px rgba(0,0,0,.55);
+    animation:optIn .3s cubic-bezier(.16,.8,.3,1);
+  }
+  .opt-overlay[hidden],.opt-dialog[hidden]{display:none;}
+  @keyframes optIn{from{opacity:0;transform:translate(-50%,-46%);}to{opacity:1;transform:translate(-50%,-50%);}}
+  .opt-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:22px 22px 14px 26px;border-bottom:1px solid rgba(212,175,55,.15);}
+  .opt-title{font-family:'Playfair Display',serif;font-size:1.3rem;line-height:1.25;}
+  .opt-price{color:var(--gold-light);font-family:'Playfair Display',serif;font-size:1.05rem;margin-top:4px;}
+  .opt-body{flex:1;overflow-y:auto;padding:18px 26px 6px;overscroll-behavior:contain;}
+  .opt-group{border:none;margin:0 0 20px;padding:0;min-width:0;}
+  .opt-group legend,.opt-label{display:block;padding:0;margin-bottom:10px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-light);}
+  .opt-group legend span,.opt-label span{color:var(--muted);letter-spacing:.04em;text-transform:none;}
+  .opt-choices{display:flex;flex-wrap:wrap;gap:8px;}
+  .opt-choice{position:relative;cursor:pointer;}
+  .opt-choice input{position:absolute;opacity:0;width:1px;height:1px;}
+  .opt-choice span{
+    display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border-radius:30px;font-size:.86rem;
+    border:1px solid rgba(244,239,226,.22);background:rgba(244,239,226,.04);transition:background .2s, border-color .2s, color .2s;
+  }
+  .opt-choice:hover span{border-color:var(--gold);}
+  .opt-choice input:checked + span{background:var(--gold);border-color:var(--gold);color:var(--bg-darker);font-weight:600;}
+  .opt-choice input:focus-visible + span{outline:2px solid var(--gold-light);outline-offset:2px;}
+  .opt-error{color:#f2b8a0;font-size:.8rem;margin-top:8px;}
+  .opt-group.invalid .opt-choice span{border-color:#e0876a;}
+  .opt-note textarea{
+    width:100%;min-height:76px;resize:vertical;padding:12px 14px;border-radius:14px;font:inherit;font-size:.9rem;line-height:1.5;
+    background:rgba(244,239,226,.05);color:var(--cream);border:1px solid rgba(244,239,226,.2);
+  }
+  .opt-note textarea:focus{outline:none;border-color:var(--gold);}
+  .opt-note textarea::placeholder{color:var(--muted);opacity:.8;}
+  .opt-foot{display:flex;align-items:center;gap:14px;padding:16px 22px 22px 26px;border-top:1px solid rgba(212,175,55,.15);}
+  .opt-qty{margin-top:0;gap:10px;}
+  .opt-add{
+    flex:1;padding:15px 18px;border:none;border-radius:40px;cursor:pointer;background:var(--gold);color:var(--bg-darker);
+    font-family:'Montserrat',sans-serif;font-weight:600;font-size:.84rem;letter-spacing:.04em;transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .opt-add:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(212,175,55,.3);}
+  @media (max-width: 560px){
+    .opt-dialog{left:0;right:0;top:auto;bottom:0;transform:none;width:100%;max-height:90vh;max-height:90dvh;border-radius:22px 22px 0 0;border-bottom:none;animation-name:optUp;}
+    @keyframes optUp{from{transform:translateY(40px);opacity:0;}to{transform:none;opacity:1;}}
+    .opt-head{padding:20px 14px 12px 20px;}
+    .opt-body{padding:16px 20px 4px;}
+    .opt-foot{padding:14px 20px calc(18px + env(safe-area-inset-bottom));}
+  }
+  @media (prefers-reduced-motion: reduce){ .opt-dialog{animation:none;} }
 
   /* ===== GALLERY ===== */
   .gallery{padding:100px 0 120px;}
@@ -833,10 +892,41 @@
       <span id="cartTotal">RD$0</span>
     </div>
     <a href="https://wa.me/18296026068" class="cart-checkout disabled" id="cartCheckout" target="_blank" rel="noopener" aria-disabled="true">Enviar pedido por WhatsApp</a>
-    <p class="cart-note">ITBIS no incluido. El restaurante confirmará tu pedido y el total final por WhatsApp.</p>
+    <p class="cart-note">ITBIS no incluido. El restaurante confirmará tu pedido y el total final por WhatsApp.<span class="cart-extra-note" id="cartExtraNote" hidden><br>Las guarniciones adicionales se cobran aparte: precio por confirmar.</span></p>
   </div>
 </aside>
 <div class="cart-toast" id="cartToast" role="status" aria-live="polite"></div>
+
+<div class="opt-overlay" id="optOverlay" hidden></div>
+<div class="opt-dialog" id="optDialog" role="dialog" aria-modal="true" aria-labelledby="optTitle" hidden>
+  <div class="opt-head">
+    <div><h2 class="opt-title" id="optTitle">Plato</h2><p class="opt-price" id="optPrice"></p></div>
+    <button class="cart-close" id="optClose" type="button" aria-label="Cerrar sin agregar">×</button>
+  </div>
+  <div class="opt-body">
+    <fieldset class="opt-group" id="optGuarnBox">
+      <legend>Guarnición <span>(incluida, elige una)</span></legend>
+      <div class="opt-choices" id="optGuarn"></div>
+      <p class="opt-error" id="optError" hidden>Elige una guarnición para continuar.</p>
+    </fieldset>
+    <fieldset class="opt-group" id="optExtraBox">
+      <legend>Guarnición adicional <span id="optExtraPrice">(opcional)</span></legend>
+      <div class="opt-choices" id="optExtras"></div>
+    </fieldset>
+    <label class="opt-group opt-note">
+      <span class="opt-label">Comentario <span>(opcional)</span></span>
+      <textarea id="optNota" maxlength="140" rows="2" placeholder="Ej.: sin cebolla, término medio, salsa aparte"></textarea>
+    </label>
+  </div>
+  <div class="opt-foot">
+    <div class="qty-controls opt-qty">
+      <button class="qty-btn opt-step" id="optMinus" type="button" aria-label="Una unidad menos">−</button>
+      <span class="qty-count" id="optQty" aria-live="polite">1</span>
+      <button class="qty-btn opt-step" id="optPlus" type="button" aria-label="Una unidad más">+</button>
+    </div>
+    <button class="opt-add" id="optAdd" type="button">Agregar al pedido</button>
+  </div>
+</div>
 
 <script>
 /* =====================================================================
@@ -920,8 +1010,14 @@ function aplicarContenido(c) {
     note.textContent = k.nota || '';
     note.hidden = !k.nota;
     const cart = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L22 7H6"/></svg>';
+    const g = k.guarniciones || {};
+    window.TROPICANA_GUARN = {
+      opciones: (Array.isArray(g.opciones) ? g.opciones : []).map(s => String(s == null ? '' : s).trim()).filter(Boolean),
+      precio: Number(g.precioAdicional) > 0 ? Number(g.precioAdicional) : null
+    };
+    let conGuarn = true;
     const ctrl = (id, nombre, precio, largo) =>
-      '<div class="qty-controls is-empty" data-id="' + esc(id) + '" data-name="' + esc(nombre) + '" data-price="' + Number(precio) + '">' +
+      '<div class="qty-controls is-empty" data-id="' + esc(id) + '" data-name="' + esc(nombre) + '" data-price="' + Number(precio) + '"' + (conGuarn ? ' data-guarn="1"' : '') + '>' +
         '<button class="qty-btn qty-minus" type="button" aria-label="Quitar">−</button><span class="qty-count">0</span>' +
         '<button class="qty-btn qty-plus" type="button" aria-label="Añadir">+</button>' +
         '<button class="qty-btn qty-plus add-btn" type="button">' + cart + (largo ? '<span>Agregar<span class="add-long"> al carrito</span></span>' : 'Agregar') + '</button>' +
@@ -933,6 +1029,7 @@ function aplicarContenido(c) {
       const cards = lista.map(p => {
         const media = '<div class="mc-media' + (p.imagen ? ' has-img' : '') + '" aria-hidden="true">' + (p.imagen ? '<img src="' + esc(p.imagen) + '" alt="" loading="lazy" decoding="async">' : '') + '</div>';
         const vars = (p.variantes || []).filter(v => v && v.nombre && Number(v.precio) > 0);
+        conGuarn = !p.sinGuarnicion;
         let body = '';
         if (vars.length) {
           body = '<div class="mc-top"><span class="mc-name">' + esc(p.nombre) + '</span></div>' +
@@ -1047,7 +1144,8 @@ function iniciarWeb() {
   'use strict';
 
   const WHATSAPP_NUMBER = window.TROPICANA_WA || '18296026068';
-  const STORAGE_KEY = 'tropicana-pedido-v1';
+  const STORAGE_KEY = 'tropicana-pedido-v2';
+  const OLD_STORAGE_KEY = 'tropicana-pedido-v1';
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   document.getElementById('year').textContent = new Date().getFullYear();
@@ -1222,20 +1320,24 @@ function iniciarWeb() {
     });
   });
 
-  /* ===== Pedido / carrito ===== */
+  /* ===== Pedido / carrito =====
+     Cada línea del pedido es un plato con su guarnición, sus adicionales y su comentario.
+     El mismo plato con opciones distintas va en líneas separadas. */
+  const GUARN = window.TROPICANA_GUARN || { opciones: [], precio: null };
   const menuControls = {};
   document.querySelectorAll('.menu-card .qty-controls').forEach(ctrl => {
     const name = ctrl.dataset.name;
     const price = parseInt(ctrl.dataset.price, 10);
     if (!name || !Number.isFinite(price) || price <= 0) return;
-    menuControls[ctrl.dataset.id] = { name, price };
+    menuControls[ctrl.dataset.id] = { name, price, guarn: ctrl.dataset.guarn === '1' };
     ctrl.querySelector('.qty-minus').setAttribute('aria-label', 'Quitar una unidad de ' + name);
-    ctrl.querySelector('.qty-plus').setAttribute('aria-label', 'Añadir una unidad de ' + name);
+    ctrl.querySelector('.qty-plus').setAttribute('aria-label', 'Añadir ' + name + ' al pedido');
     const addBtn = ctrl.querySelector('.add-btn');
-    if (addBtn) addBtn.setAttribute('aria-label', 'Agregar ' + name + ' al carrito');
+    if (addBtn) addBtn.setAttribute('aria-label', 'Agregar ' + name + ' al pedido');
   });
+  const pideGuarn = id => !!(menuControls[id] && menuControls[id].guarn && GUARN.opciones.length);
 
-  const cart = {};
+  let lines = [];
   const fab = document.getElementById('cartFab');
   const fabBadge = document.getElementById('cartBadge');
   const overlay = document.getElementById('cartOverlay');
@@ -1245,90 +1347,133 @@ function iniciarWeb() {
   const itemsEl = document.getElementById('cartItems');
   const totalEl = document.getElementById('cartTotal');
   const checkoutBtn = document.getElementById('cartCheckout');
+  const extraNote = document.getElementById('cartExtraNote');
   const toast = document.getElementById('cartToast');
   let toastTimer = null;
   let lastFocus = null;
 
   const formatRD = n => 'RD$' + n.toLocaleString('es-DO');
-  const escapeHtml = s => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const lineKey = l => [l.id, l.guarn, l.extras.join('\u0001'), l.nota].join('\u0002');
+  const unitPrice = l => menuControls[l.id].price + (GUARN.precio ? l.extras.length * GUARN.precio : 0);
+  const extrasSinPrecio = l => l.extras.length > 0 && !GUARN.precio;
 
-  function cartLines() {
-    return Object.keys(cart)
-      .filter(id => cart[id] > 0 && menuControls[id])
-      .map(id => {
-        const { name, price } = menuControls[id];
-        return { id, name, price, qty: cart[id], subtotal: price * cart[id] };
-      });
+  // limpia una línea guardada o recién creada; devuelve null si no es válida
+  function cleanLine(raw) {
+    if (!raw || !menuControls[raw.id]) return null;
+    const qty = parseInt(raw.qty, 10);
+    if (!(qty > 0 && qty < 100)) return null;
+    const conG = pideGuarn(raw.id);
+    const guarn = conG && GUARN.opciones.includes(raw.guarn) ? raw.guarn : '';
+    const extras = conG && Array.isArray(raw.extras) ? GUARN.opciones.filter(o => raw.extras.includes(o)) : [];
+    const nota = String(raw.nota || '').replace(/\s+/g, ' ').trim().slice(0, 140);
+    return { id: raw.id, qty, guarn, extras, nota };
   }
 
-  function buildMessage(lines) {
-    const total = lines.reduce((s, l) => s + l.subtotal, 0);
+  // añade una línea; si ya hay una igual (mismo plato y mismas opciones), suma la cantidad
+  function addLine(l, at) {
+    const k = lineKey(l);
+    const same = lines.findIndex(x => lineKey(x) === k);
+    if (same >= 0) lines[same].qty = Math.min(99, lines[same].qty + l.qty);
+    else if (at != null) lines.splice(at, 0, l);
+    else lines.push(l);
+  }
+
+  function cartLines() {
+    return lines.map((l, index) => {
+      const unit = unitPrice(l);
+      return { ...l, index, name: menuControls[l.id].name, unit, subtotal: unit * l.qty };
+    });
+  }
+
+  function buildMessage(rows) {
+    const total = rows.reduce((s, l) => s + l.subtotal, 0);
     const out = ['Hola, quiero hacer este pedido:', ''];
-    lines.forEach(l => out.push('• ' + l.qty + ' x ' + l.name + ' — ' + formatRD(l.subtotal)));
+    rows.forEach(l => {
+      out.push('• ' + l.qty + ' x ' + l.name + ' — ' + formatRD(l.subtotal));
+      if (l.guarn) out.push('   Guarnición: ' + l.guarn);
+      if (l.extras.length) out.push('   Adicional: ' + l.extras.join(', ') + (GUARN.precio ? ' (+' + formatRD(GUARN.precio) + ' c/u)' : ' (precio por confirmar)'));
+      if (l.nota) out.push('   Nota: ' + l.nota);
+    });
     out.push('', 'Total: ' + formatRD(total) + ' (ITBIS no incluido)');
+    if (rows.some(extrasSinPrecio)) out.push('Las guarniciones adicionales se suman aparte.');
     return out.join('\n');
   }
 
   function save() {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(cart)); } catch (e) { /* almacenamiento no disponible */ }
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(lines)); } catch (e) { /* almacenamiento no disponible */ }
   }
 
   function load() {
     try {
-      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-      Object.keys(saved).forEach(id => {
-        const qty = parseInt(saved[id], 10);
-        if (menuControls[id] && qty > 0 && qty < 100) cart[id] = qty;
-      });
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+      if (Array.isArray(saved)) {
+        saved.forEach(raw => { const l = cleanLine(raw); if (l) addLine(l); });
+        return;
+      }
+      // pedidos guardados con la versión anterior ({ plato: cantidad })
+      const old = JSON.parse(localStorage.getItem(OLD_STORAGE_KEY) || '{}');
+      Object.keys(old).forEach(id => { const l = cleanLine({ id, qty: old[id] }); if (l) addLine(l); });
     } catch (e) { /* almacenamiento no disponible o dato corrupto */ }
+  }
+
+  function qtyOf(id) {
+    return lines.reduce((s, l) => s + (l.id === id ? l.qty : 0), 0);
   }
 
   function syncMenuCards() {
     document.querySelectorAll('.menu-card .qty-controls').forEach(ctrl => {
-      const qty = cart[ctrl.dataset.id] || 0;
+      const qty = qtyOf(ctrl.dataset.id);
       ctrl.querySelector('.qty-count').textContent = qty;
       ctrl.classList.toggle('is-empty', qty === 0);
     });
     document.querySelectorAll('.menu-card').forEach(card => {
-      const inCart = [...card.querySelectorAll('.qty-controls')].some(c => (cart[c.dataset.id] || 0) > 0);
+      const inCart = [...card.querySelectorAll('.qty-controls')].some(c => qtyOf(c.dataset.id) > 0);
       card.classList.toggle('in-cart', inCart);
     });
   }
 
   function render() {
-    const lines = cartLines();
-    const count = lines.reduce((s, l) => s + l.qty, 0);
-    const total = lines.reduce((s, l) => s + l.subtotal, 0);
+    const rows = cartLines();
+    const count = rows.reduce((s, l) => s + l.qty, 0);
+    const total = rows.reduce((s, l) => s + l.subtotal, 0);
 
     fabBadge.textContent = count;
     fab.classList.toggle('hidden', count === 0);
     fab.setAttribute('aria-label', count ? 'Ver pedido, ' + count + (count === 1 ? ' producto' : ' productos') : 'Ver pedido');
     clearBtn.hidden = count === 0;
     totalEl.textContent = formatRD(total);
+    extraNote.hidden = !rows.some(extrasSinPrecio);
 
-    if (!lines.length) {
+    if (!rows.length) {
       itemsEl.innerHTML = '<p class="cart-empty">Tu pedido está vacío.<br>Añade platos desde la carta.</p>';
       checkoutBtn.classList.add('disabled');
       checkoutBtn.setAttribute('aria-disabled', 'true');
       checkoutBtn.href = 'https://wa.me/' + WHATSAPP_NUMBER;
     } else {
-      itemsEl.innerHTML = lines.map(l =>
-        '<div class="cart-item">' +
+      itemsEl.innerHTML = rows.map(l => {
+        const opts = [];
+        if (l.guarn) opts.push('Guarnición: <b>' + escapeHtml(l.guarn) + '</b>');
+        if (l.extras.length) opts.push('Adicional: <b>' + escapeHtml(l.extras.join(', ')) + '</b>' + (GUARN.precio ? ' (+' + formatRD(GUARN.precio) + ' c/u)' : ' (precio por confirmar)'));
+        if (l.nota) opts.push('Nota: <b>' + escapeHtml(l.nota) + '</b>');
+        return '<div class="cart-item" data-line="' + l.index + '">' +
           '<div class="cart-item-info">' +
             '<div class="cart-item-name">' + escapeHtml(l.name) + '</div>' +
-            '<div class="cart-item-price">' + formatRD(l.price) + ' c/u</div>' +
+            (opts.length ? '<div class="cart-item-opts">' + opts.join('<br>') + '</div>' : '') +
+            '<div class="cart-item-price">' + formatRD(l.unit) + ' c/u' +
+              '<button class="cart-edit" type="button" aria-label="Cambiar guarnición o comentario de ' + escapeHtml(l.name) + '">Editar</button></div>' +
           '</div>' +
-          '<div class="qty-controls" data-id="' + l.id + '">' +
+          '<div class="qty-controls">' +
             '<button class="qty-btn qty-minus" type="button" aria-label="Quitar una unidad de ' + escapeHtml(l.name) + '">−</button>' +
             '<span class="qty-count">' + l.qty + '</span>' +
             '<button class="qty-btn qty-plus" type="button" aria-label="Añadir una unidad de ' + escapeHtml(l.name) + '">+</button>' +
           '</div>' +
           '<div class="cart-item-subtotal">' + formatRD(l.subtotal) + '</div>' +
-        '</div>'
-      ).join('');
+        '</div>';
+      }).join('');
       checkoutBtn.classList.remove('disabled');
       checkoutBtn.removeAttribute('aria-disabled');
-      checkoutBtn.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(buildMessage(lines));
+      checkoutBtn.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(buildMessage(rows));
     }
     syncMenuCards();
   }
@@ -1340,36 +1485,165 @@ function iniciarWeb() {
     toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
   }
 
-  function change(id, delta) {
-    if (!menuControls[id]) return;
-    const next = Math.max(0, Math.min(99, (cart[id] || 0) + delta));
-    if (next === 0) delete cart[id];
-    else cart[id] = next;
-    save();
-    render();
-    if (delta > 0) {
-      showToast('Añadido: ' + menuControls[id].name);
-      fab.classList.remove('bump');
-      void fab.offsetWidth;
-      fab.classList.add('bump');
-    } else {
-      showToast(next === 0 ? 'Quitado: ' + menuControls[id].name : 'Cantidad actualizada');
-    }
+  function bumpFab() {
+    fab.classList.remove('bump');
+    void fab.offsetWidth;
+    fab.classList.add('bump');
   }
 
+  // cambia la cantidad de una línea del pedido
+  function changeLine(index, delta) {
+    const l = lines[index];
+    if (!l) return;
+    const next = Math.max(0, Math.min(99, l.qty + delta));
+    const name = menuControls[l.id].name;
+    if (next === 0) lines.splice(index, 1);
+    else l.qty = next;
+    save();
+    render();
+    if (delta > 0) { showToast('Añadido: ' + name); bumpFab(); }
+    else showToast(next === 0 ? 'Quitado: ' + name : 'Cantidad actualizada');
+  }
+
+  /* ----- Ventana de opciones: guarnición, adicionales y comentario ----- */
+  const opt = {
+    overlay: document.getElementById('optOverlay'),
+    dialog: document.getElementById('optDialog'),
+    title: document.getElementById('optTitle'),
+    price: document.getElementById('optPrice'),
+    guarnBox: document.getElementById('optGuarnBox'),
+    guarn: document.getElementById('optGuarn'),
+    error: document.getElementById('optError'),
+    extraBox: document.getElementById('optExtraBox'),
+    extras: document.getElementById('optExtras'),
+    extraPrice: document.getElementById('optExtraPrice'),
+    nota: document.getElementById('optNota'),
+    qty: document.getElementById('optQty'),
+    add: document.getElementById('optAdd'),
+    close: document.getElementById('optClose')
+  };
+  let optState = null; // { id, qty, editIndex, returnFocus }
+
+  function optChoices(type, name, selected) {
+    return GUARN.opciones.map(o =>
+      '<label class="opt-choice"><input type="' + type + '" name="' + name + '" value="' + escapeHtml(o) + '"' + (selected.includes(o) ? ' checked' : '') + '><span>' + escapeHtml(o) + '</span></label>'
+    ).join('');
+  }
+
+  function optCurrent() {
+    const g = opt.guarn.querySelector('input:checked');
+    return {
+      id: optState.id,
+      qty: optState.qty,
+      guarn: g ? g.value : '',
+      extras: [...opt.extras.querySelectorAll('input:checked')].map(i => i.value),
+      nota: opt.nota.value
+    };
+  }
+
+  function optPaintTotal() {
+    const l = cleanLine(optCurrent());
+    if (!l) return;
+    opt.qty.textContent = l.qty;
+    const sinPrecio = extrasSinPrecio(l) ? ' + adicionales' : '';
+    opt.add.textContent = (optState.editIndex != null ? 'Guardar cambios' : 'Agregar al pedido') + ' · ' + formatRD(unitPrice(l) * l.qty) + sinPrecio;
+  }
+
+  function openOptions(id, editIndex) {
+    const info = menuControls[id];
+    if (!info) return;
+    const editing = editIndex != null ? lines[editIndex] : null;
+    optState = { id, qty: editing ? editing.qty : 1, editIndex: editing ? editIndex : null, returnFocus: document.activeElement };
+    opt.title.textContent = info.name;
+    opt.price.textContent = formatRD(info.price);
+    const conG = pideGuarn(id);
+    opt.guarnBox.hidden = !conG;
+    opt.extraBox.hidden = !conG;
+    opt.guarnBox.classList.remove('invalid');
+    opt.error.hidden = true;
+    opt.guarn.innerHTML = conG ? optChoices('radio', 'optGuarn', editing && editing.guarn ? [editing.guarn] : []) : '';
+    opt.extras.innerHTML = conG ? optChoices('checkbox', 'optExtra', editing ? editing.extras : []) : '';
+    opt.extraPrice.textContent = GUARN.precio ? '(opcional, +' + formatRD(GUARN.precio) + ' cada una)' : '(opcional, se cobra aparte)';
+    opt.nota.value = editing ? editing.nota : '';
+    optPaintTotal();
+    opt.overlay.hidden = false;
+    opt.dialog.hidden = false;
+    document.body.classList.add('no-scroll');
+    const first = opt.dialog.querySelector('#optGuarn input:checked') || opt.dialog.querySelector('#optGuarn input') || opt.nota;
+    (window.matchMedia('(hover: hover)').matches || first !== opt.nota ? first : opt.close).focus();
+  }
+
+  function closeOptions() {
+    if (!optState) return;
+    const back = optState.returnFocus;
+    optState = null;
+    opt.overlay.hidden = true;
+    opt.dialog.hidden = true;
+    if (!panel.classList.contains('open')) document.body.classList.remove('no-scroll');
+    if (back && document.contains(back) && back.offsetParent !== null) back.focus();
+  }
+
+  function confirmOptions() {
+    if (!optState) return;
+    const raw = optCurrent();
+    if (pideGuarn(raw.id) && !raw.guarn) {
+      opt.guarnBox.classList.add('invalid');
+      opt.error.hidden = false;
+      (opt.guarn.querySelector('input') || opt.nota).focus();
+      return;
+    }
+    const l = cleanLine(raw);
+    if (!l) return;
+    const editIndex = optState.editIndex;
+    if (editIndex != null) lines.splice(editIndex, 1);
+    addLine(l, editIndex);
+    save();
+    render();
+    closeOptions();
+    if (editIndex != null) { showToast('Cambios guardados'); return; }
+    showToast('Añadido: ' + menuControls[l.id].name);
+    bumpFab();
+  }
+
+  opt.dialog.addEventListener('change', e => {
+    if (e.target.name === 'optGuarn') { opt.guarnBox.classList.remove('invalid'); opt.error.hidden = true; }
+    optPaintTotal();
+  });
+  document.getElementById('optMinus').addEventListener('click', () => { optState.qty = Math.max(1, optState.qty - 1); optPaintTotal(); });
+  document.getElementById('optPlus').addEventListener('click', () => { optState.qty = Math.min(99, optState.qty + 1); optPaintTotal(); });
+  opt.add.addEventListener('click', confirmOptions);
+  opt.close.addEventListener('click', closeOptions);
+  opt.overlay.addEventListener('click', closeOptions);
+  opt.nota.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); confirmOptions(); } });
+
   document.addEventListener('click', (e) => {
+    if (e.target.closest('#optDialog')) return;
+    const edit = e.target.closest('.cart-edit');
+    if (edit) {
+      const index = parseInt(edit.closest('.cart-item').dataset.line, 10);
+      if (lines[index]) openOptions(lines[index].id, index);
+      return;
+    }
     const btn = e.target.closest('.qty-btn');
     if (btn) {
+      const item = btn.closest('.cart-item');
+      if (item) { changeLine(parseInt(item.dataset.line, 10), btn.classList.contains('qty-plus') ? 1 : -1); return; }
       const ctrl = btn.closest('.qty-controls');
-      if (ctrl) change(ctrl.dataset.id, btn.classList.contains('qty-plus') ? 1 : -1);
+      const id = ctrl && ctrl.dataset.id;
+      if (!id || !menuControls[id]) return;
+      if (btn.classList.contains('qty-plus')) openOptions(id);
+      else {
+        // en la carta, "−" quita una unidad de la última línea de ese plato
+        for (let i = lines.length - 1; i >= 0; i--) if (lines[i].id === id) { changeLine(i, -1); break; }
+      }
       return;
     }
     const add = e.target.closest('.fi-add');
-    if (add) change(add.dataset.target, 1);
+    if (add) openOptions(add.dataset.target);
   });
 
-  function focusables() {
-    return [...panel.querySelectorAll('button:not([hidden]), a[href]:not(.disabled)')].filter(el => el.offsetParent !== null);
+  function focusables(root) {
+    return [...root.querySelectorAll('button:not([hidden]), a[href]:not(.disabled), input, textarea')].filter(el => el.offsetParent !== null && !el.closest('[hidden]'));
   }
 
   function openCart() {
@@ -1396,7 +1670,7 @@ function iniciarWeb() {
   closeBtn.addEventListener('click', closeCart);
   overlay.addEventListener('click', closeCart);
   clearBtn.addEventListener('click', () => {
-    Object.keys(cart).forEach(id => delete cart[id]);
+    lines = [];
     save();
     render();
     showToast('Pedido vaciado');
@@ -1409,12 +1683,14 @@ function iniciarWeb() {
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      if (panel.classList.contains('open')) closeCart();
+      if (optState) closeOptions();
+      else if (panel.classList.contains('open')) closeCart();
       else if (navLinks.classList.contains('open')) { setMenu(false); navToggle.focus(); }
       return;
     }
-    if (e.key === 'Tab' && panel.classList.contains('open')) {
-      const els = focusables();
+    const trap = optState ? opt.dialog : (panel.classList.contains('open') ? panel : null);
+    if (e.key === 'Tab' && trap) {
+      const els = focusables(trap);
       if (!els.length) return;
       const first = els[0];
       const last = els[els.length - 1];

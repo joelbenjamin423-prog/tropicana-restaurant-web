@@ -58,6 +58,10 @@
     "titulo": "Platos hechos para disfrutar",
     "texto": "Precios en pesos dominicanos (RD$). ITBIS no incluido. Usa + y − para armar tu pedido y envíalo por WhatsApp.",
     "nota": "ITBIS no incluido.",
+    "guarniciones": {
+      "opciones": [],
+      "precioAdicional": null
+    },
     "categorias": [
       {
         "id": "entradas",

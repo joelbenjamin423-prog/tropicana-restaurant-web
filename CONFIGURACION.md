@@ -72,15 +72,25 @@ Si cambian la dirección, el teléfono o el horario, actualízalos también ahí
 
 ## Cómo funciona el pedido
 
-1. Cada plato con precio tiene un botón "Agregar al carrito" y, cuando ya está en el pedido, botones **−** y **+**. Los platos con varios tamaños (las pizzas) tienen un control por tamaño.
-2. El pedido se guarda en el navegador del cliente (`localStorage`, clave `tropicana-pedido-v1`), así que no se pierde al recargar la página. Si el navegador bloquea el almacenamiento, el carrito sigue funcionando, solo que no se guarda.
-3. El botón "Enviar pedido por WhatsApp" abre `wa.me` con el mensaje ya escrito: platos, cantidades, subtotales y total, con la nota "ITBIS no incluido".
+1. Cada plato con precio tiene un botón "Agregar al carrito". Los platos con varios tamaños (pizzas, parrilladas) tienen un botón por tamaño.
+2. Al pulsarlo se abre una ventana con:
+   - **Guarnición** (incluida): el cliente elige una, y es obligatoria.
+   - **Guarnición adicional** (opcional): las que pida de más se cobran aparte.
+   - **Comentario** (opcional, hasta 140 caracteres): por ejemplo "sin cebolla" o "término medio".
+   - **Cantidad.**
+
+   Las dos guarniciones solo aparecen si hay guarniciones en el panel y el plato no está marcado como "No lleva guarnición". Si no, la ventana solo pide el comentario y la cantidad.
+3. **Un mismo plato con opciones distintas** va en líneas separadas del carrito. En el carrito se puede cambiar la cantidad y, con **Editar**, la guarnición o el comentario. En la tarjeta del plato, **−** quita una unidad de la última línea de ese plato.
+4. **Guarniciones y su precio:** se configuran en el panel → Carta → Guarniciones. Si el precio del adicional está vacío, el cliente puede pedirlas igual, y el carrito y el mensaje dicen "precio por confirmar".
+5. **El pedido se guarda en el navegador del cliente** (`localStorage`, clave `tropicana-pedido-v2`), así que no se pierde al recargar la página. Los pedidos guardados con la versión anterior (`tropicana-pedido-v1`) se recuperan solos. Si el navegador bloquea el almacenamiento, el carrito sigue funcionando, solo que no se guarda.
+6. **El botón "Enviar pedido por WhatsApp"** abre `wa.me` con el mensaje ya escrito: platos, cantidades, guarnición, adicionales, nota, subtotales y total, con la nota "ITBIS no incluido".
 
 Un plato sin precio muestra "Consultar" y su aviso (por defecto "Consulta disponibilidad"), y no se puede añadir al carrito.
 
 ## Pendiente de confirmar por el restaurante
 
 - **Carta:** actualizada con la carta impresa del restaurante (noviembre 2026).
+- **Guarniciones:** falta la lista de guarniciones y el precio de cada guarnición adicional. Hasta que se añadan en el panel, al pedir solo se pregunta el comentario.
 - **Horario del fin de semana:** la fuente solo dice "Sáb–Dom hasta las 10:00 p. m.", sin hora de apertura. Por eso los datos estructurados para Google solo incluyen el horario de lunes a viernes.
 - **Fotos por plato:** son de banco o generadas con IA, no de los platos reales del restaurante. Cuando el restaurante tenga una foto de cada plato, se pueden subir desde el panel (Carta → plato → Foto del plato).
 

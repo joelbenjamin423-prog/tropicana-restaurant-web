@@ -105,6 +105,7 @@
   .dish{display:grid;grid-template-columns:1fr;gap:0;}
   .dish .item-head .title small{color:var(--muted);font-weight:400;margin-left:6px;}
   .variant{display:grid;grid-template-columns:1fr 130px 34px;gap:8px;margin-bottom:8px;align-items:center;}
+  .variant.guarn{grid-template-columns:1fr 34px;max-width:420px;}
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
   .chip{display:inline-flex;align-items:center;gap:8px;padding:7px 8px 7px 14px;border-radius:30px;background:var(--panel-2);border:1px solid var(--line-2);font-size:.84rem;}
   .chip button{width:24px;height:24px;border-radius:50%;border:0;background:rgba(255,255,255,.08);cursor:pointer;}
@@ -129,6 +130,7 @@
     .content{padding:18px 14px;}
     .card{padding:16px;}
     .variant{grid-template-columns:1fr 100px 34px;}
+    .variant.guarn{grid-template-columns:1fr 34px;}
   }
 </style>
 </head>
@@ -323,6 +325,8 @@
     o('carta', {}); o('galeria', {}); o('contacto', {}); o('redes', {}); o('pie', {});
     if (!Array.isArray(d.eventos)) d.eventos = [];
     if (!Array.isArray(d.carta.categorias)) d.carta.categorias = [];
+    if (!d.carta.guarniciones || typeof d.carta.guarniciones !== 'object') d.carta.guarniciones = { opciones: [], precioAdicional: null };
+    if (!Array.isArray(d.carta.guarniciones.opciones)) d.carta.guarniciones.opciones = [];
     if (!Array.isArray(d.galeria.fotos)) d.galeria.fotos = [];
     if (!Array.isArray(d.destacados.fotos)) d.destacados.fotos = [];
     if (!Array.isArray(d.destacados.platos)) d.destacados.platos = [];
@@ -629,9 +633,25 @@
             paintPrice();
           } }, 'v', 'Tiene varios tamaños (por ejemplo, Grande / Pequeña)'),
           priceArea,
+          check(p, 'sinGuarnicion', 'No lleva guarnición (al pedirlo no se pregunta)'),
           imageField(p, 'imagen', 'Foto del plato (opcional)', { name: p.nombre || 'plato', maxSide: 1000 }));
         return box;
       }
+
+      // guarniciones: una incluida por plato; las demás se cobran como adicional
+      const g = k.guarniciones;
+      const guarnList = h('div');
+      const paintGuarn = () => {
+        guarnList.innerHTML = '';
+        if (!g.opciones.length) guarnList.append(h('p', { class: 'empty' }, 'Sin guarniciones: al pedir un plato solo se pide el comentario.'));
+        g.opciones.forEach((op, j) => {
+          const inp = h('input', { class: 'input', placeholder: 'Ej.: Tostones' }); inp.value = op || '';
+          inp.addEventListener('input', () => { g.opciones[j] = inp.value; touch(); });
+          guarnList.append(h('div', { class: 'variant guarn' }, inp,
+            h('button', { class: 'btn icon-btn btn-danger', type: 'button', 'aria-label': 'Quitar guarnición', onclick: () => { g.opciones.splice(j, 1); touch(); paintGuarn(); } }, '✕')));
+        });
+      };
+      paintGuarn();
 
       function catBlock(cat, ci) {
         const det = h('details', { class: 'cat', open: openCats.has(cat.id) });
@@ -667,6 +687,14 @@
           h('div', { class: 'row' }, field(k, 'etiqueta', 'Texto pequeño'), field(k, 'titulo', 'Título')),
           field(k, 'texto', 'Texto bajo el título', { type: 'textarea' }),
           field(k, 'nota', 'Nota al final de la carta', { placeholder: 'ITBIS no incluido.' })),
+        card('Guarniciones',
+          h('small', { style: 'color:var(--muted);display:block;margin-bottom:12px' }, 'Al pedir un plato, el cliente elige una guarnición incluida y, si quiere, guarniciones adicionales que se cobran aparte. Los platos marcados con «No lleva guarnición» no la preguntan.'),
+          guarnList,
+          h('button', { class: 'btn btn-sm', type: 'button', onclick: () => {
+            g.opciones.push(''); touch(); paintGuarn();
+            guarnList.lastElementChild.querySelector('input').focus();
+          } }, '+ Añadir guarnición'),
+          h('div', { style: 'margin-top:16px' }, field(g, 'precioAdicional', 'Precio de cada guarnición adicional (RD$)', { type: 'number', min: '0', step: '1', inputmode: 'numeric', hint: 'Vacío = el cliente puede pedirlas y el precio se confirma por WhatsApp.' }))),
         list,
         h('button', { class: 'btn', type: 'button', onclick: () => {
           const c = { id: uid('cat'), nombre: '', imagen: '', platos: [] };
