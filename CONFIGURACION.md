@@ -91,7 +91,7 @@ Un plato sin precio muestra "Consultar" y su aviso (por defecto "Consulta dispon
 
 - **Carta:** actualizada con la carta impresa del restaurante (noviembre 2026).
 - **Guarniciones:** la lista está puesta (noviembre 2026). Cada plato lleva una sola guarnición; las adicionales están desactivadas. Para activarlas: panel → Carta → Guarniciones → "Permitir pedir guarniciones adicionales", y pon su precio (si queda vacío, el carrito y el mensaje dicen "precio por confirmar").
-- **Horario del fin de semana:** la fuente solo dice "Sáb–Dom hasta las 10:00 p. m.", sin hora de apertura. Por eso los datos estructurados para Google solo incluyen el horario de lunes a viernes.
+- **Horario:** todos los días de 8:00 a. m. a 12:00 a. m. (medianoche), confirmado por el restaurante (noviembre 2026). En los datos estructurados para Google figura como 08:00–23:59. Si cambia, actualízalo en el panel (Contacto y horario) y en el bloque JSON-LD del `<head>`.
 - **Fotos por plato:** son de banco o generadas con IA, no de los platos reales del restaurante. Cuando el restaurante tenga una foto de cada plato, se pueden subir desde el panel (Carta → plato → Foto del plato).
 
 ## Página de próximos eventos (`eventos.html`)

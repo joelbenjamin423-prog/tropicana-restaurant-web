@@ -37,9 +37,9 @@
   "geo": { "@type": "GeoCoordinates", "latitude": 19.2868923, "longitude": -70.2704943 },
   "openingHoursSpecification": [{
     "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    "opens": "10:00",
-    "closes": "22:00"
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "opens": "08:00",
+    "closes": "23:59"
   }],
   "hasMenu": "https://joelbenjamin423-prog.github.io/tropicana-restaurant-web/#menu",
   "sameAs": ["https://instagram.com/tropicana_restaurant"]
@@ -675,9 +675,9 @@
       <li><a href="#galeria">Galería</a></li>
       <li><a href="eventos.html">Eventos</a></li>
       <li><a href="#contacto">Contacto</a></li>
-      <li class="nav-links-cta"><a href="https://wa.me/18296026068?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">Pedir ahora</a></li>
+      <li class="nav-links-cta"><a href="https://wa.me/18097252728?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">Pedir ahora</a></li>
     </ul>
-    <a href="https://wa.me/18296026068?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" class="nav-cta">Pedir ahora</a>
+    <a href="https://wa.me/18097252728?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" class="nav-cta">Pedir ahora</a>
     <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -695,11 +695,11 @@
         <p>Cocina criolla, mar y parrilla en un mismo lugar. Carnes importadas, mariscos frescos y la calidez dominicana en cada plato.</p>
         <div class="hero-badge">
           <span class="dot" aria-hidden="true">🕒</span>
-          <span class="txt"><strong>Horario</strong><span>Lun–Vie 10:00 a.&nbsp;m.–10:00 p.&nbsp;m. · Sáb–Dom hasta las 10:00 p.&nbsp;m.</span></span>
+          <span class="txt"><strong>Horario</strong><span>Lun–Dom 8:00 a.&nbsp;m. – 12:00 a.&nbsp;m. (medianoche)</span></span>
         </div>
         <div class="hero-btns">
           <a href="#menu" class="btn btn-gold">Ver la carta</a>
-          <a href="https://wa.me/18296026068?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" class="btn btn-ghost">Pedir por WhatsApp</a>
+          <a href="https://wa.me/18097252728?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" class="btn btn-ghost">Pedir por WhatsApp</a>
         </div>
       </div>
     </div>
@@ -851,8 +851,7 @@
         <div class="ico" aria-hidden="true">🕒</div>
         <h3 class="c-title">Horario</h3>
         <dl>
-          <dt>Lun–Vie</dt><dd>10:00 a.&nbsp;m. – 10:00 p.&nbsp;m.</dd>
-          <dt>Sáb–Dom</dt><dd>Hasta las 10:00 p.&nbsp;m.</dd>
+          <dt>Lun–Dom</dt><dd>8:00 a.&nbsp;m. – 12:00 a.&nbsp;m. (medianoche)</dd>
         </dl>
       </div>
       <div class="c-card wide">
@@ -871,7 +870,7 @@
     <div class="footer-links">
       <a href="eventos.html">Próximos eventos</a>
       <a href="https://instagram.com/tropicana_restaurant" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://wa.me/18296026068?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+      <a href="https://wa.me/18097252728?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">Pedir por WhatsApp</a>
       <a href="#inicio">Volver arriba</a>
     </div>
   </div>
@@ -895,7 +894,7 @@
       <span>Total</span>
       <span id="cartTotal">RD$0</span>
     </div>
-    <a href="https://wa.me/18296026068" class="cart-checkout disabled" id="cartCheckout" target="_blank" rel="noopener" aria-disabled="true">Enviar pedido por WhatsApp</a>
+    <a href="https://wa.me/18097252728" class="cart-checkout disabled" id="cartCheckout" target="_blank" rel="noopener" aria-disabled="true">Enviar pedido por WhatsApp</a>
     <p class="cart-note">ITBIS no incluido. El restaurante confirmará tu pedido y el total final por WhatsApp.<span class="cart-extra-note" id="cartExtraNote" hidden><br>Las guarniciones adicionales se cobran aparte: precio por confirmar.</span></p>
   </div>
 </aside>
@@ -1153,7 +1152,7 @@ function aplicarContenido(c) {
 function iniciarWeb() {
   'use strict';
 
-  const WHATSAPP_NUMBER = window.TROPICANA_WA || '18296026068';
+  const WHATSAPP_NUMBER = window.TROPICANA_WA || '18097252728';
   const STORAGE_KEY = 'tropicana-pedido-v2';
   const OLD_STORAGE_KEY = 'tropicana-pedido-v1';
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

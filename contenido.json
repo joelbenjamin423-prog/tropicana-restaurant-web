@@ -790,18 +790,14 @@
     "titulo": "Te esperamos en Tropicana",
     "texto": "Llámanos, pide por WhatsApp o visítanos en San Francisco de Macorís.",
     "telefono": "809-725-2728",
-    "whatsapp": "18296026068",
+    "whatsapp": "18097252728",
     "mensajePedido": "Hola, quiero hacer un pedido",
     "direccion": "Calle C, Urb. La Fortuna, San Francisco de Macorís, Duarte",
     "mapa": "https://maps.app.goo.gl/qY8KhEaYszNsF7xS6",
     "horario": [
       {
-        "dias": "Lun–Vie",
-        "horas": "10:00 a. m. – 10:00 p. m."
-      },
-      {
-        "dias": "Sáb–Dom",
-        "horas": "Hasta las 10:00 p. m."
+        "dias": "Lun–Dom",
+        "horas": "8:00 a. m. – 12:00 a. m. (medianoche)"
       }
     ]
   },
