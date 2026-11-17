@@ -59,7 +59,14 @@
     "texto": "Precios en pesos dominicanos (RD$). ITBIS no incluido. Usa + y − para armar tu pedido y envíalo por WhatsApp.",
     "nota": "ITBIS no incluido.",
     "guarniciones": {
-      "opciones": [],
+      "opciones": [
+        "Tostones",
+        "Papa frita",
+        "Puré de papa",
+        "Arroz blanco",
+        "Papas salteadas",
+        "Vegetales al vapor"
+      ],
       "precioAdicional": null
     },
     "categorias": [
