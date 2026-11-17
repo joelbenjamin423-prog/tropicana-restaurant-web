@@ -29,7 +29,7 @@ Con "Recordar en este dispositivo", la clave se guarda solo en ese navegador. Si
 | Destacados | Platos recomendados y fotos del carrusel con su texto |
 | Nosotros | Textos y vídeo. Sin vídeo, la sección se oculta. |
 | Carta | Textos de la sección, y además: <ul><li>Categorías: añadir, borrar, reordenar, cambiar la foto del banner.</li><li>Platos: nombre, descripción, precio o varios tamaños, aviso si no hay precio, foto.</li></ul> |
-| Galería | Fotos, rótulo y descripción. Sin fotos, la sección se oculta. |
+| Galería | Fotos, rótulo, descripción y la categoría de la carta que abre al tocarla ("Ver en la carta →"). Sin fotos, la sección se oculta. |
 | Contacto y horario | Textos, teléfono, número de WhatsApp para pedidos, mensaje inicial, dirección, enlace de Maps, líneas de horario |
 | Pie y redes | Texto del pie, Instagram, Facebook y TikTok. Una red vacía no aparece. |
 | Eventos | Título, fecha, hora, etiqueta, precio, descripción, foto y botón de reservar por WhatsApp |
@@ -124,6 +124,7 @@ Para ver cómo queda el diseño con eventos, abre `eventos.html?ejemplo`: muestr
 | `ensalada.webp`, `pizza.webp` | Banners de Ensaladas y Pizzas | Unsplash |
 | `mofongos.webp` | Banner de Mofongos | Generada con IA (Google Flow) por el restaurante: el mofongo cuatro quesos, recortado |
 
+- **Foto de la galería "Pescados y mariscos" (`assets/galeria/pescados.webp`):** la del Salmón a la plancha (Unsplash, https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2), recortada a 1400×700.
 - **Fotos de los platos (`assets/platos/<id del plato>.webp`):** los 65 platos tienen foto, recortada a 640×400. Son de dos tipos:
   - **45 de Unsplash**, con la misma licencia gratuita. Pesan unos 50 KB cada una.
   - **20 generadas con IA** por el restaurante con Google Flow (noviembre 2026): los mofongos y los platos de la casa que no tenían foto de banco. Pesan unos 25 KB cada una.

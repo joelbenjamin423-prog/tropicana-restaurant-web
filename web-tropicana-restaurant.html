@@ -571,6 +571,10 @@
   }
   .g-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,.8,.3,1);}
   .g-item:hover img{transform:scale(1.06);}
+  .g-link{position:absolute;inset:0;z-index:3;border-radius:inherit;}
+  .g-link:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px;}
+  .g-cta{display:block;margin-top:6px;font-size:.66rem;letter-spacing:.14em;color:var(--gold-light);opacity:.85;transition:transform .3s ease, opacity .3s ease;}
+  .g-item.is-link:hover .g-cta{opacity:1;transform:translateX(4px);}
   /* si la última fila quedaría con un hueco, la última foto ocupa el espacio */
   .g-item:last-child:nth-child(3n+2){grid-column:span 2;aspect-ratio:auto;}
   .g-item figcaption{position:relative;z-index:2;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cream);}
@@ -821,11 +825,11 @@
       <h2 class="section-title">Sabores y rincones de Tropicana</h2>
     </div>
     <div class="gallery-grid">
-      <figure class="g-item g1 reveal-scale"><img src="assets/plato4.webp" alt="Pasta con queso rallado y albahaca" width="1400" height="781" loading="lazy" decoding="async"><figcaption>Pastas</figcaption></figure>
+      <figure class="g-item g1 reveal-scale is-link"><img src="assets/plato4.webp" alt="Pasta con queso rallado y albahaca" width="1400" height="781" loading="lazy" decoding="async"><figcaption>Pastas<span class="g-cta" aria-hidden="true">Ver en la carta →</span></figcaption><a class="g-link" href="#cat-pastas" data-cat="pastas" aria-label="Ver Pastas en la carta"></a></figure>
       <figure class="g-item g2 reveal-scale"><img src="assets/barra.webp" alt="Barra de Tropicana Restaurant con taburetes de madera" width="1400" height="781" loading="lazy" decoding="async"><figcaption>Nuestra barra</figcaption></figure>
-      <figure class="g-item g3 reveal-scale"><img src="assets/plato5.webp" alt="Chuletas a la parrilla sobre tabla de pizarra" width="1400" height="781" loading="lazy" decoding="async"><figcaption>Carnes a la parrilla</figcaption></figure>
-      <figure class="g-item g4 reveal-scale"><img src="assets/plato6.webp" alt="Bandeja de carnes y vegetales a la parrilla para compartir" width="1400" height="781" loading="lazy" decoding="async"><figcaption>Para compartir</figcaption></figure>
-      <figure class="g-item g5 reveal-scale"><img src="assets/plato2.webp" alt="Pescado frito con tostones, tomate y limón" width="1400" height="781" loading="lazy" decoding="async"><figcaption>Pescado frito</figcaption></figure>
+      <figure class="g-item g3 reveal-scale is-link"><img src="assets/plato5.webp" alt="Chuletas a la parrilla sobre tabla de pizarra" width="1400" height="781" loading="lazy" decoding="async"><figcaption>Carnes a la parrilla<span class="g-cta" aria-hidden="true">Ver en la carta →</span></figcaption><a class="g-link" href="#cat-carnes" data-cat="carnes" aria-label="Ver Carnes a la parrilla en la carta"></a></figure>
+      <figure class="g-item g4 reveal-scale is-link"><img src="assets/plato6.webp" alt="Bandeja de carnes y vegetales a la parrilla para compartir" width="1400" height="781" loading="lazy" decoding="async"><figcaption>Para compartir<span class="g-cta" aria-hidden="true">Ver en la carta →</span></figcaption><a class="g-link" href="#cat-compartir" data-cat="compartir" aria-label="Ver Para compartir en la carta"></a></figure>
+      <figure class="g-item g5 reveal-scale is-link"><img src="assets/galeria/pescados.webp" alt="Filete de salmón a la plancha con vegetales y limón" width="1400" height="781" loading="lazy" decoding="async"><figcaption>Pescados y mariscos<span class="g-cta" aria-hidden="true">Ver en la carta →</span></figcaption><a class="g-link" href="#cat-pescados" data-cat="pescados" aria-label="Ver Pescados y mariscos en la carta"></a></figure>
     </div>
   </div>
 </section>
@@ -1104,9 +1108,14 @@ function aplicarContenido(c) {
     head.querySelector('.section-title').textContent = g.titulo || '';
     const fotos = (g.fotos || []).filter(f => f && f.imagen);
     $('#galeria').hidden = !fotos.length;
-    $('.gallery-grid').innerHTML = fotos.map((f, i) =>
-      '<figure class="g-item g' + (i % 6 + 1) + ' reveal-scale"><img src="' + esc(f.imagen) + '" alt="' + esc(f.descripcion || f.texto) + '" width="1400" height="781" loading="lazy" decoding="async">' +
-      (f.texto ? '<figcaption>' + esc(f.texto) + '</figcaption>' : '') + '</figure>').join('');
+    $('.gallery-grid').innerHTML = fotos.map((f, i) => {
+      // si la foto lleva a una categoría de la carta, toda la foto es un enlace que la abre
+      const cat = String(f.categoria || '').replace(/[^\w-]/g, '');
+      const link = cat && document.getElementById('cat-' + cat);
+      return '<figure class="g-item g' + (i % 6 + 1) + ' reveal-scale' + (link ? ' is-link' : '') + '"><img src="' + esc(f.imagen) + '" alt="' + esc(f.descripcion || f.texto) + '" width="1400" height="781" loading="lazy" decoding="async">' +
+        (f.texto || link ? '<figcaption>' + esc(f.texto) + (link ? '<span class="g-cta" aria-hidden="true">Ver en la carta →</span>' : '') + '</figcaption>' : '') +
+        (link ? '<a class="g-link" href="#cat-' + cat + '" data-cat="' + cat + '" aria-label="Ver ' + esc(f.texto || 'esta categoría') + ' en la carta"></a>' : '') + '</figure>';
+    }).join('');
   });
 
   /* --- contacto --- */
@@ -1320,6 +1329,15 @@ function iniciarWeb() {
       }
     });
   });
+
+  // fotos de la galería que llevan a una categoría: la abren y bajan hasta ella
+  document.querySelectorAll('.g-link').forEach(a => a.addEventListener('click', e => {
+    const banner = document.getElementById('cat-' + a.dataset.cat);
+    if (!banner) return;
+    e.preventDefault();
+    if (banner.getAttribute('aria-expanded') !== 'true') banner.click();
+    else window.scrollTo({ top: banner.getBoundingClientRect().top + window.scrollY - (nav.offsetHeight + 16), behavior: reduceMotion ? 'auto' : 'smooth' });
+  }));
 
   /* ===== Pedido / carrito =====
      Cada línea del pedido es un plato con su guarnición, sus adicionales y su comentario.

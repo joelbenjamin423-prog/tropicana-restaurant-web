@@ -714,8 +714,19 @@
         g.fotos.forEach((f, i) => list.append(h('div', { class: 'item' },
           h('div', { class: 'item-head' }, h('span', { class: 'title' }, f.texto || 'Foto ' + (i + 1)), tools(g.fotos, i, 'esta foto', rerender)),
           imageField(f, 'imagen', 'Imagen', { required: true, name: f.texto || 'galeria' }),
-          h('div', { class: 'row' }, field(f, 'texto', 'Rótulo sobre la foto'), field(f, 'descripcion', 'Descripción (accesibilidad)', { hint: 'Qué se ve en la foto, para personas que no pueden verla.' })))));
+          h('div', { class: 'row' }, field(f, 'texto', 'Rótulo sobre la foto'), field(f, 'descripcion', 'Descripción (accesibilidad)', { hint: 'Qué se ve en la foto, para personas que no pueden verla.' })),
+          catSelect(f))));
       };
+      // al tocar la foto en la web, abre esta categoría de la carta
+      function catSelect(f) {
+        const sel = h('select', { class: 'input' });
+        sel.append(h('option', { value: '' }, 'No lleva a la carta'));
+        data.carta.categorias.forEach(c => { if (c.nombre) sel.append(h('option', { value: c.id }, c.nombre)); });
+        sel.value = data.carta.categorias.some(c => c.id === f.categoria) ? f.categoria : '';
+        sel.addEventListener('change', () => { if (sel.value) f.categoria = sel.value; else delete f.categoria; touch(); });
+        return h('label', { class: 'field' }, h('span', null, 'Al tocar la foto, abrir en la carta'), sel,
+          h('small', null, 'La foto se convierte en un enlace que abre esa categoría.'));
+      }
       rerender();
       return [
         head('Galería', 'Fotos del restaurante y de los platos.'),

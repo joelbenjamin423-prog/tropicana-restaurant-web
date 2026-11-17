@@ -757,7 +757,8 @@
       {
         "imagen": "assets/plato4.webp",
         "descripcion": "Pasta con queso rallado y albahaca",
-        "texto": "Pastas"
+        "texto": "Pastas",
+        "categoria": "pastas"
       },
       {
         "imagen": "assets/barra.webp",
@@ -767,17 +768,20 @@
       {
         "imagen": "assets/plato5.webp",
         "descripcion": "Chuletas a la parrilla sobre tabla de pizarra",
-        "texto": "Carnes a la parrilla"
+        "texto": "Carnes a la parrilla",
+        "categoria": "carnes"
       },
       {
         "imagen": "assets/plato6.webp",
         "descripcion": "Bandeja de carnes y vegetales a la parrilla para compartir",
-        "texto": "Para compartir"
+        "texto": "Para compartir",
+        "categoria": "compartir"
       },
       {
-        "imagen": "assets/plato2.webp",
-        "descripcion": "Pescado frito con tostones, tomate y limón",
-        "texto": "Pescado frito"
+        "imagen": "assets/galeria/pescados.webp",
+        "descripcion": "Filete de salmón a la plancha con vegetales y limón",
+        "texto": "Pescados y mariscos",
+        "categoria": "pescados"
       }
     ]
   },
