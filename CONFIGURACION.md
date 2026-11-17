@@ -75,7 +75,7 @@ Si cambian la dirección, el teléfono o el horario, actualízalos también ahí
 1. Cada plato con precio tiene un botón "Agregar al carrito". Los platos con varios tamaños (pizzas, parrilladas) tienen un botón por tamaño.
 2. Al pulsarlo se abre una ventana con:
    - **Guarnición** (incluida): el cliente elige una, y es obligatoria.
-   - **Guarnición adicional** (opcional): las que pida de más se cobran aparte.
+   - **Guarnición adicional** (opcional, solo si está activada en el panel): las que pida de más se cobran aparte. Ahora está desactivada.
    - **Comentario** (opcional, hasta 140 caracteres): por ejemplo "sin cebolla" o "término medio".
    - **Cantidad.**
 
@@ -90,7 +90,7 @@ Un plato sin precio muestra "Consultar" y su aviso (por defecto "Consulta dispon
 ## Pendiente de confirmar por el restaurante
 
 - **Carta:** actualizada con la carta impresa del restaurante (noviembre 2026).
-- **Guarniciones:** la lista está puesta (noviembre 2026). Falta el precio de cada guarnición adicional; hasta que se ponga en el panel (Carta → Guarniciones), el carrito y el mensaje dicen "precio por confirmar".
+- **Guarniciones:** la lista está puesta (noviembre 2026). Cada plato lleva una sola guarnición; las adicionales están desactivadas. Para activarlas: panel → Carta → Guarniciones → "Permitir pedir guarniciones adicionales", y pon su precio (si queda vacío, el carrito y el mensaje dicen "precio por confirmar").
 - **Horario del fin de semana:** la fuente solo dice "Sáb–Dom hasta las 10:00 p. m.", sin hora de apertura. Por eso los datos estructurados para Google solo incluyen el horario de lunes a viernes.
 - **Fotos por plato:** son de banco o generadas con IA, no de los platos reales del restaurante. Cuando el restaurante tenga una foto de cada plato, se pueden subir desde el panel (Carta → plato → Foto del plato).
 

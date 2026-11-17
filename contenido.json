@@ -67,7 +67,8 @@
         "Papas salteadas",
         "Vegetales al vapor"
       ],
-      "precioAdicional": null
+      "precioAdicional": null,
+      "permitirAdicionales": false
     },
     "categorias": [
       {

@@ -1013,7 +1013,8 @@ function aplicarContenido(c) {
     const g = k.guarniciones || {};
     window.TROPICANA_GUARN = {
       opciones: (Array.isArray(g.opciones) ? g.opciones : []).map(s => String(s == null ? '' : s).trim()).filter(Boolean),
-      precio: Number(g.precioAdicional) > 0 ? Number(g.precioAdicional) : null
+      precio: Number(g.precioAdicional) > 0 ? Number(g.precioAdicional) : null,
+      adicionales: g.permitirAdicionales === true
     };
     let conGuarn = true;
     const ctrl = (id, nombre, precio, largo) =>
@@ -1365,7 +1366,7 @@ function iniciarWeb() {
     if (!(qty > 0 && qty < 100)) return null;
     const conG = pideGuarn(raw.id);
     const guarn = conG && GUARN.opciones.includes(raw.guarn) ? raw.guarn : '';
-    const extras = conG && Array.isArray(raw.extras) ? GUARN.opciones.filter(o => raw.extras.includes(o)) : [];
+    const extras = conG && GUARN.adicionales && Array.isArray(raw.extras) ? GUARN.opciones.filter(o => raw.extras.includes(o)) : [];
     const nota = String(raw.nota || '').replace(/\s+/g, ' ').trim().slice(0, 140);
     return { id: raw.id, qty, guarn, extras, nota };
   }
@@ -1558,7 +1559,7 @@ function iniciarWeb() {
     opt.price.textContent = formatRD(info.price);
     const conG = pideGuarn(id);
     opt.guarnBox.hidden = !conG;
-    opt.extraBox.hidden = !conG;
+    opt.extraBox.hidden = !conG || !GUARN.adicionales;
     opt.guarnBox.classList.remove('invalid');
     opt.error.hidden = true;
     opt.guarn.innerHTML = conG ? optChoices('radio', 'optGuarn', editing && editing.guarn ? [editing.guarn] : []) : '';

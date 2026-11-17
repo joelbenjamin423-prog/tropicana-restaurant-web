@@ -688,12 +688,13 @@
           field(k, 'texto', 'Texto bajo el título', { type: 'textarea' }),
           field(k, 'nota', 'Nota al final de la carta', { placeholder: 'ITBIS no incluido.' })),
         card('Guarniciones',
-          h('small', { style: 'color:var(--muted);display:block;margin-bottom:12px' }, 'Al pedir un plato, el cliente elige una guarnición incluida y, si quiere, guarniciones adicionales que se cobran aparte. Los platos marcados con «No lleva guarnición» no la preguntan.'),
+          h('small', { style: 'color:var(--muted);display:block;margin-bottom:12px' }, 'Al pedir un plato, el cliente elige una guarnición (incluida en el precio). Los platos marcados con «No lleva guarnición» no la preguntan.'),
           guarnList,
           h('button', { class: 'btn btn-sm', type: 'button', onclick: () => {
             g.opciones.push(''); touch(); paintGuarn();
             guarnList.lastElementChild.querySelector('input').focus();
           } }, '+ Añadir guarnición'),
+          h('div', { style: 'margin-top:16px' }, check(g, 'permitirAdicionales', 'Permitir pedir guarniciones adicionales (se cobran aparte)')),
           h('div', { style: 'margin-top:16px' }, field(g, 'precioAdicional', 'Precio de cada guarnición adicional (RD$)', { type: 'number', min: '0', step: '1', inputmode: 'numeric', hint: 'Vacío = el cliente puede pedirlas y el precio se confirma por WhatsApp.' }))),
         list,
         h('button', { class: 'btn', type: 'button', onclick: () => {
